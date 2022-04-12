@@ -14,22 +14,21 @@ class EnrichmentModel(BaseModel):
     """
     Model for the enrichment API.
     """
-    name: str = None
-    first_name: str = None
-    last_name: str = None
-    middle_name: str = None
-    location: str = None
-    street_address: str = None
-    street_address: str = None
-    locality: str = None
-    region: str = None
-    countery: str = None
-    postal_code: str = None
+    birth_date: str = None
     company: str = None
-    school: str = None
-    phone: str = None
+    country: str = None
     email: EmailStr = None
     email_hash: str = None
-    profile: HttpUrl = None
+    first_name: str = None
+    last_name: str = None
     lid: str = None
-    birth_date: str = None
+    locality: str = None
+    location: str = None
+    middle_name: str = None
+    name: str = None
+    phone: str = None
+    postal_code: str = None
+    profile: HttpUrl = None
+    region: str = None
+    school: str = None
+    street_address: str = None
