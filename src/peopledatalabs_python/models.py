@@ -1,3 +1,8 @@
+"""
+Client's models for validation.
+"""
+
+
 from pydantic import (
     BaseModel,
     EmailStr,
@@ -6,11 +11,15 @@ from pydantic import (
 
 
 class EnrichmentModel(BaseModel):
+    """
+    Model for the enrichment API.
+    """
     name: str = None
     first_name: str = None
     last_name: str = None
     middle_name: str = None
     location: str = None
+    street_address: str = None
     street_address: str = None
     locality: str = None
     region: str = None

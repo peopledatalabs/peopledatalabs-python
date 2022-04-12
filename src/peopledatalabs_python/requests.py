@@ -1,3 +1,8 @@
+"""
+Requests module. All requests are handled here.
+"""
+
+
 import json
 import requests
 
@@ -17,6 +22,16 @@ logger = get_logger("requests")
 
 @dataclass
 class Request():
+    """
+    Base class for all HTTP requests.
+
+    Args:
+        api_key: The authentication API key for API calls.
+        base_path: PeopleDataLabs' API base URL.
+        type_: The type of API to call.
+        endpoint: The endpoint of the API to call.
+        params: The parameters to use in the API call.
+    """
     api_key: SecretStr
     base_path: HttpUrl
     type_: str
@@ -24,6 +39,15 @@ class Request():
     params: models.EnrichmentModel
 
     def get(self):
+        """
+        Exceutes a GET request from the specified API.
+
+        Args:
+            kwargs: Parameters for the API.
+
+        Returns:
+            A requests.Response object with the result of the HTTP call.
+        """
         params = {
             param: value for param, value in self.params if value is not None
         }

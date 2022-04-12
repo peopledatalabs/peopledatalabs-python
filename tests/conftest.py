@@ -1,3 +1,8 @@
+"""
+Pytest testing configuration file.
+"""
+
+
 import uuid
 
 import pytest
@@ -9,20 +14,25 @@ from peopledatalabs_python.logger import get_logger
 logger = get_logger("tests")
 
 
-@pytest.fixture
-def fake_api_key():
+@pytest.fixture(name="fake_api_key")
+def fixture_fake_api_key():
+    """
+    Fixture which returns a randomly generated uuid4 as a fake API key.
+    """
     return str(uuid.uuid4())
 
 
 @pytest.fixture
 def client():
-    client = PDLPY()
-    logger.debug(f"client: {client}")
-    return client
+    """
+    Client instance loads API_KEY from .env file.
+    """
+    return PDLPY()
 
 
 @pytest.fixture
 def client_with_fake_api_key(fake_api_key):
-    client = PDLPY(api_key=fake_api_key)
-    logger.debug(f"client: {client}")
-    return client
+    """
+    Client instance with fake API key.
+    """
+    return PDLPY(api_key=fake_api_key)

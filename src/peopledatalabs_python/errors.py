@@ -1,2 +1,9 @@
+"""
+Exceptions raised by the client.
+"""
+
+
 class EmptyParametersException(Exception):
-    pass
+    """
+    Thrown when an API method is invoked with no parameters.
+    """
