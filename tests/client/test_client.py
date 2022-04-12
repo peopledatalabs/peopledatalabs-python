@@ -1,11 +1,9 @@
 import logging
-import pytest
-import uuid
 
+import pytest
 from pydantic import ValidationError
 
 from peopledatalabs_python import __version__
-from peopledatalabs_python.defaults import Defaults
 from peopledatalabs_python.main import PDLPY
 
 
@@ -17,16 +15,33 @@ def test_version():
     assert __version__ == '0.1.0'
 
 
-def test_init_defaults():
-    client = PDLPY(str(uuid.uuid4()))
-    assert client.base_path == Defaults.base_path
+@pytest.mark.usefixtures("fake_api_key")
+def test_init_defaults(fake_api_key):
+    client = PDLPY(fake_api_key)
+    assert client.base_path == "https://api.peopledatalabs.com/v5"
 
 
-def test_init_params():
-    base_path = "https://api.peopledatalabs.com/"
-    version = "v5"
-    client = PDLPY(str(uuid.uuid4()), base_path, version)
-    assert client.base_path == (base_path + version)
+@pytest.mark.usefixtures("fake_api_key")
+def test_init_defaults_base_path_only(fake_api_key):
+    client = PDLPY(
+        api_key=fake_api_key,
+        base_path="https://google.com",
+    )
+    assert client.base_path == "https://google.com"
+
+
+@pytest.mark.usefixtures("fake_api_key")
+def test_init_defaults_version_only(fake_api_key):
+    client = PDLPY(
+        api_key=fake_api_key,
+        version="v4"
+    )
+    assert client.base_path == "https://api.peopledatalabs.com/v4"
+
+
+def test_init_no_api_key_raises_validation_error():
+    with pytest.raises(ValidationError):
+        PDLPY()
 
 
 def test_init_invalid_api_key_raises_validation_error():
@@ -34,7 +49,8 @@ def test_init_invalid_api_key_raises_validation_error():
         PDLPY(api_key=[])
 
 
-def test_init_invalid_base_path_raises_validation_error():
+@pytest.mark.usefixtures("fake_api_key")
+def test_init_invalid_base_path_raises_validation_error(fake_api_key):
     with pytest.raises(ValidationError):
         PDLPY(
             api_key="123",
@@ -42,7 +58,8 @@ def test_init_invalid_base_path_raises_validation_error():
         )
 
 
-def test_init_invalid_version_rasies_validation_error():
+@pytest.mark.usefixtures("fake_api_key")
+def test_init_invalid_version_rasies_validation_error(fake_api_key):
     with pytest.raises(ValidationError):
         PDLPY(
             api_key="123",

@@ -1,0 +1,40 @@
+import json
+import requests
+
+from pydantic import (
+    HttpUrl,
+    SecretStr,
+)
+from pydantic.dataclasses import dataclass
+
+from . import models
+from . import utils
+from .logger import get_logger
+
+
+logger = get_logger("requests")
+
+
+@dataclass
+class Request():
+    api_key: SecretStr
+    base_path: HttpUrl
+    type_: str
+    endpoint: str
+    params: models.EnrichmentModel
+
+    def get(self):
+        params = {
+            param: value for param, value in self.params if value is not None
+        }
+        params["api_key"] = self.api_key
+        url = f"{self.base_path}/{self.type_}/{self.endpoint}"
+        logger.debug(
+            "Calling %s/%s with params: %s",
+            self.base_path,
+            self.type_,
+            json.dumps(params, indent=2, default=utils.json_defaults)
+        )
+        params["api_key"] = params["api_key"].get_secret_value()
+        response = requests.get(url, params=params)
+        return response

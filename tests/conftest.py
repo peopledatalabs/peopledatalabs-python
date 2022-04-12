@@ -1,5 +1,6 @@
-import pytest
 import uuid
+
+import pytest
 
 from peopledatalabs_python.main import PDLPY
 from peopledatalabs_python.logger import get_logger
