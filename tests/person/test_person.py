@@ -40,4 +40,5 @@ def test_enrichment_api_endpoint(client):
     enriched = client.person.enrichment(
         profile="https://www.linkedin.com/in/guido-van-rossum-4a0756/"
     )
-    assert enriched.status_code == 200
+    assert isinstance(enriched, dict)
+    assert enriched["status"] == 200

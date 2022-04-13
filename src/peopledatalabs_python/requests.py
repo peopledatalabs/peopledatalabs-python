@@ -61,4 +61,5 @@ class Request():
         )
         params["api_key"] = params["api_key"].get_secret_value()
         response = requests.get(url, params=params)
-        return response
+
+        return response.json()
