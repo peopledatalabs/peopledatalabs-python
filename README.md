@@ -7,9 +7,24 @@ A Python client for the People Data Labs API.
 </p>
 
 ## Table of Contents
+- [🔧 Installation](#installation)
 - [🚀 Usage](#usage)
 - [🌐 Endpoints](#endpoints)
 - [📘 Documentation](#documentation)
+
+## 🔧 Installation <a name="installation"></a>
+
+1. Clone this git repo:
+```bash
+git clone https://github.com/peopledatalabs/peopledatalabs-python.git
+```
+
+1. From the root of the repo, run:
+```bash
+pip install -e .
+```
+
+1. Sign up for a [free PDL API key](https://www.peopledatalabs.com/signup)
 
 ## 🚀 Usage <a name="usage"></a>
 
