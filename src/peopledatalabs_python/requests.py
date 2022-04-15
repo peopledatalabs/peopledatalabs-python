@@ -54,7 +54,7 @@ class Request():
 
     def get(self):
         """
-        Exceutes a GET request from the specified API.
+        Executes a GET request from the specified API.
 
         Returns:
             A requests.Response object with the result of the HTTP call.
@@ -70,7 +70,7 @@ class Request():
 
     def post(self):
         """
-        Exceutes a POST request to the specified API.
+        Executes a POST request to the specified API.
 
         Returns:
             A requests.Response object with the result of the HTTP call.
