@@ -12,6 +12,7 @@ from pydantic import (
 )
 from pydantic.dataclasses import dataclass
 
+from . import models
 from .errors import EmptyParametersException
 from .logger import get_logger
 from .requests import Request
@@ -98,7 +99,8 @@ class Person(Endpoint):
             section="person",
             endpoint="enrich",
             headers={"Accept-Encoding": "gzip"},
-            params=kwargs
+            params=kwargs,
+            validator=models.PersonEnrichmentModel
         ).get()
 
     @check_empty_parameters
@@ -121,5 +123,6 @@ class Person(Endpoint):
             section="person",
             endpoint="bulk",
             headers={"Content-Type": "application/json"},
-            params=kwargs
+            params=kwargs,
+            validator=models.PersonBulkModel
         ).post()

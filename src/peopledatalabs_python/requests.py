@@ -4,28 +4,21 @@ Requests module. All requests are handled here.
 
 
 import json
-from typing import Dict
+from typing import Dict, Type
 
 from pydantic import (
+    BaseModel,
     HttpUrl,
     SecretStr,
 )
 from pydantic.dataclasses import dataclass
 import requests
 
-from . import models
 from . import utils
 from .logger import get_logger
 
 
 logger = get_logger("requests")
-
-request_models_map = {
-    "person": {
-        "enrich": models.PersonEnrichmentModel,
-        "bulk": models.PersonBulkModel,
-    }
-}
 
 
 @dataclass
@@ -46,6 +39,7 @@ class Request():
     endpoint: str
     headers: Dict[str, str]
     params: dict
+    validator: Type[BaseModel]
 
     def __post_init__(self):
         """
@@ -54,11 +48,10 @@ class Request():
         Also defines self.url which is the result of
         base_path + section (if any) + endpoint.
         """
-        model = request_models_map[self.section][self.endpoint]
         logger.debug(
             "Request object received params: %s", self.params
         )
-        self.params = model(**self.params).dict(exclude_none=True)
+        self.params = self.validator(**self.params).dict(exclude_none=True)
         logger.debug(
             "Request object params after validation: %s", self.params
         )
