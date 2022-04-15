@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: Python package
+name: Python package test
 
 on:
   push:
@@ -32,8 +32,8 @@ jobs:
       run: |
         poetry run pylint --extension-pkg-whitelist='pydantic' $(git ls-files '*.py')
     - name: Test no API_KEY
-      run: poetry run pytest -k "not _api_endpoint"
+      run: poetry run pytest -k "not test_api_endpoint_"
     - name: Test with API_KEY
-      run: poetry run pytest -k "_api_endpoint"
+      run: poetry run pytest -k "test_api_endpoint_"
       env:
         API_KEY: ${{ secrets.PDL_API_KEY }}

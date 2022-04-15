@@ -49,15 +49,16 @@ Then, send requests to any PDL API Endpoint:
 ```python
 # By Enrichment
 result = client.person.enrichment(
-    phone="4155688415"
+    phone="4155688415",
+    pretty=True,
 )
-if result["status"] == 200:
-    print(result["data"])
+if result.ok:
+    print(result.text)
 else:
     print(
-        "Status: {status};"
-        " Error: {type};"
-        " Message: {message}".format(**result, **result["error"])
+        f"Status: {result.status_code};"
+        f" Reason: {result.reason};"
+        " Message: {};".format(result.json()["error"]["message"])
     )
 ```
 ## 🌐 Endpoints <a name="endpoints"></a>

@@ -47,7 +47,7 @@ class PDLPY():
     """
     api_key: SecretStr = settings.api_key
     base_path: HttpUrl = None
-    version: constr(regex=settings.version_re) = "v5"
+    version: constr(regex=settings.version_re) = settings.version
     log_level: str = None
 
     def __post_init__(self):
@@ -95,7 +95,8 @@ class Person(Endpoint):
         return Request(
             api_key=self.api_key,
             base_path=self.base_path,
-            type_="person",
+            section="person",
             endpoint="enrich",
+            headers={"Accept-Encoding": "gzip"},
             params=kwargs
         ).get()
