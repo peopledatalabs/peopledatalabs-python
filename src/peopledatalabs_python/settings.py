@@ -23,6 +23,7 @@ class Settings():
     base_path: HttpUrl = "https://api.peopledatalabs.com/"
     log_level: str = None
     log_format: str = "{asctime} [{levelname}] - {name}.{funcName}: {message}"
+    version: str = "v5"
     version_re: str = r"^v[0-9]$"
 
     def __post_init__(self):
