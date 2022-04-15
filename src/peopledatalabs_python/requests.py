@@ -28,15 +28,13 @@ class Request():
 
     Args:
         api_key: The authentication API key for API calls.
-        base_path: PeopleDataLabs' API base URL.
-        section: The type of API to call.
-        endpoint: The endpoint of the API to call.
+        url: URL of the API to call.
+        headers: The request headers.
         params: The parameters to use in the API call.
+        validator: The validator to use to validate params.
     """
     api_key: SecretStr
-    base_path: HttpUrl
-    section: str
-    endpoint: str
+    url: HttpUrl
     headers: Dict[str, str]
     params: dict
     validator: Type[BaseModel]
@@ -45,8 +43,6 @@ class Request():
         """
         Refactors self.params, validating per endpoint
         and stripping off None values.
-        Also defines self.url which is the result of
-        base_path + section (if any) + endpoint.
         """
         logger.debug(
             "Request object received params: %s", self.params
@@ -55,11 +51,6 @@ class Request():
         logger.debug(
             "Request object params after validation: %s", self.params
         )
-
-        self.url = self.base_path
-        if self.section:
-            self.url += "/" + self.section
-        self.url += "/" + self.endpoint
 
     def get(self):
         """
@@ -70,9 +61,8 @@ class Request():
         """
         self.params["api_key"] = self.api_key
         logger.info(
-            "Calling %s/%s with params: %s",
-            self.base_path,
-            self.section,
+            "Calling %s with params: %s",
+            self.url,
             json.dumps(self.params, indent=2, default=utils.json_defaults)
         )
         self.params["api_key"] = self.params["api_key"].get_secret_value()
@@ -87,9 +77,8 @@ class Request():
         """
         self.headers["X-api-key"] = self.api_key.get_secret_value()
         logger.info(
-            "Calling %s/%s with params: %s",
-            self.base_path,
-            self.section,
+            "Calling %s with params: %s",
+            self.url,
             json.dumps(self.params, indent=2, default=utils.json_defaults)
         )
         return requests.post(self.url, json=self.params, headers=self.headers)

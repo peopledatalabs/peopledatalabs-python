@@ -76,12 +76,21 @@ class Endpoint():
     api_key: SecretStr
     base_path: HttpUrl
 
+    def _get_url(self, endpoint: str, section: str = None):
+        url = self.base_path
+        if section:
+            url += "/" + section
+        url += "/" + endpoint
+
+        return url
+
 
 @dataclass
 class Person(Endpoint):
     """
     Class for all APIs of "person" type.
     """
+
     @check_empty_parameters
     def enrichment(self, **kwargs):
         """
@@ -93,11 +102,10 @@ class Person(Endpoint):
         Returns:
             A requests.Response object with the result of the HTTP call.
         """
+        url = self._get_url(section="person", endpoint="enrich")
         return Request(
             api_key=self.api_key,
-            base_path=self.base_path,
-            section="person",
-            endpoint="enrich",
+            url=url,
             headers={"Accept-Encoding": "gzip"},
             params=kwargs,
             validator=models.PersonEnrichmentModel
@@ -114,14 +122,10 @@ class Person(Endpoint):
         Returns:
             A requests.Response object with the result of the HTTP call.
         """
-        logger.debug(
-            "Calling bulk API with params %s", kwargs
-        )
+        url = self._get_url(section="person", endpoint="bulk")
         return Request(
             api_key=self.api_key,
-            base_path=self.base_path,
-            section="person",
-            endpoint="bulk",
+            url=url,
             headers={"Content-Type": "application/json"},
             params=kwargs,
             validator=models.PersonBulkModel
