@@ -5,6 +5,7 @@ Requests module. All requests are handled here.
 
 import json
 import requests
+from typing import Dict
 
 from pydantic import (
     HttpUrl,
@@ -42,6 +43,7 @@ class Request():
     base_path: HttpUrl
     section: str
     endpoint: str
+    headers: Dict[str, str]
     params: dict
 
     def __post_init__(self):

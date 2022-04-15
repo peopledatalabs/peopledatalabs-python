@@ -97,5 +97,6 @@ class Person(Endpoint):
             base_path=self.base_path,
             section="person",
             endpoint="enrich",
+            headers={"Accept-Encoding": "gzip"},
             params=kwargs
         ).get()
