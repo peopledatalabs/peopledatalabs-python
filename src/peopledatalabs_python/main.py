@@ -12,6 +12,7 @@ from pydantic import (
 )
 from pydantic.dataclasses import dataclass
 
+from . import models
 from .errors import EmptyParametersException
 from .logger import get_logger
 from .requests import Request
@@ -75,12 +76,21 @@ class Endpoint():
     api_key: SecretStr
     base_path: HttpUrl
 
+    def _get_url(self, endpoint: str, section: str = None):
+        url = self.base_path
+        if section:
+            url += "/" + section
+        url += "/" + endpoint
+
+        return url
+
 
 @dataclass
 class Person(Endpoint):
     """
     Class for all APIs of "person" type.
     """
+
     @check_empty_parameters
     def enrichment(self, **kwargs):
         """
@@ -92,11 +102,31 @@ class Person(Endpoint):
         Returns:
             A requests.Response object with the result of the HTTP call.
         """
+        url = self._get_url(section="person", endpoint="enrich")
         return Request(
             api_key=self.api_key,
-            base_path=self.base_path,
-            section="person",
-            endpoint="enrich",
+            url=url,
             headers={"Accept-Encoding": "gzip"},
-            params=kwargs
+            params=kwargs,
+            validator=models.PersonEnrichmentModel
         ).get()
+
+    @check_empty_parameters
+    def bulk(self, **kwargs):
+        """
+        Calls PeopleDataLabs' bulk enrichment API.
+
+        Args:
+            kwargs: Parameters for the API as defined in the documentation.
+
+        Returns:
+            A requests.Response object with the result of the HTTP call.
+        """
+        url = self._get_url(section="person", endpoint="bulk")
+        return Request(
+            api_key=self.api_key,
+            url=url,
+            headers={"Content-Type": "application/json"},
+            params=kwargs,
+            validator=models.PersonBulkModel
+        ).post()
