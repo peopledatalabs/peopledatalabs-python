@@ -100,3 +100,26 @@ class Person(Endpoint):
             headers={"Accept-Encoding": "gzip"},
             params=kwargs
         ).get()
+
+    @check_empty_parameters
+    def bulk(self, **kwargs):
+        """
+        Calls PeopleDataLabs' bulk enrichment API.
+
+        Args:
+            kwargs: Parameters for the API as defined in the documentation.
+
+        Returns:
+            A requests.Response object with the result of the HTTP call.
+        """
+        logger.debug(
+            "Calling bulk API with params %s", kwargs
+        )
+        return Request(
+            api_key=self.api_key,
+            base_path=self.base_path,
+            section="person",
+            endpoint="bulk",
+            headers={"Content-Type": "application/json"},
+            params=kwargs
+        ).post()

@@ -22,7 +22,8 @@ logger = get_logger("requests")
 
 request_models_map = {
     "person": {
-        "enrich": models.PersonEnrichmentModel
+        "enrich": models.PersonEnrichmentModel,
+        "bulk": models.PersonBulkModel,
     }
 }
 
@@ -54,19 +55,13 @@ class Request():
         base_path + section (if any) + endpoint.
         """
         model = request_models_map[self.section][self.endpoint]
-        params = model(**self.params).dict()
-        self.params = {
-            param: value for param, value in params.items()
-            if value is not None
-        }
-        self.params["api_key"] = self.api_key
         logger.debug(
-            "Calling %s/%s with params: %s",
-            self.base_path,
-            self.section,
-            json.dumps(self.params, indent=2, default=utils.json_defaults)
+            "Request object received params: %s", self.params
         )
-        self.params["api_key"] = self.params["api_key"].get_secret_value()
+        self.params = model(**self.params).dict(exclude_none=True)
+        logger.debug(
+            "Request object params after validation: %s", self.params
+        )
 
         self.url = self.base_path
         if self.section:
@@ -80,4 +75,28 @@ class Request():
         Returns:
             A requests.Response object with the result of the HTTP call.
         """
-        return requests.get(self.url, params=self.params)
+        self.params["api_key"] = self.api_key
+        logger.info(
+            "Calling %s/%s with params: %s",
+            self.base_path,
+            self.section,
+            json.dumps(self.params, indent=2, default=utils.json_defaults)
+        )
+        self.params["api_key"] = self.params["api_key"].get_secret_value()
+        return requests.get(self.url, params=self.params, headers=self.headers)
+
+    def post(self):
+        """
+        Exceutes a POST request to the specified API.
+
+        Returns:
+            A requests.Response object with the result of the HTTP call.
+        """
+        self.headers["X-api-key"] = self.api_key.get_secret_value()
+        logger.info(
+            "Calling %s/%s with params: %s",
+            self.base_path,
+            self.section,
+            json.dumps(self.params, indent=2, default=utils.json_defaults)
+        )
+        return requests.post(self.url, json=self.params, headers=self.headers)
