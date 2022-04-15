@@ -4,7 +4,6 @@ Requests module. All requests are handled here.
 
 
 import json
-import requests
 from typing import Dict
 
 from pydantic import (
@@ -12,6 +11,7 @@ from pydantic import (
     SecretStr,
 )
 from pydantic.dataclasses import dataclass
+import requests
 
 from . import models
 from . import utils
