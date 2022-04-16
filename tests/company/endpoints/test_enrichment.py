@@ -33,10 +33,7 @@ def test_api_endpoint_enrichment(client):
     Tests successful execution of enrichment API.
     """
     enriched = client.company.enrichment(
-        name="google",
-        website="google.com",
-        min_likelihood=5,
-        required="size"
+        name="google", website="google.com", min_likelihood=5, required="size"
     )
     assert isinstance(enriched, requests.Response)
     assert enriched.status_code == 200
@@ -49,7 +46,5 @@ def test_api_endpoint_enrichment_ambiguous_raises_validation_error(client):
     """
     with pytest.raises(ValidationError):
         client.company.enrichment(
-            region="california",
-            min_likelihood=5,
-            required="size"
+            region="california", min_likelihood=5, required="size"
         )

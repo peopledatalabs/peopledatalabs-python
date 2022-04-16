@@ -54,10 +54,7 @@ def test_init_defaults_version_only(fake_api_key):
 
     `base_path` should have default base path and specified version.
     """
-    client = PDLPY(
-        api_key=fake_api_key,
-        version="v4"
-    )
+    client = PDLPY(api_key=fake_api_key, version="v4")
     assert client.base_path == "https://api.peopledatalabs.com/v4"
 
 
@@ -105,7 +102,4 @@ def test_init_invalid_version_rasies_validation_error(fake_api_key):
     Should raise ValidationError.
     """
     with pytest.raises(ValidationError):
-        PDLPY(
-            api_key=fake_api_key,
-            version="5v"
-        )
+        PDLPY(api_key=fake_api_key, version="5v")

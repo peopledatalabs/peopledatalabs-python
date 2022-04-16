@@ -21,7 +21,7 @@ logger = get_logger()
 
 
 @dataclass
-class PDLPY():
+class PDLPY:
     """
     Client's main class. All methods derive from the instantiation of this
     class.
@@ -34,6 +34,7 @@ class PDLPY():
             Will be used only if base_path has no value.
         log_level (:obj:`str`, optional): The logger level.
     """
+
     api_key: SecretStr = settings.api_key
     base_path: HttpUrl = None
     version: constr(regex=settings.version_re) = settings.version

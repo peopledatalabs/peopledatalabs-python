@@ -32,9 +32,7 @@ def test_api_endpoint_identify(client):
     """
     Tests successful execution of identify API.
     """
-    identified = client.person.identify(
-        name="sean thorne"
-    )
+    identified = client.person.identify(name="sean thorne")
     assert isinstance(identified, requests.Response)
     assert identified.status_code == 200
     assert "matches" in identified.json()
@@ -50,6 +48,6 @@ def test_api_endpoint_identify_list_values_raise_validation_error(client):
             name=["Sean Thorne"],
             profile=[
                 "www.twitter.com/seanthorne5",
-                "linkedin.com/in/seanthorne"
-            ]
+                "linkedin.com/in/seanthorne",
+            ],
         )

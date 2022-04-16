@@ -20,6 +20,7 @@ class Company(Endpoint):
     """
     Class for all APIs of "company" type.
     """
+
     section: str = "company"
 
     @check_empty_parameters
@@ -41,5 +42,5 @@ class Company(Endpoint):
             url=url,
             headers={"Accept-Encoding": "gzip"},
             params=kwargs,
-            validator=company_models.EnrichmentModel
+            validator=company_models.EnrichmentModel,
         ).get()

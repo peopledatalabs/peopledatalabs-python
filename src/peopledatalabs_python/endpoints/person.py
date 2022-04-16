@@ -25,6 +25,7 @@ class Person(Endpoint):
     """
     Class for all APIs of "person" type.
     """
+
     section: str = "person"
 
     @check_empty_parameters
@@ -46,7 +47,7 @@ class Person(Endpoint):
             url=url,
             headers={"Content-Type": "application/json"},
             params=kwargs,
-            validator=person_models.BulkModel
+            validator=person_models.BulkModel,
         ).post()
 
     @check_empty_parameters
@@ -68,7 +69,7 @@ class Person(Endpoint):
             url=url,
             headers={"Accept-Encoding": "gzip"},
             params=kwargs,
-            validator=person_models.EnrichmentModel
+            validator=person_models.EnrichmentModel,
         ).get()
 
     @check_empty_parameters
@@ -90,7 +91,7 @@ class Person(Endpoint):
             url=url,
             headers={"Accept-Encoding": "gzip"},
             params=kwargs,
-            validator=person_models.IdentifyModel
+            validator=person_models.IdentifyModel,
         ).get()
 
     @validate_arguments
@@ -115,7 +116,7 @@ class Person(Endpoint):
             url=url,
             headers={"Accept-Encoding": "gzip"},
             params=kwargs,
-            validator=models.BaseRequestModel
+            validator=models.BaseRequestModel,
         ).get()
 
     @check_empty_parameters
@@ -140,5 +141,5 @@ class Person(Endpoint):
                 "Accept-Encoding": "gzip",
             },
             params=kwargs,
-            validator=person_models.SearchModel
+            validator=person_models.SearchModel,
         ).post()

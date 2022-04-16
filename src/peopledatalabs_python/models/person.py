@@ -21,6 +21,7 @@ class PersonBaseModel(BaseModel):
     """
     Base parameters model for the enrichment and identify API.
     """
+
     birth_date: Optional[Union[List[str], str]]
     company: Optional[Union[List[str], str]]
     country: Optional[str]
@@ -79,9 +80,7 @@ class IdentifyModel(
         """
         Checks none of the values are lists.
         """
-        are_lists = [
-            isinstance(field, list) for field in v.values()
-        ]
+        are_lists = [isinstance(field, list) for field in v.values()]
         if any(are_lists):
             raise ValueError(
                 "Identify API does not take multiple values"
@@ -97,6 +96,7 @@ class PersonBulkParamsModel(BaseModel):
     """
     Model for the validation of the 'params' field in the person/bulk API.
     """
+
     metadata: Optional[dict]
     params: PersonBaseModel = ...
 
@@ -105,6 +105,7 @@ class BulkModel(BaseRequestModel, AdditionalParametersModel):
     """
     Model for the person/bulk API.
     """
+
     requests: List[PersonBulkParamsModel]
 
     @validator("requests", pre=True)
@@ -126,6 +127,7 @@ class DatasetEnum(str, Enum):
     """
     Valid values for 'dataset' field of search API.
     """
+
     resume = "resume"
     email = "email"
     phone = "phone"
@@ -140,6 +142,7 @@ class BaseSearchModel(BaseRequestModel):
     """
     Common fields validation model for search APIs (company, person).
     """
+
     query: Optional[dict]
     sql: Optional[str]
     size: Optional[conint(ge=1, le=100)]
@@ -171,6 +174,7 @@ class SearchModel(BaseSearchModel):
     """
     Model for validation of person search API.
     """
+
     dataset: Optional[str]
 
     @validator("dataset", pre=True)

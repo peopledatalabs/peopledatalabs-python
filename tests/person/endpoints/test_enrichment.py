@@ -47,7 +47,7 @@ def test_api_endpoint_enrichment_list_values(client):
     """
     enriched = client.person.enrichment(
         name=["Sean Thorne"],
-        profile=["www.twitter.com/seanthorne5", "linkedin.com/in/seanthorne"]
+        profile=["www.twitter.com/seanthorne5", "linkedin.com/in/seanthorne"],
     )
     assert isinstance(enriched, requests.Response)
     assert enriched.status_code == 200

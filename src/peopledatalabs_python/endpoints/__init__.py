@@ -11,7 +11,7 @@ from pydantic.dataclasses import dataclass
 
 
 @dataclass
-class Endpoint():
+class Endpoint:
     """
     Base class for all endpoints.
 
@@ -19,6 +19,7 @@ class Endpoint():
         api_key (str): The authentication API key for API calls.
         base_path (str): PeopleDataLabs' API base URL.
     """
+
     api_key: SecretStr
     base_path: HttpUrl
     section: str = None

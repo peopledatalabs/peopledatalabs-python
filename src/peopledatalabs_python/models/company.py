@@ -17,6 +17,7 @@ class CompanyBaseModel(BaseModel):
     """
     Base parameters model for the enrichment API.
     """
+
     country: Optional[str]
     locality: Optional[str]
     location: Optional[Union[List[str], str]]
@@ -34,12 +35,14 @@ class CompanyBaseModel(BaseModel):
         Checks that at leat one between 'name', 'ticker', 'website' and
         'profile' is given.
         """
-        if not any([
-            v.get("name"),
-            v.get("profile"),
-            v.get("ticker"),
-            v.get("website"),
-        ]):
+        if not any(
+            [
+                v.get("name"),
+                v.get("profile"),
+                v.get("ticker"),
+                v.get("website"),
+            ]
+        ):
             raise ValueError(
                 "Company Enrichment API requires a non-ambiguous match."
                 " See documentation @"

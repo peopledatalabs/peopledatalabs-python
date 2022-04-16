@@ -31,9 +31,7 @@ def test_api_endpoint_retrieve_person_id_validation_error(client):
     Tests successful execution of retrieve API.
     """
     with pytest.raises(ValidationError):
-        client.person.retrieve(
-            person_id=1
-        )
+        client.person.retrieve(person_id=1)
 
 
 @pytest.mark.usefixtures("client")
@@ -41,8 +39,6 @@ def test_api_endpoint_retrieve(client):
     """
     Tests successful execution of retrieve API.
     """
-    retrieved = client.person.retrieve(
-        person_id="qEnOZ5Oh0poWnQ1luFBfVw_0000"
-    )
+    retrieved = client.person.retrieve(person_id="qEnOZ5Oh0poWnQ1luFBfVw_0000")
     assert isinstance(retrieved, requests.Response)
     assert retrieved.status_code == 200

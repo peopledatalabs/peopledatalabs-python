@@ -37,7 +37,7 @@ def test_api_endpoint_search_query(client):
             "bool": {
                 "must": [
                     {"term": {"location_country": "mexico"}},
-                    {"term": {"job_title_role": "health"}}
+                    {"term": {"job_title_role": "health"}},
                 ]
             }
         }
@@ -85,7 +85,7 @@ def test_api_endpoint_search_both_queries_raises_validation_error(client):
             "bool": {
                 "must": [
                     {"term": {"location_country": "mexico"}},
-                    {"term": {"job_title_role": "health"}}
+                    {"term": {"job_title_role": "health"}},
                 ]
             }
         }
@@ -117,7 +117,7 @@ def test_api_endpoint_search_invalid_dataset_raises_validation_error(client):
             "bool": {
                 "must": [
                     {"term": {"location_country": "mexico"}},
-                    {"term": {"job_title_role": "health"}}
+                    {"term": {"job_title_role": "health"}},
                 ]
             }
         }

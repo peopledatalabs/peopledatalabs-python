@@ -9,20 +9,18 @@ from dataclasses import dataclass
 import os
 
 from dotenv import load_dotenv
-from pydantic import (
-    HttpUrl,
-    SecretStr
-)
+from pydantic import HttpUrl, SecretStr
 
 
 @dataclass
-class Settings():
+class Settings:
     """
     Singleton holding app's settings.
 
     Settings are eventually overridden if a .env file is provided, or
     environment variables are defined.
     """
+
     api_key: SecretStr = None
     base_path: HttpUrl = "https://api.peopledatalabs.com/"
     log_level: str = None
