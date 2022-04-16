@@ -8,7 +8,9 @@ import functools
 from pydantic import (
     HttpUrl,
     SecretStr,
+    StrictStr,
     constr,
+    validate_arguments,
 )
 from pydantic.dataclasses import dataclass
 
@@ -92,6 +94,26 @@ class Person(Endpoint):
     """
 
     @check_empty_parameters
+    def bulk(self, **kwargs):
+        """
+        Calls PeopleDataLabs' bulk enrichment API.
+
+        Args:
+            kwargs: Parameters for the API as defined in the documentation.
+
+        Returns:
+            A requests.Response object with the result of the HTTP call.
+        """
+        url = self._get_url(section="person", endpoint="bulk")
+        return Request(
+            api_key=self.api_key,
+            url=url,
+            headers={"Content-Type": "application/json"},
+            params=kwargs,
+            validator=models.PersonBulkModel
+        ).post()
+
+    @check_empty_parameters
     def enrichment(self, **kwargs):
         """
         Calls PeopleDataLabs' enrichment API.
@@ -111,10 +133,10 @@ class Person(Endpoint):
             validator=models.PersonEnrichmentModel
         ).get()
 
-    @check_empty_parameters
-    def bulk(self, **kwargs):
+    @validate_arguments
+    def retrieve(self, person_id: StrictStr, **kwargs):
         """
-        Calls PeopleDataLabs' bulk enrichment API.
+        Calls PeopleDataLabs' enrichment API.
 
         Args:
             kwargs: Parameters for the API as defined in the documentation.
@@ -122,11 +144,12 @@ class Person(Endpoint):
         Returns:
             A requests.Response object with the result of the HTTP call.
         """
-        url = self._get_url(section="person", endpoint="bulk")
+        url = self._get_url(section="person", endpoint="retrieve")
+        url += "/" + person_id
         return Request(
             api_key=self.api_key,
             url=url,
-            headers={"Content-Type": "application/json"},
+            headers={"Accept-Encoding": "gzip"},
             params=kwargs,
-            validator=models.PersonBulkModel
-        ).post()
+            validator=models.BaseRequestModel
+        ).get()

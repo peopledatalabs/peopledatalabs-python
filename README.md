@@ -95,6 +95,19 @@ else:
         f" Reason: {result.reason};"
         " Message: {};".format(result.json()["error"]["message"])
     )
+
+# By PDL_ID (retrieve API)
+result = client.person.retrieve(
+    person_id="qEnOZ5Oh0poWnQ1luFBfVw_0000"
+)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code};"
+        f" Reason: {result.reason};"
+        " Message: {};".format(result.json()["error"]["message"])
+    )
 ```
 ## 🌐 Endpoints <a name="endpoints"></a>
 
@@ -104,6 +117,7 @@ else:
 |-|-|
 | [Person Enrichment API](https://docs.peopledatalabs.com/docs/enrichment-api) | `PDLPY.person.enrichment(**params)`
 | [Person Bulk Enrichment API](https://docs.peopledatalabs.com/docs/bulk-enrichment-api) | `PDLPY.person.bulk(**params)`
+| [Person Retrieve API](https://docs.peopledatalabs.com/docs/person-retrieve-api) | `PDLPY.person.retrieve(**params)`
 
 ## 📘 Documentation <a name="documentation"></a>
 
