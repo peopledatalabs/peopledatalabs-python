@@ -3,37 +3,20 @@ Client's main module.
 """
 
 
-import functools
-
 from pydantic import (
     HttpUrl,
     SecretStr,
-    StrictStr,
     constr,
-    validate_arguments,
 )
 from pydantic.dataclasses import dataclass
 
-from . import models
-from .errors import EmptyParametersException
+
+from .endpoints.person import Person
 from .logger import get_logger
-from .requests import Request
 from .settings import settings
 
 
 logger = get_logger()
-
-
-def check_empty_parameters(func):
-    """
-    Decorator for API request methods which checks if parameters are empty.
-    """
-    @functools.wraps(func)
-    def _check(ref, **kwargs):
-        if not kwargs:
-            raise EmptyParametersException
-        return func(ref, **kwargs)
-    return _check
 
 
 @dataclass
@@ -64,118 +47,3 @@ class PDLPY():
             logger.setLevel(self.log_level)
 
         self.person = Person(self.api_key, self.base_path)
-
-
-@dataclass
-class Endpoint():
-    """
-    Base class for all endpoints.
-
-    Args:
-        api_key: The authentication API key for API calls.
-        base_path: PeopleDataLabs' API base URL.
-    """
-    api_key: SecretStr
-    base_path: HttpUrl
-    section: str = None
-
-    def _get_url(self, endpoint: str):
-        url = self.base_path
-        if self.section:
-            url += "/" + self.section
-        url += "/" + endpoint
-
-        return url
-
-
-@dataclass
-class Person(Endpoint):
-    """
-    Class for all APIs of "person" type.
-    """
-    section: str = "person"
-
-    @check_empty_parameters
-    def bulk(self, **kwargs):
-        """
-        Calls PeopleDataLabs' bulk enrichment API.
-
-        Args:
-            kwargs: Parameters for the API as defined in the documentation.
-
-        Returns:
-            A requests.Response object with the result of the HTTP call.
-        """
-        url = self._get_url(endpoint="bulk")
-        return Request(
-            api_key=self.api_key,
-            url=url,
-            headers={"Content-Type": "application/json"},
-            params=kwargs,
-            validator=models.PersonBulkModel
-        ).post()
-
-    @check_empty_parameters
-    def enrichment(self, **kwargs):
-        """
-        Calls PeopleDataLabs' enrichment API.
-
-        Args:
-            kwargs: Parameters for the API as defined in the documentation.
-
-        Returns:
-            A requests.Response object with the result of the HTTP call.
-        """
-        url = self._get_url(endpoint="enrich")
-        return Request(
-            api_key=self.api_key,
-            url=url,
-            headers={"Accept-Encoding": "gzip"},
-            params=kwargs,
-            validator=models.PersonEnrichmentModel
-        ).get()
-
-    @validate_arguments
-    def retrieve(self, person_id: StrictStr, **kwargs):
-        """
-        Calls PeopleDataLabs' retrieve API.
-
-        Args:
-            person_id: The person's ID from the People Data Labs dataset;
-            kwargs: Parameters for the API as defined in the documentation.
-
-        Returns:
-            A requests.Response object with the result of the HTTP call.
-        """
-        url = self._get_url(endpoint="retrieve")
-        url += "/" + person_id
-        return Request(
-            api_key=self.api_key,
-            url=url,
-            headers={"Accept-Encoding": "gzip"},
-            params=kwargs,
-            validator=models.BaseRequestModel
-        ).get()
-
-    @check_empty_parameters
-    def search(self, **kwargs):
-        """
-        Calls PeopleDataLabs' search API.
-
-        Args:
-            kwargs: Parameters for the API as defined in the documentation.
-
-        Returns:
-            A requests.Response object with the result of the HTTP call.
-        """
-        url = self._get_url(endpoint="search")
-        return Request(
-            api_key=self.api_key,
-            url=url,
-            headers={
-                "Content-Type": "application/json",
-                "Accept-Encoding": "gzip",
-            },
-            params=kwargs,
-            validator=models.PersonSearchModel
-        ).post()
