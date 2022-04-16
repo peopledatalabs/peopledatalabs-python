@@ -14,8 +14,7 @@ from .errors import EmptyParametersException
 
 def check_empty_parameters(func):
     """
-    Decorator for API request methods which checks
-    if parameters are empty.
+    Decorator for API request methods which checks if parameters are empty.
     """
     @functools.wraps(func)
     def _check(ref, **kwargs):

@@ -1,5 +1,7 @@
 """
-Requests module. All requests are handled here.
+Requests module.
+
+All requests are handled here.
 """
 
 
@@ -41,8 +43,7 @@ class Request():
 
     def __post_init__(self):
         """
-        Validates self.params using the validator
-        received in self.validator.
+        Validates self.params using the validator received in self.validator.
         """
         logger.debug(
             "Request object received params: %s", self.params

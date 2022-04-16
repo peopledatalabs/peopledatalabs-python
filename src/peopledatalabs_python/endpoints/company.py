@@ -26,7 +26,7 @@ class Company(Endpoint):
     def enrichment(self, **kwargs):
         """
         Calls PeopleDataLabs' enrichment API.
-        https://docs.peopledatalabs.com/docs/company-enrichment-api
+        https://docs.peopledatalabs.com/docs/company-enrichment-api.
 
         Args:
             **kwargs: Parameters for the API as defined

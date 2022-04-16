@@ -20,6 +20,7 @@ logger = logging.getLogger("PeopleDataLabs.tests.company.enrichment")
 def test_enrichment_no_params_throw_error(client_with_fake_api_key):
     """
     Tests calling the enrichment method without parameters.
+
     Should raise EmptyParametersException
     """
     with pytest.raises(EmptyParametersException):

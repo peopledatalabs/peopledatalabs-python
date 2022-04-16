@@ -20,6 +20,7 @@ logger = logging.getLogger("PeopleDataLabs.tests.person.identify")
 def test_identify_empty_params_throw_error(client_with_fake_api_key):
     """
     Tests calling the identify method without parameters.
+
     Should raise EmptyParametersException
     """
     with pytest.raises(EmptyParametersException):
@@ -42,8 +43,7 @@ def test_api_endpoint_identify(client):
 @pytest.mark.usefixtures("client")
 def test_api_endpoint_identify_list_values_raise_validation_error(client):
     """
-    Raises ValidationError for parameters passed as lists to the
-    identify API.
+    Raises ValidationError for parameters passed as lists to the identify API.
     """
     with pytest.raises(ValidationError):
         client.person.identify(

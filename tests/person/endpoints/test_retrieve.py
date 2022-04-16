@@ -18,6 +18,7 @@ logger = logging.getLogger("PeopleDataLabs.tests.person.retrieve")
 def test_retrieve_empty_params_throw_error(client_with_fake_api_key):
     """
     Tests calling the retrieve method without parameters.
+
     Should raise ValidationError
     """
     with pytest.raises(ValidationError):

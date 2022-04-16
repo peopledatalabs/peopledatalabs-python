@@ -29,11 +29,13 @@ jobs:
     - name: Install dependencies
       run: poetry install
     - name: Lint with pylint
-      run: |
-        poetry run pylint $(git ls-files '*.py')
+      run: poetry run pylint $(git ls-files '*.py')
     - name: Lint with flake8
+      run: poetry run flake8 $(git ls-files '*.py')
+    - name: Run docformatter
       run: |
-        poetry run flake8 $(git ls-files '*.py')
+        poetry run docformatter -c $(git ls-files "*.py") \
+        --pre-summary-newline --make-summary-multi-line
     - name: Test no API_KEY
       run: poetry run pytest -k "not test_api_endpoint_"
     - name: Test with API_KEY

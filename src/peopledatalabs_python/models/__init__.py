@@ -25,8 +25,7 @@ class BaseRequestModel(BaseModel):
 
 class AdditionalParametersModel(BaseModel):
     """
-    Model for additional parameters which are shared across
-    different APIs.
+    Model for additional parameters which are shared across different APIs.
     """
     min_likelihood: Optional[conint(ge=1, le=10)]
     required: Optional[str]

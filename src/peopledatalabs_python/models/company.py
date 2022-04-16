@@ -31,8 +31,8 @@ class CompanyBaseModel(BaseModel):
     @root_validator(pre=True)
     def non_ambiguous(cls, v):
         """
-        Checks that at leat one between 'name', 'ticker', 'website'
-        and 'profile' is given.
+        Checks that at leat one between 'name', 'ticker', 'website' and
+        'profile' is given.
         """
         if not any([
             v.get("name"),

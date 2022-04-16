@@ -95,8 +95,7 @@ class IdentifyModel(
 
 class PersonBulkParamsModel(BaseModel):
     """
-    Model for the validation of the 'params' field in the
-    person/bulk API.
+    Model for the validation of the 'params' field in the person/bulk API.
     """
     metadata: Optional[dict]
     params: PersonBaseModel = ...

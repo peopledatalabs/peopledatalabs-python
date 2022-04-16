@@ -20,6 +20,7 @@ logger = logging.getLogger("PeopleDataLabs.tests.person.bulk")
 def test_bulk_empty_params_throw_error(client_with_fake_api_key):
     """
     Tests calling the bulk method without parameters.
+
     Should raise EmptyParametersException
     """
     with pytest.raises(EmptyParametersException):

@@ -15,6 +15,7 @@ python-dotenv = "^0.20.0"
 coverage = "^6.3.2"
 pylint = "^2.13.5"
 flake8 = "^4.0.1"
+docformatter = "^1.4"
 
 [tool.poetry.dev-dependencies]
 

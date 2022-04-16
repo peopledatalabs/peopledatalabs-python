@@ -1,5 +1,5 @@
 """
-All tests related to the Person object of the client instance"
+All tests related to the Person object of the client instance.
 """
 
 

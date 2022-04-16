@@ -20,6 +20,7 @@ logger = logging.getLogger("PeopleDataLabs.tests.person.search")
 def test_search_empty_params_throw_error(client_with_fake_api_key):
     """
     Tests calling the search method without parameters.
+
     Should raise EmptyParametersException
     """
     with pytest.raises(EmptyParametersException):
