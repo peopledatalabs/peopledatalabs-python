@@ -96,6 +96,33 @@ else:
         " Message: {};".format(result.json()["error"]["message"])
     )
 
+# By Search (Elasticsearch)
+es_query = {
+      "query": {
+          "bool": {
+              "must": [
+                  {"term": {"location_country": "mexico"}},
+                  {"term": {"job_title_role": "health"}}
+              ]
+          }
+      }
+  }
+  data = {
+      "query": es_query,
+      "size": 10,
+      "pretty": True,
+      "dataset": "phone, mobile_phone",
+  }
+result = client.person.search(**data)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code};"
+        f" Reason: {result.reason};"
+        " Message: {};".format(result.json()["error"]["message"])
+    )
+
 # By PDL_ID (retrieve API)
 result = client.person.retrieve(
     person_id="qEnOZ5Oh0poWnQ1luFBfVw_0000"
@@ -117,6 +144,7 @@ else:
 |-|-|
 | [Person Enrichment API](https://docs.peopledatalabs.com/docs/enrichment-api) | `PDLPY.person.enrichment(**params)`
 | [Person Bulk Enrichment API](https://docs.peopledatalabs.com/docs/bulk-enrichment-api) | `PDLPY.person.bulk(**params)`
+| [Person Search API](https://docs.peopledatalabs.com/docs/search-api) | `PDLPY.person.search(**params)`
 | [Person Retrieve API](https://docs.peopledatalabs.com/docs/person-retrieve-api) | `PDLPY.person.retrieve(**params)`
 
 ## 📘 Documentation <a name="documentation"></a>
