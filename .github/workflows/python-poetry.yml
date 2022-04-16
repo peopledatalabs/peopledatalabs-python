@@ -45,6 +45,8 @@ jobs:
                 --remove-duplicate-keys \
                 --remove-unused-variables \
                 --remove-all-unused-imports
+    - name: Run pyupgrade
+      run: poetry run pyupgrade $(git ls-files "*.py")
     - name: Test no API_KEY
       run: poetry run pytest -k "not test_api_endpoint_"
     - name: Test with API_KEY
