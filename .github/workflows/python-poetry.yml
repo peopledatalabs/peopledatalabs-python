@@ -30,9 +30,7 @@ jobs:
       run: poetry install
     - name: Lint with pylint
       run: |
-        poetry run pylint --extension-pkg-whitelist='pydantic' \
-        --disable=no-self-argument,no-self-use \
-        $(git ls-files '*.py')
+        poetry run pylint $(git ls-files '*.py')
     - name: Test no API_KEY
       run: poetry run pytest -k "not test_api_endpoint_"
     - name: Test with API_KEY

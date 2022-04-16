@@ -19,12 +19,12 @@ A Python client for the People Data Labs API.
 git clone https://github.com/peopledatalabs/peopledatalabs-python.git
 ```
 
-1. From the root of the repo, run:
+2. From the root of the repo, run:
 ```bash
 pip install -e .
 ```
 
-1. Sign up for a [free PDL API key](https://www.peopledatalabs.com/signup)
+3. Sign up for a [free PDL API key](https://www.peopledatalabs.com/signup)
 
 ## 🚀 Usage <a name="usage"></a>
 
@@ -60,6 +60,95 @@ else:
         f" Reason: {result.reason};"
         " Message: {};".format(result.json()["error"]["message"])
     )
+
+# By Bulk Enrichment
+result = client.person.bulk(
+    required="emails AND profiles",
+    requests=[
+        {
+            "metadata": {
+                "user_id": "123"
+            },
+            "params": {
+                "profile": ["linkedin.com/in/seanthorne"],
+                "location": ["SF Bay Area"],
+                "name": ["Sean F. Thorne"]
+            }
+        },
+        {
+            "metadata": {
+                "user_id": "345"
+            },
+            "params": {
+                "profile": ["https://www.linkedin.com/in/haydenconrad/"],
+                "first_name": "Hayden",
+                "last_name": "Conrad"
+            }
+        }
+    ]
+)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code};"
+        f" Reason: {result.reason};"
+        " Message: {};".format(result.json()["error"]["message"])
+    )
+
+# By Search (Elasticsearch)
+es_query = {
+      "query": {
+          "bool": {
+              "must": [
+                  {"term": {"location_country": "mexico"}},
+                  {"term": {"job_title_role": "health"}}
+              ]
+          }
+      }
+  }
+  data = {
+      "query": es_query,
+      "size": 10,
+      "pretty": True,
+      "dataset": "phone, mobile_phone",
+  }
+result = client.person.search(**data)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code};"
+        f" Reason: {result.reason};"
+        " Message: {};".format(result.json()["error"]["message"])
+    )
+
+# By PDL_ID (Retrieve API)
+result = client.person.retrieve(
+    person_id="qEnOZ5Oh0poWnQ1luFBfVw_0000"
+)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code};"
+        f" Reason: {result.reason};"
+        " Message: {};".format(result.json()["error"]["message"])
+    )
+
+# By Fuzzy Enrichment (Identify API)
+result = client.person.enrichment(
+    name="sean thorne",
+    pretty=True,
+)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code};"
+        f" Reason: {result.reason};"
+        " Message: {};".format(result.json()["error"]["message"])
+    )
 ```
 ## 🌐 Endpoints <a name="endpoints"></a>
 
@@ -67,7 +156,11 @@ else:
 
 | API Endpoint | PDLPY Function |
 |-|-|
-| [Person Enrichment API](https://docs.peopledatalabs.com/docs/enrichment-api) | `PDLPY.person.enrichment(...params)`
+| [Person Enrichment API](https://docs.peopledatalabs.com/docs/enrichment-api) | `PDLPY.person.enrichment(**params)`
+| [Person Bulk Enrichment API](https://docs.peopledatalabs.com/docs/bulk-enrichment-api) | `PDLPY.person.bulk(**params)`
+| [Person Search API](https://docs.peopledatalabs.com/docs/search-api) | `PDLPY.person.search(**params)`
+| [Person Retrieve API](https://docs.peopledatalabs.com/docs/person-retrieve-api) | `PDLPY.person.retrieve(**params)`
+| [Person Identify API](https://docs.peopledatalabs.com/docs/identify-api) | `PDLPY.person.identify(**params)`
 
 ## 📘 Documentation <a name="documentation"></a>
 
