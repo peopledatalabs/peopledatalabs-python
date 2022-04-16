@@ -17,7 +17,8 @@ from pydantic import (
 class Settings():
     """
     Singleton holding app's settings.
-    Settings may be overridden by an .env file using load_from_env method.
+    Settings are eventually overridden if a .env file is provided,
+    or environment variables are defined.
     """
     api_key: SecretStr = None
     base_path: HttpUrl = "https://api.peopledatalabs.com/"

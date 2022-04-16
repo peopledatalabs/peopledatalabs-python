@@ -29,7 +29,7 @@ class BaseRequestModel(BaseModel):
 
 class PersonBaseModel(BaseModel):
     """
-    Base parameters model for the enrichment API.
+    Base parameters model for the enrichment and identify API.
     """
     birth_date: Optional[Union[List[str], str]]
     company: Optional[Union[List[str], str]]
@@ -67,7 +67,7 @@ class PersonBaseModel(BaseModel):
 
 class PersonOptionalsModel(BaseModel):
     """
-    Optional parameters model for the enrichment API.
+    Optional parameters model for the enrichment and identify API.
     """
     min_likelihood: Optional[int]
     required: Optional[str]

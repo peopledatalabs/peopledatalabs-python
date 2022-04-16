@@ -16,8 +16,8 @@ class Endpoint():
     Base class for all endpoints.
 
     Args:
-        api_key: The authentication API key for API calls.
-        base_path: PeopleDataLabs' API base URL.
+        api_key (str): The authentication API key for API calls.
+        base_path (str): PeopleDataLabs' API base URL.
     """
     api_key: SecretStr
     base_path: HttpUrl

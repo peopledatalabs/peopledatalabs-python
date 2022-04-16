@@ -27,10 +27,10 @@ class Request():
     Base class for all HTTP requests.
 
     Args:
-        api_key: The authentication API key for API calls.
-        url: URL of the API to call.
-        headers: The request headers.
-        params: The parameters to use in the API call.
+        api_key (str): The authentication API key for API calls.
+        url (str): URL of the API to call.
+        headers (dict of str: str): The request headers.
+        params (dict): The parameters to use in the API call.
         validator: The validator to use to validate params.
     """
     api_key: SecretStr
@@ -41,8 +41,8 @@ class Request():
 
     def __post_init__(self):
         """
-        Refactors self.params, validating per endpoint
-        and stripping off None values.
+        Validates self.params using the validator
+        received in self.validator.
         """
         logger.debug(
             "Request object received params: %s", self.params
@@ -55,6 +55,8 @@ class Request():
     def get(self):
         """
         Executes a GET request from the specified API.
+
+        User's API_KEY is sent in request parameters.
 
         Returns:
             A requests.Response object with the result of the HTTP call.
@@ -71,6 +73,8 @@ class Request():
     def post(self):
         """
         Executes a POST request to the specified API.
+
+        User's API_KEY is sent as a 'X-api-key' header.
 
         Returns:
             A requests.Response object with the result of the HTTP call.

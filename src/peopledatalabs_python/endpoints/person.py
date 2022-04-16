@@ -33,7 +33,8 @@ class Person(Endpoint):
         https://docs.peopledatalabs.com/docs/bulk-enrichment-api
 
         Args:
-            kwargs: Parameters for the API as defined in the documentation.
+            **kwargs: Parameters for the API as defined
+                in the documentation.
 
         Returns:
             A requests.Response object with the result of the HTTP call.
@@ -54,7 +55,8 @@ class Person(Endpoint):
         https://docs.peopledatalabs.com/docs/enrichment-api
 
         Args:
-            kwargs: Parameters for the API as defined in the documentation.
+            **kwargs: Parameters for the API as defined
+                in the documentation.
 
         Returns:
             A requests.Response object with the result of the HTTP call.
@@ -75,7 +77,8 @@ class Person(Endpoint):
         https://docs.peopledatalabs.com/docs/identify-api
 
         Args:
-            kwargs: Parameters for the API as defined in the documentation.
+            **kwargs: Parameters for the API as defined
+                in the documentation.
 
         Returns:
             A requests.Response object with the result of the HTTP call.
@@ -96,8 +99,10 @@ class Person(Endpoint):
         https://docs.peopledatalabs.com/docs/person-retrieve-api
 
         Args:
-            person_id: The person's ID from the People Data Labs dataset;
-            kwargs: Parameters for the API as defined in the documentation.
+            person_id (str): The person's ID from the
+                People Data Labs dataset;
+            **kwargs: Additional parameters for the API as defined
+                in the documentation.
 
         Returns:
             A requests.Response object with the result of the HTTP call.
@@ -119,7 +124,8 @@ class Person(Endpoint):
         https://docs.peopledatalabs.com/docs/search-api
 
         Args:
-            kwargs: Parameters for the API as defined in the documentation.
+            **kwargs: Parameters for the API as defined
+                in the documentation.
 
         Returns:
             A requests.Response object with the result of the HTTP call.

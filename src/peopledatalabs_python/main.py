@@ -26,10 +26,12 @@ class PDLPY():
     All methods derive from the instantiation of this class.
 
     Args:
-        api_key: The authentication API key for API calls.
-        base_path: PeopleDataLabs' API base URL, with version.
-        version: PeopleDataLabs' API version to call. Will be used only if
-            base_path has no value.
+        api_key (:obj:`str`, optional): The authentication
+            API key for API calls.
+        base_path (:obj:`str`, optional): PeopleDataLabs' API base URL.
+        version (:obj:`str`, optional): PeopleDataLabs' API version.
+            Will be used only if base_path has no value.
+        log_level (:obj:`str`, optional): The logger level.
     """
     api_key: SecretStr = settings.api_key
     base_path: HttpUrl = None
@@ -38,7 +40,8 @@ class PDLPY():
 
     def __post_init__(self):
         """
-        Sets the actual base_path and sets log_level globally across modules.
+        Sets the actual base_path and sets log_level globally
+        across modules.
         """
         if self.base_path is None:
             self.base_path = settings.base_path + self.version
