@@ -6,6 +6,8 @@
 A Python client for the People Data Labs API.
 </p>
 
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 ## Table of Contents
 - [🔧 Installation](#installation)
 - [🚀 Usage](#usage)
@@ -150,6 +152,23 @@ else:
         " Message: {};".format(result.json()["error"]["message"])
     )
 ```
+
+**Getting Company Data**
+```python
+# By Enrichment
+result = client.company.enrichment(
+    website="peopledatalabs.com",
+    pretty=True
+)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code};"
+        f" Reason: {result.reason};"
+        " Message: {};".format(result.json()["error"]["message"])
+    )
+```
 ## 🌐 Endpoints <a name="endpoints"></a>
 
 **Person Endpoints**
@@ -161,6 +180,11 @@ else:
 | [Person Search API](https://docs.peopledatalabs.com/docs/search-api) | `PDLPY.person.search(**params)`
 | [Person Retrieve API](https://docs.peopledatalabs.com/docs/person-retrieve-api) | `PDLPY.person.retrieve(**params)`
 | [Person Identify API](https://docs.peopledatalabs.com/docs/identify-api) | `PDLPY.person.identify(**params)`
+
+**Company Endpoints**
+| API Endpoint | PDLPY Function |
+|-|-|
+| [Company Enrichment API](https://docs.peopledatalabs.com/docs/company-enrichment-api) | `PDLPY.company.enrichment(**params)` |
 
 ## 📘 Documentation <a name="documentation"></a>
 
