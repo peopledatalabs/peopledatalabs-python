@@ -11,6 +11,7 @@ from pydantic.dataclasses import dataclass
 
 from . import Endpoint
 from .. import models
+from ..models import person as person_models
 from ..logger import get_logger
 from ..requests import Request
 from ..utils import check_empty_parameters
@@ -45,7 +46,7 @@ class Person(Endpoint):
             url=url,
             headers={"Content-Type": "application/json"},
             params=kwargs,
-            validator=models.PersonBulkModel
+            validator=person_models.BulkModel
         ).post()
 
     @check_empty_parameters
@@ -67,7 +68,7 @@ class Person(Endpoint):
             url=url,
             headers={"Accept-Encoding": "gzip"},
             params=kwargs,
-            validator=models.PersonEnrichmentModel
+            validator=person_models.EnrichmentModel
         ).get()
 
     @check_empty_parameters
@@ -89,7 +90,7 @@ class Person(Endpoint):
             url=url,
             headers={"Accept-Encoding": "gzip"},
             params=kwargs,
-            validator=models.PersonIdentifyModel
+            validator=person_models.IdentifyModel
         ).get()
 
     @validate_arguments
@@ -139,5 +140,5 @@ class Person(Endpoint):
                 "Accept-Encoding": "gzip",
             },
             params=kwargs,
-            validator=models.PersonSearchModel
+            validator=person_models.SearchModel
         ).post()

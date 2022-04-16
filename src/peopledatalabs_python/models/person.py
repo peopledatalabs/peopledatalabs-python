@@ -1,10 +1,10 @@
 """
-Client's models for validation.
+Models for input parameters of the Person APIs.
 """
 
 
 from enum import Enum
-from typing import List, Union, Optional
+from typing import List, Optional, Union
 
 from pydantic import (
     BaseModel,
@@ -14,17 +14,7 @@ from pydantic import (
     validator,
 )
 
-from .logger import get_logger
-
-
-logger = get_logger("models")
-
-
-class BaseRequestModel(BaseModel):
-    """
-    Base model for parameters common in all requests.
-    """
-    pretty: Optional[bool]
+from . import AdditionalParametersModel, BaseRequestModel
 
 
 class PersonBaseModel(BaseModel):
@@ -65,27 +55,16 @@ class PersonBaseModel(BaseModel):
         return value
 
 
-class PersonOptionalsModel(BaseModel):
-    """
-    Optional parameters model for the enrichment and identify API.
-    """
-    min_likelihood: Optional[int]
-    required: Optional[str]
-    titlecase: Optional[bool]
-    data_include: Optional[str]
-    include_if_matched: Optional[bool]
-
-
-class PersonEnrichmentModel(
-    BaseRequestModel, PersonBaseModel, PersonOptionalsModel
+class EnrichmentModel(
+    BaseRequestModel, PersonBaseModel, AdditionalParametersModel
 ):
     """
     Model for the enrichment API.
     """
 
 
-class PersonIdentifyModel(
-    BaseRequestModel, PersonBaseModel, PersonOptionalsModel
+class IdentifyModel(
+    BaseRequestModel, PersonBaseModel, AdditionalParametersModel
 ):
     """
     Model for the identify API.
@@ -123,7 +102,7 @@ class PersonBulkParamsModel(BaseModel):
     params: PersonBaseModel = ...
 
 
-class PersonBulkModel(BaseRequestModel, PersonOptionalsModel):
+class BulkModel(BaseRequestModel, AdditionalParametersModel):
     """
     Model for the person/bulk API.
     """
@@ -189,7 +168,7 @@ class BaseSearchModel(BaseRequestModel):
         return v
 
 
-class PersonSearchModel(BaseSearchModel):
+class SearchModel(BaseSearchModel):
     """
     Model for validation of person search API.
     """
