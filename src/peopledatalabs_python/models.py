@@ -165,9 +165,9 @@ class PersonSearchModel(BaseSearchModel):
         Checks each passed dataset to be of the allowed ones.
         """
         res = []
-        for ds in [e.strip() for e in v.split(",") if e]:
-            if ds.startswith("-"):
-                res.append("-" + DatasetEnum(ds[1:]))
+        for dataset in [e.strip() for e in v.split(",") if e]:
+            if dataset.startswith("-"):
+                res.append("-" + DatasetEnum(dataset[1:]))
             else:
-                res.append(DatasetEnum(ds))
+                res.append(DatasetEnum(dataset))
         return ",".join(res)

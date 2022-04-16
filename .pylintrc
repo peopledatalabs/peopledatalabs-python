@@ -93,7 +93,6 @@ disable=raw-checker-failed,
         use-symbolic-message-instead,
         no-self-argument,
         no-self-use,
-        invalid-name
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
@@ -161,7 +160,7 @@ min-similarity-lines=4
 
 # This flag controls whether inconsistent-quotes generates a warning when the
 # character used as a quote delimiter is used inconsistently within a module.
-check-quote-consistency=no
+check-quote-consistency=yes
 
 # This flag controls whether the implicit-str-concat should generate a warning
 # on implicit string concatenation in sequences defined over several lines.
@@ -231,7 +230,7 @@ class-attribute-naming-style=any
 #class-attribute-rgx=
 
 # Naming style matching correct class constant names.
-class-const-naming-style=UPPER_CASE
+class-const-naming-style=any
 
 # Regular expression matching correct class constant names. Overrides class-
 # const-naming-style. If left empty, class constant names will be checked with
@@ -269,6 +268,7 @@ function-naming-style=snake_case
 good-names=i,
            j,
            k,
+           v,
            ex,
            Run,
            _
