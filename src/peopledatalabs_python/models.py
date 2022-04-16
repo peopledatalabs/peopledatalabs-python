@@ -27,7 +27,7 @@ class BaseRequestModel(BaseModel):
     pretty: Optional[bool]
 
 
-class PersonEnrichmentBaseModel(BaseModel):
+class PersonBaseModel(BaseModel):
     """
     Base parameters model for the enrichment API.
     """
@@ -61,23 +61,57 @@ class PersonEnrichmentBaseModel(BaseModel):
                 " See documentation @"
                 " https://docs.peopledatalabs.com/docs/enrichment-api"
             )
+
         return value
 
 
-class PersonEnrichmentOptionalsModel(BaseModel):
+class PersonOptionalsModel(BaseModel):
     """
     Optional parameters model for the enrichment API.
     """
     min_likelihood: Optional[int]
     required: Optional[str]
+    titlecase: Optional[bool]
+    data_include: Optional[str]
+    include_if_matched: Optional[bool]
 
 
 class PersonEnrichmentModel(
-    BaseRequestModel, PersonEnrichmentBaseModel, PersonEnrichmentOptionalsModel
+    BaseRequestModel, PersonBaseModel, PersonOptionalsModel
 ):
     """
     Model for the enrichment API.
     """
+
+
+class PersonIdentifyModel(
+    BaseRequestModel, PersonBaseModel, PersonOptionalsModel
+):
+    """
+    Model for the identify API.
+
+    The identify API uses same fields for parameters as the enrichment
+    API, with the only difference that none of the fields accept
+    multiple values.
+    """
+
+    @root_validator(pre=True)
+    def no_lists(cls, v):
+        """
+        Checks none of the values are lists.
+        """
+        are_lists = [
+            isinstance(field, list) for field in v.values()
+        ]
+        if any(are_lists):
+            raise ValueError(
+                "Identify API does not take multiple values"
+                " for parameters. See documentation @ "
+                "https://docs.peopledatalabs.com/docs/"
+                "identify-api-input-parameters"
+            )
+
+        return v
 
 
 class PersonBulkParamsModel(BaseModel):
@@ -86,10 +120,10 @@ class PersonBulkParamsModel(BaseModel):
     person/bulk API.
     """
     metadata: Optional[dict]
-    params: PersonEnrichmentBaseModel = ...
+    params: PersonBaseModel = ...
 
 
-class PersonBulkModel(BaseRequestModel, PersonEnrichmentOptionalsModel):
+class PersonBulkModel(BaseRequestModel, PersonOptionalsModel):
     """
     Model for the person/bulk API.
     """
@@ -106,6 +140,7 @@ class PersonBulkModel(BaseRequestModel, PersonEnrichmentOptionalsModel):
                 " See documentation @"
                 " https://docs.peopledatalabs.com/docs/bulk-enrichment-api"
             )
+
         return value
 
 
@@ -150,6 +185,7 @@ class BaseSearchModel(BaseRequestModel):
                 " https://docs.peopledatalabs.com/docs/"
                 "company-search-api#building-a-query"
             )
+
         return v
 
 
@@ -170,4 +206,5 @@ class PersonSearchModel(BaseSearchModel):
                 res.append("-" + DatasetEnum(dataset[1:]))
             else:
                 res.append(DatasetEnum(dataset))
+
         return ",".join(res)

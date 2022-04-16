@@ -123,9 +123,23 @@ else:
         " Message: {};".format(result.json()["error"]["message"])
     )
 
-# By PDL_ID (retrieve API)
+# By PDL_ID (Retrieve API)
 result = client.person.retrieve(
     person_id="qEnOZ5Oh0poWnQ1luFBfVw_0000"
+)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code};"
+        f" Reason: {result.reason};"
+        " Message: {};".format(result.json()["error"]["message"])
+    )
+
+# By Fuzzy Enrichment (Identify API)
+result = client.person.enrichment(
+    name="sean thorne",
+    pretty=True,
 )
 if result.ok:
     print(result.text)
@@ -146,6 +160,7 @@ else:
 | [Person Bulk Enrichment API](https://docs.peopledatalabs.com/docs/bulk-enrichment-api) | `PDLPY.person.bulk(**params)`
 | [Person Search API](https://docs.peopledatalabs.com/docs/search-api) | `PDLPY.person.search(**params)`
 | [Person Retrieve API](https://docs.peopledatalabs.com/docs/person-retrieve-api) | `PDLPY.person.retrieve(**params)`
+| [Person Identify API](https://docs.peopledatalabs.com/docs/identify-api) | `PDLPY.person.identify(**params)`
 
 ## 📘 Documentation <a name="documentation"></a>
 

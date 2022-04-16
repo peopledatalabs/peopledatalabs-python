@@ -30,6 +30,7 @@ class Person(Endpoint):
     def bulk(self, **kwargs):
         """
         Calls PeopleDataLabs' bulk enrichment API.
+        https://docs.peopledatalabs.com/docs/bulk-enrichment-api
 
         Args:
             kwargs: Parameters for the API as defined in the documentation.
@@ -50,6 +51,7 @@ class Person(Endpoint):
     def enrichment(self, **kwargs):
         """
         Calls PeopleDataLabs' enrichment API.
+        https://docs.peopledatalabs.com/docs/enrichment-api
 
         Args:
             kwargs: Parameters for the API as defined in the documentation.
@@ -66,10 +68,32 @@ class Person(Endpoint):
             validator=models.PersonEnrichmentModel
         ).get()
 
+    @check_empty_parameters
+    def identify(self, **kwargs):
+        """
+        Calls PeopleDataLabs' identify API.
+        https://docs.peopledatalabs.com/docs/identify-api
+
+        Args:
+            kwargs: Parameters for the API as defined in the documentation.
+
+        Returns:
+            A requests.Response object with the result of the HTTP call.
+        """
+        url = self._get_url(endpoint="identify")
+        return Request(
+            api_key=self.api_key,
+            url=url,
+            headers={"Accept-Encoding": "gzip"},
+            params=kwargs,
+            validator=models.PersonIdentifyModel
+        ).get()
+
     @validate_arguments
     def retrieve(self, person_id: StrictStr, **kwargs):
         """
         Calls PeopleDataLabs' retrieve API.
+        https://docs.peopledatalabs.com/docs/person-retrieve-api
 
         Args:
             person_id: The person's ID from the People Data Labs dataset;
@@ -92,6 +116,7 @@ class Person(Endpoint):
     def search(self, **kwargs):
         """
         Calls PeopleDataLabs' search API.
+        https://docs.peopledatalabs.com/docs/search-api
 
         Args:
             kwargs: Parameters for the API as defined in the documentation.
