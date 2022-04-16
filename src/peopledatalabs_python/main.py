@@ -12,6 +12,7 @@ from pydantic.dataclasses import dataclass
 
 
 from .endpoints.person import Person
+from .endpoints.company import Company
 from .logger import get_logger
 from .settings import settings
 
@@ -50,3 +51,4 @@ class PDLPY():
             logger.setLevel(self.log_level)
 
         self.person = Person(self.api_key, self.base_path)
+        self.company = Company(self.api_key, self.base_path)

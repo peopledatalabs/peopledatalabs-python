@@ -10,7 +10,7 @@ from peopledatalabs_python.main import Person
 
 
 logging.basicConfig()
-logger = logging.getLogger("PeopleDataLabs.tests")
+logger = logging.getLogger("PeopleDataLabs.tests.person")
 
 
 @pytest.mark.usefixtures("client_with_fake_api_key")
