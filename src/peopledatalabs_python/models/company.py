@@ -1,5 +1,5 @@
 """
-Models for input parameters of the Person APIs.
+Models for input parameters of the Company APIs.
 """
 
 
@@ -12,7 +12,6 @@ from pydantic import (
 
 from . import (
     AdditionalParametersModel,
-    BaseCleanerModel,
     BaseRequestModel,
     BaseSearchModel,
 )
@@ -71,10 +70,15 @@ class SearchModel(BaseSearchModel):
     """
 
 
-class CleanerModel(BaseCleanerModel):
+# pylint: disable=duplicate-code
+class CleanerModel(BaseRequestModel):
     """
-    Cleaner parameters model validator for Company cleaner API.
+    Validation model for Company 'cleaner' API.
     """
+
+    name: Optional[str]
+    website: Optional[str]
+    profile: Optional[str]
 
     @root_validator(pre=True)
     def at_least_one(cls, value):

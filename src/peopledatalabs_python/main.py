@@ -14,6 +14,8 @@ from pydantic.dataclasses import dataclass
 from .endpoints import Endpoint
 from .endpoints.person import Person
 from .endpoints.company import Company
+from .endpoints.location import Location
+from .endpoints.school import School
 from .logger import get_logger
 from .models import AutocompleteModel
 from .requests import Request
@@ -24,6 +26,7 @@ from .utils import check_empty_parameters
 logger = get_logger()
 
 
+# pylint: disable=too-many-instance-attributes
 @dataclass
 class PDLPY:
     """
@@ -55,6 +58,8 @@ class PDLPY:
             logger.setLevel(self.log_level)
 
         self.company = Company(self.api_key, self.base_path)
+        self.location = Location(self.api_key, self.base_path)
+        self.school = School(self.api_key, self.base_path)
         self.person = Person(self.api_key, self.base_path)
 
     @check_empty_parameters

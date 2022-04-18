@@ -15,7 +15,7 @@ from ..models import person as person_models
 from ..logger import get_logger
 
 
-logger = get_logger("person")
+logger = get_logger("endpoints.person")
 
 
 @dataclass

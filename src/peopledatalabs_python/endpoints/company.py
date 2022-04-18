@@ -55,7 +55,7 @@ class Company(Endpoint):
 
         Args:
             **kwargs: Parameters for the API as defined
-                in the docmentation.
+                in the documentation.
 
         Returns:
             A requests.Response object with the result of the HTTP call.

@@ -70,16 +70,6 @@ class BaseSearchModel(BaseRequestModel):
         return v
 
 
-class BaseCleanerModel(BaseRequestModel):
-    """
-    Common fields validation model for 'cleaner' APIs.
-    """
-
-    name: Optional[str]
-    website: Optional[str]
-    profile: Optional[str]
-
-
 class FieldEnum(str, Enum):
     """
     Valid values for 'field' parameter of autocomplete API.
