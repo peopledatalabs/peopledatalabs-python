@@ -10,7 +10,11 @@ from pydantic import (
     root_validator,
 )
 
-from . import AdditionalParametersModel, BaseRequestModel
+from . import (
+    AdditionalParametersModel,
+    BaseRequestModel,
+    BaseSearchModel,
+)
 
 
 class CompanyBaseModel(BaseModel):
@@ -57,4 +61,10 @@ class EnrichmentModel(
 ):
     """
     Model for the enrichment API.
+    """
+
+
+class SearchModel(BaseSearchModel):
+    """
+    Search parameters model validator for Company search API.
     """

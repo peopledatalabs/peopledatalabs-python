@@ -8,8 +8,6 @@ from pydantic.dataclasses import dataclass
 from . import Endpoint
 from ..models import company as company_models
 from ..logger import get_logger
-from ..requests import Request
-from ..utils import check_empty_parameters
 
 
 logger = get_logger("company")
@@ -23,10 +21,9 @@ class Company(Endpoint):
 
     section: str = "company"
 
-    @check_empty_parameters
     def enrichment(self, **kwargs):
         """
-        Calls PeopleDataLabs' enrichment API.
+        Calls PeopleDataLabs' company/enrich API.
         https://docs.peopledatalabs.com/docs/company-enrichment-api.
 
         Args:
@@ -36,11 +33,18 @@ class Company(Endpoint):
         Returns:
             A requests.Response object with the result of the HTTP call.
         """
-        url = self._get_url(endpoint="enrich")
-        return Request(
-            api_key=self.api_key,
-            url=url,
-            headers={"Accept-Encoding": "gzip"},
-            params=kwargs,
-            validator=company_models.EnrichmentModel,
-        ).get()
+        return self._enrichment(company_models.EnrichmentModel, **kwargs)
+
+    def search(self, **kwargs):
+        """
+        Calls PeopleDataLabs' company/search API.
+        https://docs.peopledatalabs.com/docs/company-search-api.
+
+        Args:
+            **kwargs: Parameters for the API as defined
+                in the documentation.
+
+        Returns:
+            A requests.Response object with the result of the HTTP call.
+        """
+        return self._search(company_models.SearchModel, **kwargs)

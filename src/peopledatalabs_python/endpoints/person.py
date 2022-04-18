@@ -13,8 +13,6 @@ from . import Endpoint
 from .. import models
 from ..models import person as person_models
 from ..logger import get_logger
-from ..requests import Request
-from ..utils import check_empty_parameters
 
 
 logger = get_logger("person")
@@ -28,10 +26,9 @@ class Person(Endpoint):
 
     section: str = "person"
 
-    @check_empty_parameters
     def bulk(self, **kwargs):
         """
-        Calls PeopleDataLabs' bulk enrichment API.
+        Calls PeopleDataLabs' person/bulk enrichment API.
         https://docs.peopledatalabs.com/docs/bulk-enrichment-api.
 
         Args:
@@ -41,19 +38,11 @@ class Person(Endpoint):
         Returns:
             A requests.Response object with the result of the HTTP call.
         """
-        url = self._get_url(endpoint="bulk")
-        return Request(
-            api_key=self.api_key,
-            url=url,
-            headers={"Content-Type": "application/json"},
-            params=kwargs,
-            validator=person_models.BulkModel,
-        ).post()
+        return self._bulk(person_models.BulkModel, **kwargs)
 
-    @check_empty_parameters
     def enrichment(self, **kwargs):
         """
-        Calls PeopleDataLabs' enrichment API.
+        Calls PeopleDataLabs' person/enrich API.
         https://docs.peopledatalabs.com/docs/enrichment-api.
 
         Args:
@@ -63,19 +52,11 @@ class Person(Endpoint):
         Returns:
             A requests.Response object with the result of the HTTP call.
         """
-        url = self._get_url(endpoint="enrich")
-        return Request(
-            api_key=self.api_key,
-            url=url,
-            headers={"Accept-Encoding": "gzip"},
-            params=kwargs,
-            validator=person_models.EnrichmentModel,
-        ).get()
+        return self._enrichment(person_models.EnrichmentModel, **kwargs)
 
-    @check_empty_parameters
     def identify(self, **kwargs):
         """
-        Calls PeopleDataLabs' identify API.
+        Calls PeopleDataLabs' person/identify API.
         https://docs.peopledatalabs.com/docs/identify-api.
 
         Args:
@@ -85,19 +66,12 @@ class Person(Endpoint):
         Returns:
             A requests.Response object with the result of the HTTP call.
         """
-        url = self._get_url(endpoint="identify")
-        return Request(
-            api_key=self.api_key,
-            url=url,
-            headers={"Accept-Encoding": "gzip"},
-            params=kwargs,
-            validator=person_models.IdentifyModel,
-        ).get()
+        return self._identify(person_models.IdentifyModel, **kwargs)
 
     @validate_arguments
     def retrieve(self, person_id: StrictStr, **kwargs):
         """
-        Calls PeopleDataLabs' retrieve API.
+        Calls PeopleDataLabs' person/retrieve API.
         https://docs.peopledatalabs.com/docs/person-retrieve-api.
 
         Args:
@@ -109,20 +83,11 @@ class Person(Endpoint):
         Returns:
             A requests.Response object with the result of the HTTP call.
         """
-        url = self._get_url(endpoint="retrieve")
-        url += "/" + person_id
-        return Request(
-            api_key=self.api_key,
-            url=url,
-            headers={"Accept-Encoding": "gzip"},
-            params=kwargs,
-            validator=models.BaseRequestModel,
-        ).get()
+        return self._retrieve(models.BaseRequestModel, person_id, **kwargs)
 
-    @check_empty_parameters
     def search(self, **kwargs):
         """
-        Calls PeopleDataLabs' search API.
+        Calls PeopleDataLabs' person/search API.
         https://docs.peopledatalabs.com/docs/search-api.
 
         Args:
@@ -132,14 +97,4 @@ class Person(Endpoint):
         Returns:
             A requests.Response object with the result of the HTTP call.
         """
-        url = self._get_url(endpoint="search")
-        return Request(
-            api_key=self.api_key,
-            url=url,
-            headers={
-                "Content-Type": "application/json",
-                "Accept-Encoding": "gzip",
-            },
-            params=kwargs,
-            validator=person_models.SearchModel,
-        ).post()
+        return self._search(person_models.SearchModel, **kwargs)

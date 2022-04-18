@@ -16,10 +16,10 @@ def check_empty_parameters(func):
     """
 
     @functools.wraps(func)
-    def _check(ref, **kwargs):
+    def _check(ref, *args, **kwargs):
         if not kwargs:
             raise EmptyParametersException
-        return func(ref, **kwargs)
+        return func(ref, *args, **kwargs)
 
     return _check
 
