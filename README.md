@@ -251,10 +251,57 @@ else:
 ```
 ### Using supporting APIs
 
-#### Clean Raw Company String
+#### Get Autocomplete Suggestions
+```python
+result = client.autocomplete(
+    field="title",
+    text="full",
+    size=10,
+)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code};"
+        f" Reason: {result.reason};"
+        " Message: {};".format(result.json()["error"]["message"])
+    )
+```
+
+#### Clean Raw Company Strings
 ```python
 result = client.company.cleaner(
     name="peOple DaTa LabS"
+)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code};"
+        f" Reason: {result.reason};"
+        " Message: {};".format(result.json()["error"]["message"])
+    )
+```
+
+#### Clean Raw Location Strings
+```python
+result = client.company.cleaner(
+    location="455 Market Street, San Francisco, California 94105, US"
+)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code};"
+        f" Reason: {result.reason};"
+        " Message: {};".format(result.json()["error"]["message"])
+    )
+```
+
+#### Clean Raw School Strings
+```python
+result = client.school.cleaner(
+    name="university of oregon"
 )
 if result.ok:
     print(result.text)
@@ -289,6 +336,8 @@ else:
 | API Endpoint | PDLJS Function |
 |-|-|
 | [Company Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#companyclean) | `PDLPY.company.cleaner(**params)` |
+| [Location Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#locationclean) | `PDLPY.location.cleaner(**params)` |
+| [School Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#schoolclean) | `PDLPY.school.cleaner(**params)` |
 
 
 ## 📘 Documentation <a name="documentation"></a>
@@ -296,3 +345,17 @@ else:
 All of our API endpoints are documented at: https://docs.peopledatalabs.com/
 
 These docs describe the supported input parameters, output responses and also provide additional technical context.
+
+As illustrated in the [Endpoints](#endpoints) section above, each of our API endpoints is mapped to a specific method in the PDLPY class.  For each of these class methods, **all function inputs are mapped as input parameters to the respective API endpoint**, meaning that you can use the API documentation linked above to determine the input parameters for each endpoint.
+
+As an example:
+
+The following is **valid** because `name` is a [supported input parameter to the Person Identify API](https://docs.peopledatalabs.com/docs/identify-api-reference#input-parameters):
+```python
+PDLPY().person.identify({ name: 'sean thorne' })
+```
+
+Conversely, this would be **invalid** because `fake_parameter` is not an input parameter to the Person Identify API:
+```python
+PDLPY().person.identify({ fake_parameter: 'anything' })
+```
