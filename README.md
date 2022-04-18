@@ -335,6 +335,7 @@ else:
 
 | API Endpoint | PDLJS Function |
 |-|-|
+| [Autocomplete API](https://docs.peopledatalabs.com/docs/autocomplete-api) | `PDLPY.autocomplete(**params)` |
 | [Company Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#companyclean) | `PDLPY.company.cleaner(**params)` |
 | [Location Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#locationclean) | `PDLPY.location.cleaner(**params)` |
 | [School Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#schoolclean) | `PDLPY.school.cleaner(**params)` |
