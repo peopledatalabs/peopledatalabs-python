@@ -3,6 +3,7 @@ Client's models for validation.
 """
 
 
+from enum import Enum
 from typing import Optional
 
 from pydantic import (
@@ -23,6 +24,7 @@ class BaseRequestModel(BaseModel):
     """
 
     pretty: Optional[bool]
+    size: Optional[conint(ge=1, le=100)]
 
 
 class AdditionalParametersModel(BaseModel):
@@ -44,7 +46,6 @@ class BaseSearchModel(BaseRequestModel):
 
     query: Optional[dict]
     sql: Optional[str]
-    size: Optional[conint(ge=1, le=100)]
     from_: Optional[conint(ge=0, le=9999)]
     scroll_token: Optional[str]
     titlecase: Optional[bool]
@@ -77,3 +78,30 @@ class BaseCleanerModel(BaseRequestModel):
     name: Optional[str]
     website: Optional[str]
     profile: Optional[str]
+
+
+class FieldEnum(str, Enum):
+    """
+    Valid values for 'field' parameter of autocomplete API.
+    """
+
+    company = "company"
+    country = "country"
+    industry = "industry"
+    location = "location"
+    major = "major"
+    region = "region"
+    role = "role"
+    school = "school"
+    sub_role = "sub_role"
+    skill = "skill"
+    title = "title"
+
+
+class AutocompleteModel(BaseRequestModel):
+    """
+    Validator model for autocomplete API.
+    """
+
+    field: FieldEnum
+    text: Optional[str]

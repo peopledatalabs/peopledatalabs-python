@@ -34,7 +34,7 @@ class Endpoint:
     base_path: HttpUrl
     section: str = None
 
-    def _get_url(self, endpoint: str):
+    def get_url(self, endpoint: str):
         """
         Forms the URL for the API call.
 
@@ -74,7 +74,7 @@ class Endpoint:
         Returns:
             A requests.Response object with the result of the HTTP call.
         """
-        url = self._get_url(endpoint="bulk")
+        url = self.get_url(endpoint="bulk")
         return Request(
             api_key=self.api_key,
             url=url,
@@ -96,7 +96,7 @@ class Endpoint:
         Returns:
             A requests.Response object with the result of the HTTP call.
         """
-        url = self._get_url(endpoint="clean")
+        url = self.get_url(endpoint="clean")
         return Request(
             api_key=self.api_key,
             url=url,
@@ -118,7 +118,7 @@ class Endpoint:
         Returns:
             A requests.Response object with the result of the HTTP call.
         """
-        url = self._get_url(endpoint="enrich")
+        url = self.get_url(endpoint="enrich")
         return Request(
             api_key=self.api_key,
             url=url,
@@ -140,7 +140,7 @@ class Endpoint:
         Returns:
             A requests.Response object with the result of the HTTP call.
         """
-        url = self._get_url(endpoint="identify")
+        url = self.get_url(endpoint="identify")
         return Request(
             api_key=self.api_key,
             url=url,
@@ -168,7 +168,7 @@ class Endpoint:
         Returns:
             A requests.Response object with the result of the HTTP call.
         """
-        url = self._get_url(endpoint="retrieve")
+        url = self.get_url(endpoint="retrieve")
         url += "/" + person_id
         return Request(
             api_key=self.api_key,
@@ -191,7 +191,7 @@ class Endpoint:
         Returns:
             A requests.Response object with the result of the HTTP call.
         """
-        url = self._get_url(endpoint="search")
+        url = self.get_url(endpoint="search")
         return Request(
             api_key=self.api_key,
             url=url,

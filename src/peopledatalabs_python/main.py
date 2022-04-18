@@ -11,10 +11,14 @@ from pydantic import (
 from pydantic.dataclasses import dataclass
 
 
+from .endpoints import Endpoint
 from .endpoints.person import Person
 from .endpoints.company import Company
 from .logger import get_logger
+from .models import AutocompleteModel
+from .requests import Request
 from .settings import settings
+from .utils import check_empty_parameters
 
 
 logger = get_logger()
@@ -50,5 +54,28 @@ class PDLPY:
             settings.log_level = self.log_level
             logger.setLevel(self.log_level)
 
-        self.person = Person(self.api_key, self.base_path)
         self.company = Company(self.api_key, self.base_path)
+        self.person = Person(self.api_key, self.base_path)
+
+    @check_empty_parameters
+    def autocomplete(self, **kwargs):
+        """
+        Calls PeopleDataLabs' autocomplete API.
+
+        Args:
+            **kwargs: Parameters for the API as defined
+                in the documentation.
+
+        Returns:
+            A requests.Response object with the result of the HTTP call.
+        """
+        url = Endpoint(self.api_key, self.base_path).get_url(
+            endpoint="autocomplete"
+        )
+        return Request(
+            api_key=self.api_key,
+            url=url,
+            headers={"Accept-Encoding": "gzip"},
+            params=kwargs,
+            validator=AutocompleteModel,
+        ).get()
