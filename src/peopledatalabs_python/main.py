@@ -26,7 +26,6 @@ from .utils import check_empty_parameters
 logger = get_logger()
 
 
-# pylint: disable=too-many-instance-attributes
 @dataclass
 class PDLPY:
     """
@@ -57,11 +56,6 @@ class PDLPY:
             settings.log_level = self.log_level
             logger.setLevel(self.log_level)
 
-        self.company = Company(self.api_key, self.base_path)
-        self.location = Location(self.api_key, self.base_path)
-        self.school = School(self.api_key, self.base_path)
-        self.person = Person(self.api_key, self.base_path)
-
     @check_empty_parameters
     def autocomplete(self, **kwargs):
         """
@@ -84,3 +78,31 @@ class PDLPY:
             params=kwargs,
             validator=AutocompleteModel,
         ).get()
+
+    @property
+    def company(self):
+        """
+        Calls API from the company section.
+        """
+        return Company(self.api_key, self.base_path)
+
+    @property
+    def location(self):
+        """
+        Calls API from the location section.
+        """
+        return Location(self.api_key, self.base_path)
+
+    @property
+    def school(self):
+        """
+        Calls API from the school section.
+        """
+        return School(self.api_key, self.base_path)
+
+    @property
+    def person(self):
+        """
+        Calls API from the person section.
+        """
+        return Person(self.api_key, self.base_path)
