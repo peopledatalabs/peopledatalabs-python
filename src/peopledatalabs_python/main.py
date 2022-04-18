@@ -7,6 +7,7 @@ from pydantic import (
     HttpUrl,
     SecretStr,
     constr,
+    validator,
 )
 from pydantic.dataclasses import dataclass
 
@@ -45,6 +46,15 @@ class PDLPY:
     base_path: HttpUrl = None
     version: constr(regex=settings.version_re) = settings.version
     log_level: str = None
+
+    @validator("api_key", pre=True, always=True)
+    def api_key_not_none(cls, v):
+        if v is None:
+            raise ValueError(
+                "Please enter a value for API key, or define it either in"
+                " you environment or .env file as API_KEY"
+            )
+        return v
 
     def __post_init__(self):
         """

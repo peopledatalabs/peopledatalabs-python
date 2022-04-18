@@ -5,11 +5,11 @@ Settings also loads environment variables eventually declared in an .env
 file.
 """
 
-from dataclasses import dataclass
 import os
 
 from dotenv import load_dotenv
 from pydantic import HttpUrl, SecretStr
+from pydantic.dataclasses import dataclass
 
 
 @dataclass
