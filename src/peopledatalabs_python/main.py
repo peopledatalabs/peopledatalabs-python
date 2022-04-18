@@ -49,6 +49,9 @@ class PDLPY:
 
     @validator("api_key", pre=True, always=True)
     def api_key_not_none(cls, v):
+        """
+        Checks an API key is passed to the Client object.
+        """
         if v is None:
             raise ValueError(
                 "Please enter a value for API key, or define it either in"
