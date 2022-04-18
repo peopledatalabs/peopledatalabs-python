@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "peopledatalabs-python"
-version = "0.2.0"
+version = "0.3.0"
 description = "PeopleDataLabs Python Client"
 authors = ["Yoske Apolloni <lupodellasleppa@gmail.com>"]
 license = "MIT License"
