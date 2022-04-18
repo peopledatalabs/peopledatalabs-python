@@ -1,3 +1,7 @@
+#! /bin/bash
+
+set -e
+
 FILES_TO_LINT=$(git ls-files "*.py")
 
 pylint $FILES_TO_LINT

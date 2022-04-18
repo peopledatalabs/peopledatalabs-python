@@ -100,21 +100,44 @@ else:
 
 # By Search (Elasticsearch)
 es_query = {
-      "query": {
-          "bool": {
-              "must": [
-                  {"term": {"location_country": "mexico"}},
-                  {"term": {"job_title_role": "health"}}
-              ]
-          }
-      }
-  }
-  data = {
-      "query": es_query,
-      "size": 10,
-      "pretty": True,
-      "dataset": "phone, mobile_phone",
-  }
+    "query": {
+        "bool": {
+            "must": [
+                {"term": {"location_country": "mexico"}},
+                {"term": {"job_title_role": "health"}}
+            ]
+        }
+    }
+}
+data = {
+    "query": es_query,
+    "size": 10,
+    "pretty": True,
+    "dataset": "phone, mobile_phone",
+}
+result = client.person.search(**data)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code};"
+        f" Reason: {result.reason};"
+        " Message: {};".format(result.json()["error"]["message"])
+    )
+
+# By Search (SQL)
+sql_query = (
+    "SELECT * FROM person"
+    " WHERE location_country='mexico'"
+    " AND job_title_role='health'"
+    " AND phone_numbers IS NOT NULL;"
+)
+data = {
+    "sql": sql_query,
+    "size": 10,
+    "pretty": True,
+    "dataset": "phone, mobile_phone",
+}
 result = client.person.search(**data)
 if result.ok:
     print(result.text)
@@ -168,6 +191,55 @@ else:
         f" Reason: {result.reason};"
         " Message: {};".format(result.json()["error"]["message"])
     )
+
+# By Search (Elasticsearch)
+es_query = {
+    "query": {
+        "bool": {
+            "must": [
+                {"term": {"tags": "big data"}},
+                {"term": {"industry": "financial services"}},
+                {"term": {"location.country": "united states"}},
+            ]
+        }
+    }
+}
+data = {
+    "query": es_query,
+    "size": 10,
+    "pretty": True,
+}
+result = client.company.search(**data)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code};"
+        f" Reason: {result.reason};"
+        " Message: {};".format(result.json()["error"]["message"])
+    )
+
+# By Search (SQL)
+sql_query = (
+    "SELECT * FROM company"
+    " WHERE tags='big data'"
+    " AND industry='financial services'"
+    " AND location.country='united states';"
+)
+data = {
+    "sql": sql_query,
+    "size": 10,
+    "pretty": True,
+}
+result = client.company.search(**data)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code};"
+        f" Reason: {result.reason};"
+        " Message: {};".format(result.json()["error"]["message"])
+    )
 ```
 ## 🌐 Endpoints <a name="endpoints"></a>
 
@@ -185,6 +257,7 @@ else:
 | API Endpoint | PDLPY Function |
 |-|-|
 | [Company Enrichment API](https://docs.peopledatalabs.com/docs/company-enrichment-api) | `PDLPY.company.enrichment(**params)` |
+| [Company Search API](https://docs.peopledatalabs.com/docs/company-search-api) | `PDLPY.company.search(**params)`
 
 ## 📘 Documentation <a name="documentation"></a>
 

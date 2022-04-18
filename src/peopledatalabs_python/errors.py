@@ -11,6 +11,6 @@ class EmptyParametersException(Exception):
 
 class InvalidEndpointError(Exception):
     """
-    Thrown when an endpoint is called for a section which does not support
-    that endpoint.
+    Thrown when an endpoint is called for a section which does not support that
+    endpoint.
     """
