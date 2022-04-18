@@ -84,13 +84,31 @@ class Endpoint:
         ).post()
 
     @check_empty_parameters
+    def _cleaner(self, model: Type[BaseModel], **kwargs):
+        """
+        Calls PeopleDataLabs' cleaner API.
+
+        Args:
+            model: The model used for parameters validation.
+            **kwargs: Parameters for the API as defined
+                in the documentation.
+
+        Returns:
+            A requests.Response object with the result of the HTTP call.
+        """
+        url = self._get_url(endpoint="clean")
+        return Request(
+            api_key=self.api_key,
+            url=url,
+            headers={"Accept-Encoding": "gzip"},
+            params=kwargs,
+            validator=model,
+        ).get()
+
+    @check_empty_parameters
     def _enrichment(self, model: Type[BaseModel], **kwargs):
         """
         Calls PeopleDataLabs' enrichment API.
-
-        Allowed sections:
-            Company,
-            Person.
 
         Args:
             model: The model used for parameters validation.

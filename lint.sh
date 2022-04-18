@@ -14,3 +14,8 @@ autoflake -c $FILES_TO_LINT \
         --remove-duplicate-keys \
         --remove-unused-variables \
         --remove-all-unused-imports
+
+echo
+echo "-------------------------------------------"
+echo
+echo "Looking neat! 👌"

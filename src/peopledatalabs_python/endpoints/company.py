@@ -48,3 +48,16 @@ class Company(Endpoint):
             A requests.Response object with the result of the HTTP call.
         """
         return self._search(company_models.SearchModel, **kwargs)
+
+    def cleaner(self, **kwargs):
+        """
+        Calls PeopleDataLabs' company/clean API.
+
+        Args:
+            **kwargs: Parameters for the API as defined
+                in the docmentation.
+
+        Returns:
+            A requests.Response object with the result of the HTTP call.
+        """
+        return self._cleaner(company_models.CleanerModel, **kwargs)

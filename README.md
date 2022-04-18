@@ -47,9 +47,10 @@ client = PDLPY()
 
 Then, send requests to any PDL API Endpoint:
 
-**Getting Person Data**
+### Getting Person Data
+
+#### By Enrichment
 ```python
-# By Enrichment
 result = client.person.enrichment(
     phone="4155688415",
     pretty=True,
@@ -62,8 +63,9 @@ else:
         f" Reason: {result.reason};"
         " Message: {};".format(result.json()["error"]["message"])
     )
-
-# By Bulk Enrichment
+```
+#### By Bulk Enrichment
+```python
 result = client.person.bulk(
     required="emails AND profiles",
     requests=[
@@ -97,8 +99,9 @@ else:
         f" Reason: {result.reason};"
         " Message: {};".format(result.json()["error"]["message"])
     )
-
-# By Search (Elasticsearch)
+```
+#### By Search (Elasticsearch)
+```python
 es_query = {
     "query": {
         "bool": {
@@ -124,8 +127,9 @@ else:
         f" Reason: {result.reason};"
         " Message: {};".format(result.json()["error"]["message"])
     )
-
-# By Search (SQL)
+```
+#### By Search (SQL)
+```python
 sql_query = (
     "SELECT * FROM person"
     " WHERE location_country='mexico'"
@@ -147,8 +151,9 @@ else:
         f" Reason: {result.reason};"
         " Message: {};".format(result.json()["error"]["message"])
     )
-
-# By PDL_ID (Retrieve API)
+```
+#### By `PDL_ID` (Retrieve API)
+```python
 result = client.person.retrieve(
     person_id="qEnOZ5Oh0poWnQ1luFBfVw_0000"
 )
@@ -160,8 +165,9 @@ else:
         f" Reason: {result.reason};"
         " Message: {};".format(result.json()["error"]["message"])
     )
-
-# By Fuzzy Enrichment (Identify API)
+```
+#### By Fuzzy Enrichment (Identify API)
+```python
 result = client.person.enrichment(
     name="sean thorne",
     pretty=True,
@@ -176,9 +182,9 @@ else:
     )
 ```
 
-**Getting Company Data**
+### Getting Company Data
+#### By Enrichment
 ```python
-# By Enrichment
 result = client.company.enrichment(
     website="peopledatalabs.com",
     pretty=True
@@ -191,8 +197,9 @@ else:
         f" Reason: {result.reason};"
         " Message: {};".format(result.json()["error"]["message"])
     )
-
-# By Search (Elasticsearch)
+```
+#### By Search (Elasticsearch)
+```python
 es_query = {
     "query": {
         "bool": {
@@ -218,8 +225,9 @@ else:
         f" Reason: {result.reason};"
         " Message: {};".format(result.json()["error"]["message"])
     )
-
-# By Search (SQL)
+```
+#### By Search (SQL)
+```python
 sql_query = (
     "SELECT * FROM company"
     " WHERE tags='big data'"
@@ -241,6 +249,22 @@ else:
         " Message: {};".format(result.json()["error"]["message"])
     )
 ```
+### Using supporting APIs
+
+#### Clean Raw Company String
+```python
+result = client.company.cleaner(
+    name="peOple DaTa LabS"
+)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code};"
+        f" Reason: {result.reason};"
+        " Message: {};".format(result.json()["error"]["message"])
+    )
+```
 ## 🌐 Endpoints <a name="endpoints"></a>
 
 **Person Endpoints**
@@ -251,13 +275,21 @@ else:
 | [Person Bulk Enrichment API](https://docs.peopledatalabs.com/docs/bulk-enrichment-api) | `PDLPY.person.bulk(**params)`
 | [Person Search API](https://docs.peopledatalabs.com/docs/search-api) | `PDLPY.person.search(**params)`
 | [Person Retrieve API](https://docs.peopledatalabs.com/docs/person-retrieve-api) | `PDLPY.person.retrieve(**params)`
-| [Person Identify API](https://docs.peopledatalabs.com/docs/identify-api) | `PDLPY.person.identify(**params)`
+| [Person Identify API](https://docs.peopledatalabs.com/docs/identify-api) | `PDLPY.person.identify(**params)` |
 
 **Company Endpoints**
+
 | API Endpoint | PDLPY Function |
 |-|-|
 | [Company Enrichment API](https://docs.peopledatalabs.com/docs/company-enrichment-api) | `PDLPY.company.enrichment(**params)` |
-| [Company Search API](https://docs.peopledatalabs.com/docs/company-search-api) | `PDLPY.company.search(**params)`
+| [Company Search API](https://docs.peopledatalabs.com/docs/company-search-api) | `PDLPY.company.search(**params)` |
+
+**Supporting Endpoints**
+
+| API Endpoint | PDLJS Function |
+|-|-|
+| [Company Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#companyclean) | `PDLPY.company.cleaner(**params)` |
+
 
 ## 📘 Documentation <a name="documentation"></a>
 

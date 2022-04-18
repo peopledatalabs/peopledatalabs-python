@@ -12,6 +12,7 @@ from pydantic import (
 
 from . import (
     AdditionalParametersModel,
+    BaseCleanerModel,
     BaseRequestModel,
     BaseSearchModel,
 )
@@ -68,3 +69,23 @@ class SearchModel(BaseSearchModel):
     """
     Search parameters model validator for Company search API.
     """
+
+
+class CleanerModel(BaseCleanerModel):
+    """
+    Cleaner parameters model validator for Company cleaner API.
+    """
+
+    @root_validator(pre=True)
+    def at_least_one(cls, value):
+        """
+        Checks that at least one parameter is valued.
+        """
+        if not any(value.values()):
+            raise ValueError(
+                "At least one between 'name' 'website' or 'profile' is"
+                " required. See documentation @"
+                " https://docs.peopledatalabs.com/docs/cleaner-apis#parameters"
+            )
+
+        return value
