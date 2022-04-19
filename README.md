@@ -32,7 +32,7 @@ pip install -e .
 
 First, create the PDLPY client:
 ```python
-from pepoledatalabs_python import PDLPY
+from peopledatalabs import PDLPY
 
 
 # specifying an API key
@@ -285,7 +285,7 @@ else:
 
 #### Clean Raw Location Strings
 ```python
-result = client.company.cleaner(
+result = client.location.cleaner(
     location="455 Market Street, San Francisco, California 94105, US"
 )
 if result.ok:
