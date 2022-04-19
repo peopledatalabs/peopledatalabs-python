@@ -2,7 +2,7 @@ name: Python package publish to test Pypi
 
 on:
   push:
-    tags: "*"
+    branches: [ main ]
 
 jobs:
   publish:
