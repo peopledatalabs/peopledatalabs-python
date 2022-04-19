@@ -1,8 +1,9 @@
 [tool.poetry]
-name = "peopledatalabs-python"
+name = "peopledatalabs"
 version = "0.3.0"
-description = "PeopleDataLabs Python Client"
-authors = ["Yoske Apolloni <lupodellasleppa@gmail.com>"]
+description = "People Data Labs API SDK"
+homepage = "https://github.com/peopledatalabs/peopledatalabs-python"
+authors = ["People Data Labs <hello@peopledatalabs.com>"]
 license = "MIT License"
 
 [tool.poetry.dependencies]
