@@ -7,6 +7,8 @@ A Python client for the People Data Labs API.
 </p>
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![PyPI](https://img.shields.io/pypi/v/peopledatalabs-python.svg)](https://pypi.python.org/pypi/peopledatalabs-python)
+[![PyPI](https://img.shields.io/pypi/pyversions/peopledatalabs-python.svg)](https://pypi.python.org/pypi/peopledatalabs-python)
 
 ## Table of Contents
 - [🔧 Installation](#installation)
@@ -16,23 +18,19 @@ A Python client for the People Data Labs API.
 
 ## 🔧 Installation <a name="installation"></a>
 
-1. Clone this git repo:
-```bash
-git clone https://github.com/peopledatalabs/peopledatalabs-python.git
-```
+1. Install from PyPi using [pip](https://pip.pypa.io/en/latest/), a package manager for Python.
 
-2. From the root of the repo, run:
-```bash
-pip install -e .
-```
+    ```bash
+    pip install peopledatalabs-python
+    ```
 
-3. Sign up for a [free PDL API key](https://www.peopledatalabs.com/signup)
+2. Sign up for a [free PDL API key](https://www.peopledatalabs.com/signup)
 
 ## 🚀 Usage <a name="usage"></a>
 
 First, create the PDLPY client:
 ```python
-from peopledatalabs import PDLPY
+from peopledatalabs_python import PDLPY
 
 
 # specifying an API key
