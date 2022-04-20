@@ -7,7 +7,7 @@ file.
 
 import os
 
-from dotenv import load_dotenv
+from dotenv import find_dotenv, load_dotenv
 from pydantic import HttpUrl, SecretStr
 from pydantic.dataclasses import dataclass
 
@@ -29,9 +29,12 @@ class Settings:
     version_re: str = r"^v[0-9]$"
 
     def __post_init__(self):
-        load_dotenv()
+        load_dotenv(dotenv_path=find_dotenv(usecwd=True))
         for key in self.__dict__:
-            self.__dict__[key] = os.getenv(key.upper(), self.__dict__[key])
+            if key == "api_key":
+                self.api_key = os.getenv("PDL_API_KEY", self.api_key)
+            else:
+                self.__dict__[key] = os.getenv(key.upper(), self.__dict__[key])
 
 
 settings = Settings()

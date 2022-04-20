@@ -2,9 +2,7 @@
 <img src="https://i.imgur.com/S7DkZtr.png" width="250" alt="People Data Labs Logo">
 </p>
 <h1 align="center">People Data Labs Python Client</h1>
-<p align="center">
-A Python client for the People Data Labs API.
-</p>
+<p align="center">A Python client for the People Data Labs API.</p>
 
 <p align="center">
   <a href="https://github.com/peopledatalabs/peopledatalabs-python">
@@ -22,6 +20,7 @@ A Python client for the People Data Labs API.
 </p>
 
 ## Table of Contents
+
 - [🔧 Installation](#installation)
 - [🚀 Usage](#usage)
 - [🌐 Endpoints](#endpoints)
@@ -35,30 +34,34 @@ A Python client for the People Data Labs API.
     pip install peopledatalabs-python
     ```
 
-2. Sign up for a [free PDL API key](https://www.peopledatalabs.com/signup)
+2. Sign up for a [free PDL API key](https://www.peopledatalabs.com/signup).
+3. Set your API key in the `PDL_API_KEY` environment variable.
 
 ## 🚀 Usage <a name="usage"></a>
 
 First, create the PDLPY client:
+
 ```python
 from peopledatalabs_python import PDLPY
 
 
 # specifying an API key
 client = PDLPY(
-  api_key="YOUR API KEY"
+    api_key="YOUR API KEY",
 )
 
-# or leave blank if you have API_KEY set in your environment
-# (or in a .env file)
+# or leave blank if you have PDL_API_KEY set in your environment or .env file
 client = PDLPY()
 ```
 
-Then, send requests to any PDL API Endpoint:
+**Note:** You can provide your API key directly in code, or alternatively set a `PDL_API_KEY` variable in your environment or `.env` file.
+
+Then, send requests to any PDL API Endpoint.
 
 ### Getting Person Data
 
 #### By Enrichment
+
 ```python
 result = client.person.enrichment(
     phone="4155688415",
@@ -69,11 +72,13 @@ if result.ok:
 else:
     print(
         f"Status: {result.status_code};"
-        f" Reason: {result.reason};"
-        " Message: {};".format(result.json()["error"]["message"])
+        f"\nReason: {result.reason};"
+        f"\nMessage: {result.json()['error']['message']};"
     )
 ```
+
 #### By Bulk Enrichment
+
 ```python
 result = client.person.bulk(
     required="emails AND profiles",
@@ -85,7 +90,7 @@ result = client.person.bulk(
             "params": {
                 "profile": ["linkedin.com/in/seanthorne"],
                 "location": ["SF Bay Area"],
-                "name": ["Sean F. Thorne"]
+                "name": ["Sean F. Thorne"],
             }
         },
         {
@@ -95,7 +100,7 @@ result = client.person.bulk(
             "params": {
                 "profile": ["https://www.linkedin.com/in/haydenconrad/"],
                 "first_name": "Hayden",
-                "last_name": "Conrad"
+                "last_name": "Conrad",
             }
         }
     ]
@@ -104,19 +109,21 @@ if result.ok:
     print(result.text)
 else:
     print(
-        f"Status: {result.status_code};"
-        f" Reason: {result.reason};"
-        " Message: {};".format(result.json()["error"]["message"])
+        f"Status: {result.status_code}"
+        f"\nReason: {result.reason}"
+        f"\nMessage: {result.json()['error']['message']}"
     )
 ```
+
 #### By Search (Elasticsearch)
+
 ```python
 es_query = {
     "query": {
         "bool": {
             "must": [
                 {"term": {"location_country": "mexico"}},
-                {"term": {"job_title_role": "health"}}
+                {"term": {"job_title_role": "health"}},
             ]
         }
     }
@@ -132,12 +139,14 @@ if result.ok:
     print(result.text)
 else:
     print(
-        f"Status: {result.status_code};"
-        f" Reason: {result.reason};"
-        " Message: {};".format(result.json()["error"]["message"])
+        f"Status: {result.status_code}"
+        f"\nReason: {result.reason}"
+        f"\nMessage: {result.json()['error']['message']}"
     )
 ```
+
 #### By Search (SQL)
+
 ```python
 sql_query = (
     "SELECT * FROM person"
@@ -156,26 +165,30 @@ if result.ok:
     print(result.text)
 else:
     print(
-        f"Status: {result.status_code};"
-        f" Reason: {result.reason};"
-        " Message: {};".format(result.json()["error"]["message"])
+        f"Status: {result.status_code}"
+        f"\nReason: {result.reason}"
+        f"\nMessage: {result.json()['error']['message']}"
     )
 ```
+
 #### By `PDL_ID` (Retrieve API)
+
 ```python
 result = client.person.retrieve(
-    person_id="qEnOZ5Oh0poWnQ1luFBfVw_0000"
+    person_id="qEnOZ5Oh0poWnQ1luFBfVw_0000",
 )
 if result.ok:
     print(result.text)
 else:
     print(
-        f"Status: {result.status_code};"
-        f" Reason: {result.reason};"
-        " Message: {};".format(result.json()["error"]["message"])
+        f"Status: {result.status_code}"
+        f"\nReason: {result.reason}"
+        f"\nMessage: {result.json()['error']['message']}"
     )
 ```
+
 #### By Fuzzy Enrichment (Identify API)
+
 ```python
 result = client.person.enrichment(
     name="sean thorne",
@@ -185,29 +198,33 @@ if result.ok:
     print(result.text)
 else:
     print(
-        f"Status: {result.status_code};"
-        f" Reason: {result.reason};"
-        " Message: {};".format(result.json()["error"]["message"])
+        f"Status: {result.status_code}"
+        f"\nReason: {result.reason}"
+        f"\nMessage: {result.json()['error']['message']}"
     )
 ```
 
 ### Getting Company Data
+
 #### By Enrichment
+
 ```python
 result = client.company.enrichment(
     website="peopledatalabs.com",
-    pretty=True
+    pretty=True,
 )
 if result.ok:
     print(result.text)
 else:
     print(
-        f"Status: {result.status_code};"
-        f" Reason: {result.reason};"
-        " Message: {};".format(result.json()["error"]["message"])
+        f"Status: {result.status_code}"
+        f"\nReason: {result.reason}"
+        f"\nMessage: {result.json()['error']['message']}"
     )
 ```
+
 #### By Search (Elasticsearch)
+
 ```python
 es_query = {
     "query": {
@@ -230,12 +247,14 @@ if result.ok:
     print(result.text)
 else:
     print(
-        f"Status: {result.status_code};"
-        f" Reason: {result.reason};"
-        " Message: {};".format(result.json()["error"]["message"])
+        f"Status: {result.status_code}"
+        f"\nReason: {result.reason}"
+        f"\nMessage: {result.json()['error']['message']}"
     )
 ```
+
 #### By Search (SQL)
+
 ```python
 sql_query = (
     "SELECT * FROM company"
@@ -253,14 +272,16 @@ if result.ok:
     print(result.text)
 else:
     print(
-        f"Status: {result.status_code};"
-        f" Reason: {result.reason};"
-        " Message: {};".format(result.json()["error"]["message"])
+        f"Status: {result.status_code}"
+        f"\nReason: {result.reason}"
+        f"\nMessage: {result.json()['error']['message']}"
     )
 ```
+
 ### Using supporting APIs
 
 #### Get Autocomplete Suggestions
+
 ```python
 result = client.autocomplete(
     field="title",
@@ -271,83 +292,87 @@ if result.ok:
     print(result.text)
 else:
     print(
-        f"Status: {result.status_code};"
-        f" Reason: {result.reason};"
-        " Message: {};".format(result.json()["error"]["message"])
+        f"Status: {result.status_code}"
+        f"\nReason: {result.reason}"
+        f"\nMessage: {result.json()['error']['message']}"
     )
 ```
 
 #### Clean Raw Company Strings
+
 ```python
 result = client.company.cleaner(
-    name="peOple DaTa LabS"
+    name="peOple DaTa LabS",
 )
 if result.ok:
     print(result.text)
 else:
     print(
-        f"Status: {result.status_code};"
-        f" Reason: {result.reason};"
-        " Message: {};".format(result.json()["error"]["message"])
+        f"Status: {result.status_code}"
+        f"\nReason: {result.reason}"
+        f"\nMessage: {result.json()['error']['message']}"
     )
 ```
 
 #### Clean Raw Location Strings
+
 ```python
 result = client.location.cleaner(
-    location="455 Market Street, San Francisco, California 94105, US"
+    location="455 Market Street, San Francisco, California 94105, US",
 )
 if result.ok:
     print(result.text)
 else:
     print(
-        f"Status: {result.status_code};"
-        f" Reason: {result.reason};"
-        " Message: {};".format(result.json()["error"]["message"])
+        f"Status: {result.status_code}"
+        f"\nReason: {result.reason}"
+        f"\nMessage: {result.json()['error']['message']}"
     )
 ```
 
 #### Clean Raw School Strings
+
 ```python
 result = client.school.cleaner(
-    name="university of oregon"
+    name="university of oregon",
 )
 if result.ok:
     print(result.text)
 else:
     print(
-        f"Status: {result.status_code};"
-        f" Reason: {result.reason};"
-        " Message: {};".format(result.json()["error"]["message"])
+        f"Status: {result.status_code}"
+        f"\nReason: {result.reason}"
+        f"\nMessage: {result.json()['error']['message']}"
     )
 ```
+
 ## 🌐 Endpoints <a name="endpoints"></a>
 
 **Person Endpoints**
 
-| API Endpoint | PDLPY Function |
-|-|-|
-| [Person Enrichment API](https://docs.peopledatalabs.com/docs/enrichment-api) | `PDLPY.person.enrichment(**params)`
-| [Person Bulk Enrichment API](https://docs.peopledatalabs.com/docs/bulk-enrichment-api) | `PDLPY.person.bulk(**params)`
-| [Person Search API](https://docs.peopledatalabs.com/docs/search-api) | `PDLPY.person.search(**params)`
-| [Person Retrieve API](https://docs.peopledatalabs.com/docs/person-retrieve-api) | `PDLPY.person.retrieve(**params)`
-| [Person Identify API](https://docs.peopledatalabs.com/docs/identify-api) | `PDLPY.person.identify(**params)` |
+| API Endpoint                                                                           | PDLPY Function                      |
+| -------------------------------------------------------------------------------------- | ----------------------------------- |
+| [Person Enrichment API](https://docs.peopledatalabs.com/docs/enrichment-api)           | `PDLPY.person.enrichment(**params)` |
+| [Person Bulk Enrichment API](https://docs.peopledatalabs.com/docs/bulk-enrichment-api) | `PDLPY.person.bulk(**params)`       |
+| [Person Search API](https://docs.peopledatalabs.com/docs/search-api)                   | `PDLPY.person.search(**params)`     |
+| [Person Retrieve API](https://docs.peopledatalabs.com/docs/person-retrieve-api)        | `PDLPY.person.retrieve(**params)`   |
+| [Person Identify API](https://docs.peopledatalabs.com/docs/identify-api)               | `PDLPY.person.identify(**params)`   |
 
 **Company Endpoints**
 
-| API Endpoint | PDLPY Function |
-|-|-|
+| API Endpoint                                                                          | PDLPY Function                       |
+| ------------------------------------------------------------------------------------- | ------------------------------------ |
 | [Company Enrichment API](https://docs.peopledatalabs.com/docs/company-enrichment-api) | `PDLPY.company.enrichment(**params)` |
-| [Company Search API](https://docs.peopledatalabs.com/docs/company-search-api) | `PDLPY.company.search(**params)` |
+| [Company Search API](https://docs.peopledatalabs.com/docs/company-search-api)         | `PDLPY.company.search(**params)`     |
 
 **Supporting Endpoints**
 
-| API Endpoint | PDLJS Function |
-|-|-|
-| [Autocomplete API](https://docs.peopledatalabs.com/docs/autocomplete-api) | `PDLPY.autocomplete(**params)` |
-| [Company Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#companyclean) | `PDLPY.company.cleaner(**params)` |
+| API Endpoint                                                                            | PDLJS Function                     |
+| --------------------------------------------------------------------------------------- | ---------------------------------- |
+| [Autocomplete API](https://docs.peopledatalabs.com/docs/autocomplete-api)               | `PDLPY.autocomplete(**params)`     |
+| [Company Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#companyclean)   | `PDLPY.company.cleaner(**params)`  |
 | [Location Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#locationclean) | `PDLPY.location.cleaner(**params)` |
-| [School Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#schoolclean) | `PDLPY.school.cleaner(**params)` |
+| [School Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#schoolclean)     | `PDLPY.school.cleaner(**params)`   |
 
 
 ## 📘 Documentation <a name="documentation"></a>
@@ -361,11 +386,13 @@ As illustrated in the [Endpoints](#endpoints) section above, each of our API end
 As an example:
 
 The following is **valid** because `name` is a [supported input parameter to the Person Identify API](https://docs.peopledatalabs.com/docs/identify-api-reference#input-parameters):
+
 ```python
-PDLPY().person.identify({ name: 'sean thorne' })
+PDLPY().person.identify({"name": "sean thorne"})
 ```
 
 Conversely, this would be **invalid** because `fake_parameter` is not an input parameter to the Person Identify API:
+
 ```python
-PDLPY().person.identify({ fake_parameter: 'anything' })
+PDLPY().person.identify({"fake_parameter": "anything"})
 ```
