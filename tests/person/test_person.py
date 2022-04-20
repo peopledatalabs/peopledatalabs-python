@@ -1,16 +1,16 @@
 """
-All tests related to the Person object of the client instance"
+All tests related to the Person object of the client instance.
 """
 
 
 import logging
 import pytest
 
-from peopledatalabs_python.main import Person
+from peopledatalabs.main import Person
 
 
 logging.basicConfig()
-logger = logging.getLogger("PeopleDataLabs.tests")
+logger = logging.getLogger("PeopleDataLabs.tests.person")
 
 
 @pytest.mark.usefixtures("client_with_fake_api_key")

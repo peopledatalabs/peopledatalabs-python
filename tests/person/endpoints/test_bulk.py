@@ -9,7 +9,7 @@ import pytest
 from pydantic import ValidationError
 import requests
 
-from peopledatalabs_python.errors import EmptyParametersException
+from peopledatalabs.errors import EmptyParametersException
 
 
 logging.basicConfig()
@@ -20,6 +20,7 @@ logger = logging.getLogger("PeopleDataLabs.tests.person.bulk")
 def test_bulk_empty_params_throw_error(client_with_fake_api_key):
     """
     Tests calling the bulk method without parameters.
+
     Should raise EmptyParametersException
     """
     with pytest.raises(EmptyParametersException):
@@ -31,9 +32,7 @@ def test_api_endpoint_bulk_empty_requests_raise_validation_error(client):
     """
     Tests successful execution of bulk API.
     """
-    data = {
-       "requests": []
-    }
+    data = {"requests": []}
     with pytest.raises(ValidationError):
         client.person.bulk(**data)
 
@@ -43,16 +42,7 @@ def test_api_endpoint_bulk_requests_no_params_raise_validation_error(client):
     """
     Tests successful execution of bulk API.
     """
-    data = {
-       "requests": [
-            {
-                "metadata": {
-                    "user_id": "123"
-                },
-                "params": {}
-            }
-       ]
-    }
+    data = {"requests": [{"metadata": {"user_id": "123"}, "params": {}}]}
     with pytest.raises(ValidationError):
         client.person.bulk(**data)
 
@@ -64,16 +54,8 @@ def test_api_endpoint_bulk(client):
     """
     data = {
         "requests": [
-            {
-                "params": {
-                    "profile": ["linkedin.com/in/seanthorne"]
-                }
-            },
-            {
-                "params": {
-                    "profile": ["linkedin.com/in/randrewn"]
-                }
-            }
+            {"params": {"profile": ["linkedin.com/in/seanthorne"]}},
+            {"params": {"profile": ["linkedin.com/in/randrewn"]}},
         ]
     }
     response = client.person.bulk(**data)
@@ -89,25 +71,21 @@ def test_api_endpoint_bulk_with_metadata(client):
     data = {
         "requests": [
             {
-                "metadata": {
-                    "user_id": "123"
-                },
+                "metadata": {"user_id": "123"},
                 "params": {
                     "profile": ["linkedin.com/in/seanthorne"],
                     "location": ["SF Bay Area"],
-                    "name": ["Sean F. Thorne"]
-                }
+                    "name": ["Sean F. Thorne"],
+                },
             },
             {
-                "metadata": {
-                    "user_id": "345"
-                },
+                "metadata": {"user_id": "345"},
                 "params": {
                     "profile": ["https://www.linkedin.com/in/haydenconrad/"],
                     "first_name": "Hayden",
-                    "last_name": "Conrad"
-                }
-            }
+                    "last_name": "Conrad",
+                },
+            },
         ]
     }
     response = client.person.bulk(**data)
@@ -127,17 +105,17 @@ def test_api_endpoint_bulk_with_filtering(client):
                 "params": {
                     "profile": ["linkedin.com/in/seanthorne"],
                     "location": ["SF Bay Area"],
-                    "name": ["Sean F. Thorne"]
+                    "name": ["Sean F. Thorne"],
                 }
             },
             {
                 "params": {
                     "profile": ["https://www.linkedin.com/in/haydenconrad/"],
                     "first_name": "Hayden",
-                    "last_name": "Conrad"
+                    "last_name": "Conrad",
                 }
-            }
-        ]
+            },
+        ],
     }
     response = client.person.bulk(**data)
     assert isinstance(response, requests.Response)

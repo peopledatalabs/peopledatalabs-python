@@ -17,9 +17,11 @@ def get_logger(name: str = None, log_level: str = settings.log_level):
     Utility function to retrieve a logger.
 
     Args:
-        name: Specify a name if you want to retrieve a logger which is
-            a child of the PeopleDataLabs logger.
-        log_level: Specify the log level for this particular logger.
+        name (:obj:`str`, optional): Specify a name if you want
+            to retrieve a logger which is a child of
+            PeopleDataLabs logger.
+        log_level (:obj:`str`, optional): Specify the log level
+            for this particular logger.
 
     Returns:
         The PeopleDataLabs logger, or one of its children.

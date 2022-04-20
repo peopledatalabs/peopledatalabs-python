@@ -1,36 +1,30 @@
 """
-Client's models for validation.
+Models for input parameters of the Person APIs.
 """
 
 
 from enum import Enum
-from typing import List, Union, Optional
+from typing import List, Optional, Union
 
 from pydantic import (
     BaseModel,
     EmailStr,
-    conint,
     root_validator,
     validator,
 )
 
-from .logger import get_logger
-
-
-logger = get_logger("models")
-
-
-class BaseRequestModel(BaseModel):
-    """
-    Base model for parameters common in all requests.
-    """
-    pretty: Optional[bool]
+from . import (
+    AdditionalParametersModel,
+    BaseRequestModel,
+    BaseSearchModel,
+)
 
 
 class PersonBaseModel(BaseModel):
     """
-    Base parameters model for the enrichment API.
+    Base parameters model for the enrichment and identify API.
     """
+
     birth_date: Optional[Union[List[str], str]]
     company: Optional[Union[List[str], str]]
     country: Optional[str]
@@ -65,27 +59,16 @@ class PersonBaseModel(BaseModel):
         return value
 
 
-class PersonOptionalsModel(BaseModel):
-    """
-    Optional parameters model for the enrichment API.
-    """
-    min_likelihood: Optional[int]
-    required: Optional[str]
-    titlecase: Optional[bool]
-    data_include: Optional[str]
-    include_if_matched: Optional[bool]
-
-
-class PersonEnrichmentModel(
-    BaseRequestModel, PersonBaseModel, PersonOptionalsModel
+class EnrichmentModel(
+    BaseRequestModel, PersonBaseModel, AdditionalParametersModel
 ):
     """
     Model for the enrichment API.
     """
 
 
-class PersonIdentifyModel(
-    BaseRequestModel, PersonBaseModel, PersonOptionalsModel
+class IdentifyModel(
+    BaseRequestModel, PersonBaseModel, AdditionalParametersModel
 ):
     """
     Model for the identify API.
@@ -100,9 +83,7 @@ class PersonIdentifyModel(
         """
         Checks none of the values are lists.
         """
-        are_lists = [
-            isinstance(field, list) for field in v.values()
-        ]
+        are_lists = [isinstance(field, list) for field in v.values()]
         if any(are_lists):
             raise ValueError(
                 "Identify API does not take multiple values"
@@ -116,17 +97,18 @@ class PersonIdentifyModel(
 
 class PersonBulkParamsModel(BaseModel):
     """
-    Model for the validation of the 'params' field in the
-    person/bulk API.
+    Model for the validation of the 'params' field in the person/bulk API.
     """
+
     metadata: Optional[dict]
     params: PersonBaseModel = ...
 
 
-class PersonBulkModel(BaseRequestModel, PersonOptionalsModel):
+class BulkModel(BaseRequestModel, AdditionalParametersModel):
     """
     Model for the person/bulk API.
     """
+
     requests: List[PersonBulkParamsModel]
 
     @validator("requests", pre=True)
@@ -148,6 +130,7 @@ class DatasetEnum(str, Enum):
     """
     Valid values for 'dataset' field of search API.
     """
+
     resume = "resume"
     email = "email"
     phone = "phone"
@@ -158,41 +141,11 @@ class DatasetEnum(str, Enum):
     all = "all"
 
 
-class BaseSearchModel(BaseRequestModel):
-    """
-    Common fields validation model for search APIs (company, person).
-    """
-    query: Optional[dict]
-    sql: Optional[str]
-    size: Optional[conint(ge=1, le=100)]
-    from_: Optional[conint(ge=0, le=9999)]
-    scroll_token: Optional[str]
-    titlecase: Optional[bool]
-
-    @root_validator(pre=True)
-    def query_or_sql(cls, v):
-        """
-        Checks only one between 'query' and 'sql' is provided.
-        """
-        if not bool(v.get("query")) ^ bool(v.get("sql")):
-            raise ValueError(
-                "It is required to provide a value for either the 'query'"
-                " parameter or the 'sql' parameter in order"
-                " to receive a successful response."
-                " See documentation @"
-                " https://docs.peopledatalabs.com/docs/"
-                "search-api#building-a-query ,"
-                " https://docs.peopledatalabs.com/docs/"
-                "company-search-api#building-a-query"
-            )
-
-        return v
-
-
-class PersonSearchModel(BaseSearchModel):
+class SearchModel(BaseSearchModel):
     """
     Model for validation of person search API.
     """
+
     dataset: Optional[str]
 
     @validator("dataset", pre=True)

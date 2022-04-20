@@ -1,5 +1,5 @@
 """
-Tests calls to the person/search API.
+Tests calls to the company/search API.
 """
 
 
@@ -13,7 +13,7 @@ from peopledatalabs.errors import EmptyParametersException
 
 
 logging.basicConfig()
-logger = logging.getLogger("PeopleDataLabs.tests.person.search")
+logger = logging.getLogger("PeopleDataLabs.tests.company.search")
 
 
 @pytest.mark.usefixtures("client_with_fake_api_key")
@@ -24,7 +24,7 @@ def test_search_empty_params_throw_error(client_with_fake_api_key):
     Should raise EmptyParametersException
     """
     with pytest.raises(EmptyParametersException):
-        client_with_fake_api_key.person.search()
+        client_with_fake_api_key.company.search()
 
 
 @pytest.mark.usefixtures("client")
@@ -36,8 +36,9 @@ def test_api_endpoint_search_query(client):
         "query": {
             "bool": {
                 "must": [
-                    {"term": {"location_country": "mexico"}},
-                    {"term": {"job_title_role": "health"}},
+                    {"term": {"tags": "big data"}},
+                    {"term": {"industry": "financial services"}},
+                    {"term": {"location.country": "united states"}},
                 ]
             }
         }
@@ -46,9 +47,8 @@ def test_api_endpoint_search_query(client):
         "query": es_query,
         "size": 10,
         "pretty": True,
-        "dataset": "phone, mobile_phone",
     }
-    response = client.person.search(**data)
+    response = client.company.search(**data)
     assert isinstance(response, requests.Response)
     assert response.status_code == 200
 
@@ -59,18 +59,17 @@ def test_api_endpoint_search_sql(client):
     Tests successful execution of search API by SQL query.
     """
     sql_query = (
-        "SELECT * FROM person"
-        " WHERE location_country='mexico'"
-        " AND job_title_role='health'"
-        " AND phone_numbers IS NOT NULL;"
+        "SELECT * FROM company"
+        " WHERE tags='big data'"
+        " AND industry='financial services'"
+        " AND location.country='united states';"
     )
     data = {
         "sql": sql_query,
         "size": 10,
         "pretty": True,
-        "dataset": "phone, mobile_phone",
     }
-    response = client.person.search(**data)
+    response = client.company.search(**data)
     assert isinstance(response, requests.Response)
     assert response.status_code == 200
 
@@ -84,17 +83,18 @@ def test_api_endpoint_search_both_queries_raises_validation_error(client):
         "query": {
             "bool": {
                 "must": [
-                    {"term": {"location_country": "mexico"}},
-                    {"term": {"job_title_role": "health"}},
+                    {"term": {"tags": "big data"}},
+                    {"term": {"industry": "financial services"}},
+                    {"term": {"location.country": "united states"}},
                 ]
             }
         }
     }
     sql_query = (
-        "SELECT * FROM person"
-        " WHERE location_country='mexico'"
-        " AND job_title_role='health'"
-        " AND phone_numbers IS NOT NULL;"
+        "SELECT * FROM company"
+        "WHERE tags='big data'"
+        "AND industry='financial services'"
+        "AND location.country='united states';"
     )
     data = {
         "query": es_query,
@@ -104,29 +104,4 @@ def test_api_endpoint_search_both_queries_raises_validation_error(client):
         "dataset": "phone, mobile_phone",
     }
     with pytest.raises(ValidationError):
-        client.person.search(**data)
-
-
-@pytest.mark.usefixtures("client")
-def test_api_endpoint_search_invalid_dataset_raises_validation_error(client):
-    """
-    Raises ValidationError with invalid dataset.
-    """
-    es_query = {
-        "query": {
-            "bool": {
-                "must": [
-                    {"term": {"location_country": "mexico"}},
-                    {"term": {"job_title_role": "health"}},
-                ]
-            }
-        }
-    }
-    data = {
-        "query": es_query,
-        "size": 10,
-        "pretty": True,
-        "dataset": "invalid",
-    }
-    with pytest.raises(ValidationError):
-        client.person.search(**data)
+        client.company.search(**data)

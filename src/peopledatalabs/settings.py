@@ -1,24 +1,26 @@
 """
 A settings singleton to share settings across different modules of the package.
-Settings also loads environment variables eventually declared in an .env file.
+
+Settings also loads environment variables eventually declared in an .env
+file.
 """
 
-from dataclasses import dataclass
 import os
 
 from dotenv import load_dotenv
-from pydantic import (
-    HttpUrl,
-    SecretStr
-)
+from pydantic import HttpUrl, SecretStr
+from pydantic.dataclasses import dataclass
 
 
 @dataclass
-class Settings():
+class Settings:
     """
     Singleton holding app's settings.
-    Settings may be overridden by an .env file using load_from_env method.
+
+    Settings are eventually overridden if a .env file is provided, or
+    environment variables are defined.
     """
+
     api_key: SecretStr = None
     base_path: HttpUrl = "https://api.peopledatalabs.com/"
     log_level: str = None
