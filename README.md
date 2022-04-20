@@ -72,8 +72,8 @@ if result.ok:
 else:
     print(
         f"Status: {result.status_code};"
-        f"Reason: {result.reason};"
-        f"Message: {result.json()['error']['message']};"
+        f"\nReason: {result.reason};"
+        f"\nMessage: {result.json()['error']['message']};"
     )
 ```
 
