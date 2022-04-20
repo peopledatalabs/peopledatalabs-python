@@ -6,7 +6,7 @@ All tests related to the Person object of the client instance.
 import logging
 import pytest
 
-from peopledatalabs_python.main import Person
+from peopledatalabs.main import Person
 
 
 logging.basicConfig()

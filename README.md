@@ -30,7 +30,7 @@ A Python client for the People Data Labs API.
 
 First, create the PDLPY client:
 ```python
-from peopledatalabs_python-python import PDLPY
+from peopledatalabs import PDLPY
 
 
 # specifying an API key

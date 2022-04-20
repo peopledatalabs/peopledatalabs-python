@@ -8,7 +8,7 @@ import pytest
 
 import requests
 
-from peopledatalabs_python.errors import EmptyParametersException
+from peopledatalabs.errors import EmptyParametersException
 
 
 logging.basicConfig()
