@@ -46,11 +46,10 @@ from peopledatalabs_python import PDLPY
 
 # specifying an API key
 client = PDLPY(
-  api_key="YOUR API KEY"
+    api_key="YOUR API KEY"
 )
 
-# or leave blank if you have API_KEY set in your environment
-# (or in a .env file)
+# or leave blank if you have PDL_API_KEY set in your environment or .env file
 client = PDLPY()
 ```
 

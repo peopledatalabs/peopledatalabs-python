@@ -25,7 +25,7 @@ def fixture_fake_api_key():
 @pytest.fixture
 def client():
     """
-    Client instance loads API_KEY from .env file.
+    Client instance loads PDL_API_KEY from .env file.
     """
     return PDLPY()
 

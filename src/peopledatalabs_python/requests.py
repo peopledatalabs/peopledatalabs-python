@@ -54,7 +54,7 @@ class Request:
         """
         Executes a GET request from the specified API.
 
-        User's API_KEY is sent in request parameters.
+        User's PDL_API_KEY is sent in request parameters.
 
         Returns:
             A requests.Response object with the result of the HTTP call.
@@ -72,7 +72,7 @@ class Request:
         """
         Executes a POST request to the specified API.
 
-        User's API_KEY is sent as a 'X-api-key' header.
+        User's PDL_API_KEY is sent as a 'X-api-key' header.
 
         Returns:
             A requests.Response object with the result of the HTTP call.

@@ -55,7 +55,7 @@ class PDLPY:
         if v is None:
             raise ValueError(
                 "Please enter a value for API key, or define it either in"
-                " your environment or .env file as API_KEY"
+                " your environment or .env file as PDL_API_KEY"
             )
         return v
 
