@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "peopledatalabs-python"
 version = "0.4.0"
-description = "People Data Labs API SDK"
+description = "People Data Labs Python Client"
 homepage = "https://www.peopledatalabs.com"
 repository = "https://github.com/peopledatalabs/peopledatalabs-python"
 documentation = "https://docs.peopledatalabs.com"
