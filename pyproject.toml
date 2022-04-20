@@ -10,7 +10,10 @@ authors = ["People Data Labs <hello@peopledatalabs.com>"]
 readme = "README.md"
 license = "MIT License"
 classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: Implementation :: PyPy",
     "Topic :: Software Development :: Libraries :: Python Modules"
 ]
 
