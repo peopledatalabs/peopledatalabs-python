@@ -21,7 +21,7 @@ A Python client for the People Data Labs API.
 1. Install from PyPi using [pip](https://pip.pypa.io/en/latest/), a package manager for Python.
 
     ```bash
-    pip install peopledatalabs
+    pip install peopledatalabs-python
     ```
 
 2. Sign up for a [free PDL API key](https://www.peopledatalabs.com/signup)
@@ -30,7 +30,7 @@ A Python client for the People Data Labs API.
 
 First, create the PDLPY client:
 ```python
-from peopledatalabs import PDLPY
+from peopledatalabs-python import PDLPY
 
 
 # specifying an API key
