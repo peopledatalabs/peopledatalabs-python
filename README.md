@@ -6,9 +6,20 @@
 A Python client for the People Data Labs API.
 </p>
 
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![PyPI](https://img.shields.io/pypi/v/peopledatalabs-python.svg)](https://pypi.python.org/pypi/peopledatalabs-python)
 [![PyPI](https://img.shields.io/pypi/pyversions/peopledatalabs-python.svg)](https://pypi.python.org/pypi/peopledatalabs-python)
+
+<p align="center">
+  <a href="">
+    <img src="https://img.shields.io/badge/repo%20status-Active-limegreen" alt="Repo Status">
+  </a>&nbsp;
+  <a href="https://pypi.org/project/peopledatalabs-python/">
+    <img src="https://img.shields.io/pypi/v/peopledatalabs-python.svg?logo=pypi&logoColor=fff&label=PyPI+package&color=limegreen" alt="People Data Labs on PyPI" />
+  </a>&nbsp;
+  <a href="">
+    <img src="https://github.com/peopledatalabs/peopledatalabs-python/actions/workflows/python-poetry.yml/badge.svg" alt="Tests Status" />
+  </a>
+</p>
 
 ## Table of Contents
 - [🔧 Installation](#installation)
