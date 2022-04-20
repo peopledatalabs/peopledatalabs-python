@@ -7,8 +7,8 @@ import uuid
 
 import pytest
 
-from peopledatalabs.main import PDLPY
-from peopledatalabs.logger import get_logger
+from peopledatalabs_python.main import PDLPY
+from peopledatalabs_python.logger import get_logger
 
 
 logger = get_logger("tests")
