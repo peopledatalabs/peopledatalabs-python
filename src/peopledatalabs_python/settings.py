@@ -32,7 +32,7 @@ class Settings:
         load_dotenv(dotenv_path=find_dotenv(usecwd=True))
         for key in self.__dict__:
             if key == "api_key":
-                self.__dict__[key] = os.getenv("PDL_API_KEY", self.__dict__[key])
+                self.api_key = os.getenv("PDL_API_KEY", self.api_key)
             else:
                 self.__dict__[key] = os.getenv(key.upper(), self.__dict__[key])
 
