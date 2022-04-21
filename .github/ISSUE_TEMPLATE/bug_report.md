@@ -18,7 +18,7 @@ A clear and concise description of what you expected to happen.
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
- - peopledatalabs-python Library Version
+ - peopledatalabs Library Version
  - Python Version
 
 **Additional context**

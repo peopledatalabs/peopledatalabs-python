@@ -8,8 +8,8 @@ import logging
 import pytest
 from pydantic import ValidationError
 
-from peopledatalabs_python import __version__
-from peopledatalabs_python.main import PDLPY
+from peopledatalabs import __version__
+from peopledatalabs.main import PDLPY
 
 
 logging.basicConfig()
