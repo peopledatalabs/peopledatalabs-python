@@ -2,10 +2,10 @@
 <img src="https://i.imgur.com/S7DkZtr.png" width="250" alt="People Data Labs Logo">
 </p>
 <h1 align="center">People Data Labs Python Client</h1>
-<p align="center">A Python client for the People Data Labs API.</p>
+<p align="center">Official Python client for the People Data Labs API.</p>
 
 <p align="center">
-  <a href="https://github.com/peopledatalabs/peopledatalabs">
+  <a href="https://github.com/peopledatalabs/peopledatalabs-python">
     <img src="https://img.shields.io/badge/repo%20status-Active-limegreen" alt="Repo Status">
   </a>&nbsp;
   <a href="https://pypi.org/project/peopledatalabs/">
@@ -14,8 +14,8 @@
   <a href="https://pypi.org/project/peopledatalabs/">
     <img src="https://img.shields.io/pypi/pyversions/peopledatalabs.svg" alt="People Data Labs on PyPI" />
   </a>&nbsp;
-  <a href="https://github.com/peopledatalabs/peopledatalabs/actions/workflows/python-poetry.yml">
-    <img src="https://github.com/peopledatalabs/peopledatalabs/actions/workflows/python-poetry.yml/badge.svg" alt="Tests Status" />
+  <a href="https://github.com/peopledatalabs/peopledatalabs-python/actions/workflows/python-poetry.yml">
+    <img src="https://github.com/peopledatalabs/peopledatalabs-python/actions/workflows/python-poetry.yml/badge.svg" alt="Tests Status" />
   </a>
 </p>
 
