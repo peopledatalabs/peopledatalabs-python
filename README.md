@@ -5,7 +5,7 @@
 <p align="center">A Python client for the People Data Labs API.</p>
 
 <p align="center">
-  <a href="https://github.com/peopledatalabs/peopledatalabs">
+  <a href="https://github.com/peopledatalabs/peopledatalabs-python">
     <img src="https://img.shields.io/badge/repo%20status-Active-limegreen" alt="Repo Status">
   </a>&nbsp;
   <a href="https://pypi.org/project/peopledatalabs/">
