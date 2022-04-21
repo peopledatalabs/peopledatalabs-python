@@ -14,8 +14,8 @@
   <a href="https://pypi.org/project/peopledatalabs/">
     <img src="https://img.shields.io/pypi/pyversions/peopledatalabs.svg" alt="People Data Labs on PyPI" />
   </a>&nbsp;
-  <a href="https://github.com/peopledatalabs/peopledatalabs/actions/workflows/python-poetry.yml">
-    <img src="https://github.com/peopledatalabs/peopledatalabs/actions/workflows/python-poetry.yml/badge.svg" alt="Tests Status" />
+  <a href="https://github.com/peopledatalabs/peopledatalabs-python/actions/workflows/python-poetry.yml">
+    <img src="https://github.com/peopledatalabs/peopledatalabs-python/actions/workflows/python-poetry.yml/badge.svg" alt="Tests Status" />
   </a>
 </p>
 
