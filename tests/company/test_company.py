@@ -6,8 +6,8 @@ All tests related to the Company object of the client instance.
 import logging
 import pytest
 
-from peopledatalabs_python.main import Company
-from peopledatalabs_python.errors import InvalidEndpointError
+from peopledatalabs.main import Company
+from peopledatalabs.errors import InvalidEndpointError
 
 
 logging.basicConfig()

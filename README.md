@@ -5,17 +5,17 @@
 <p align="center">A Python client for the People Data Labs API.</p>
 
 <p align="center">
-  <a href="https://github.com/peopledatalabs/peopledatalabs-python">
+  <a href="https://github.com/peopledatalabs/peopledatalabs">
     <img src="https://img.shields.io/badge/repo%20status-Active-limegreen" alt="Repo Status">
   </a>&nbsp;
-  <a href="https://pypi.org/project/peopledatalabs-python/">
-    <img src="https://img.shields.io/pypi/v/peopledatalabs-python.svg?logo=pypi&logoColor=fff&label=PyPI+package&color=limegreen" alt="People Data Labs on PyPI" />
+  <a href="https://pypi.org/project/peopledatalabs/">
+    <img src="https://img.shields.io/pypi/v/peopledatalabs.svg?logo=pypi&logoColor=fff&label=PyPI+package&color=limegreen" alt="People Data Labs on PyPI" />
   </a>&nbsp;
-  <a href="https://pypi.org/project/peopledatalabs-python/">
-    <img src="https://img.shields.io/pypi/pyversions/peopledatalabs-python.svg" alt="People Data Labs on PyPI" />
+  <a href="https://pypi.org/project/peopledatalabs/">
+    <img src="https://img.shields.io/pypi/pyversions/peopledatalabs.svg" alt="People Data Labs on PyPI" />
   </a>&nbsp;
-  <a href="https://github.com/peopledatalabs/peopledatalabs-python/actions/workflows/python-poetry.yml">
-    <img src="https://github.com/peopledatalabs/peopledatalabs-python/actions/workflows/python-poetry.yml/badge.svg" alt="Tests Status" />
+  <a href="https://github.com/peopledatalabs/peopledatalabs/actions/workflows/python-poetry.yml">
+    <img src="https://github.com/peopledatalabs/peopledatalabs/actions/workflows/python-poetry.yml/badge.svg" alt="Tests Status" />
   </a>
 </p>
 
@@ -31,7 +31,7 @@
 1. Install from PyPi using [pip](https://pip.pypa.io/en/latest/), a package manager for Python.
 
     ```bash
-    pip install peopledatalabs-python
+    pip install peopledatalabs
     ```
 
 2. Sign up for a [free PDL API key](https://www.peopledatalabs.com/signup).
@@ -42,7 +42,7 @@
 First, create the PDLPY client:
 
 ```python
-from peopledatalabs_python import PDLPY
+from peopledatalabs import PDLPY
 
 
 # specifying an API key
