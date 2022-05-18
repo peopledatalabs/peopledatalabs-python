@@ -78,7 +78,11 @@ class Endpoint:
         return Request(
             api_key=self.api_key,
             url=url,
-            headers={"Content-Type": "application/json"},
+            headers={
+                "Accept-Encoding": "gzip",
+                "User-Agent": "PDL-PYTHON-SDK",
+                "Content-Type": "application/json",
+            },
             params=kwargs,
             validator=model,
         ).post()
@@ -100,7 +104,11 @@ class Endpoint:
         return Request(
             api_key=self.api_key,
             url=url,
-            headers={"Accept-Encoding": "gzip"},
+            headers={
+                "Accept-Encoding": "gzip",
+                "User-Agent": "PDL-PYTHON-SDK",
+                "Content-Type": "application/json",
+            },
             params=kwargs,
             validator=model,
         ).get()
@@ -122,7 +130,11 @@ class Endpoint:
         return Request(
             api_key=self.api_key,
             url=url,
-            headers={"Accept-Encoding": "gzip"},
+            headers={
+                "Accept-Encoding": "gzip",
+                "User-Agent": "PDL-PYTHON-SDK",
+                "Content-Type": "application/json",
+            },
             params=kwargs,
             validator=model,
         ).get()
@@ -144,7 +156,11 @@ class Endpoint:
         return Request(
             api_key=self.api_key,
             url=url,
-            headers={"Accept-Encoding": "gzip"},
+            headers={
+                "Accept-Encoding": "gzip",
+                "User-Agent": "PDL-PYTHON-SDK",
+                "Content-Type": "application/json",
+            },
             params=kwargs,
             validator=model,
         ).get()
@@ -173,7 +189,11 @@ class Endpoint:
         return Request(
             api_key=self.api_key,
             url=url,
-            headers={"Accept-Encoding": "gzip"},
+            headers={
+                "Accept-Encoding": "gzip",
+                "User-Agent": "PDL-PYTHON-SDK",
+                "Content-Type": "application/json",
+            },
             params=kwargs,
             validator=model,
         ).get()
@@ -196,8 +216,9 @@ class Endpoint:
             api_key=self.api_key,
             url=url,
             headers={
-                "Content-Type": "application/json",
                 "Accept-Encoding": "gzip",
+                "User-Agent": "PDL-PYTHON-SDK",
+                "Content-Type": "application/json",
             },
             params=kwargs,
             validator=model,
