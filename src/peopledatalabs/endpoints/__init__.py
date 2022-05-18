@@ -17,6 +17,12 @@ from ..errors import InvalidEndpointError
 from ..requests import Request
 from ..utils import check_empty_parameters
 
+headers = {
+    "Accept-Encoding": "gzip",
+    "User-Agent": "PDL-PYTHON-SDK",
+    "Content-Type": "application/json",
+}
+
 
 @dataclass
 class Endpoint:
@@ -78,7 +84,7 @@ class Endpoint:
         return Request(
             api_key=self.api_key,
             url=url,
-            headers={"Content-Type": "application/json"},
+            headers=headers,
             params=kwargs,
             validator=model,
         ).post()
@@ -100,7 +106,7 @@ class Endpoint:
         return Request(
             api_key=self.api_key,
             url=url,
-            headers={"Accept-Encoding": "gzip"},
+            headers=headers,
             params=kwargs,
             validator=model,
         ).get()
@@ -122,7 +128,7 @@ class Endpoint:
         return Request(
             api_key=self.api_key,
             url=url,
-            headers={"Accept-Encoding": "gzip"},
+            headers=headers,
             params=kwargs,
             validator=model,
         ).get()
@@ -144,7 +150,7 @@ class Endpoint:
         return Request(
             api_key=self.api_key,
             url=url,
-            headers={"Accept-Encoding": "gzip"},
+            headers=headers,
             params=kwargs,
             validator=model,
         ).get()
@@ -173,7 +179,7 @@ class Endpoint:
         return Request(
             api_key=self.api_key,
             url=url,
-            headers={"Accept-Encoding": "gzip"},
+            headers=headers,
             params=kwargs,
             validator=model,
         ).get()
@@ -195,10 +201,7 @@ class Endpoint:
         return Request(
             api_key=self.api_key,
             url=url,
-            headers={
-                "Content-Type": "application/json",
-                "Accept-Encoding": "gzip",
-            },
+            headers=headers,
             params=kwargs,
             validator=model,
         ).post()

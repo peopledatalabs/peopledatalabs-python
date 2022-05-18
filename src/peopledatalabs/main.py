@@ -87,7 +87,11 @@ class PDLPY:
         return Request(
             api_key=self.api_key,
             url=url,
-            headers={"Accept-Encoding": "gzip"},
+            headers={
+                "Accept-Encoding": "gzip",
+                "User-Agent": "PDL-PYTHON-SDK",
+                "Content-Type": "application/json",
+            },
             params=kwargs,
             validator=AutocompleteModel,
         ).get()
