@@ -95,3 +95,19 @@ class AutocompleteModel(BaseRequestModel):
 
     field: FieldEnum
     text: Optional[str]
+
+
+class SkillModel(BaseRequestModel):
+    """
+    Validator model for skill API.
+    """
+
+    skill: str
+
+
+class JobTitleModel(BaseRequestModel):
+    """
+    Validator model for job_title API.
+    """
+
+    job_title: str

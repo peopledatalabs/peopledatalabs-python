@@ -18,7 +18,7 @@ from .endpoints.company import Company
 from .endpoints.location import Location
 from .endpoints.school import School
 from .logger import get_logger
-from .models import AutocompleteModel
+from .models import AutocompleteModel, JobTitleModel, SkillModel
 from .requests import Request
 from .settings import settings
 from .utils import check_empty_parameters
@@ -94,6 +94,60 @@ class PDLPY:
             },
             params=kwargs,
             validator=AutocompleteModel,
+        ).get()
+
+    @check_empty_parameters
+    def skill(self, **kwargs):
+        """
+        Calls PeopleDataLabs' skill API.
+
+        Args:
+            **kwargs: Parameters for the API as defined
+                in the documentation.
+
+        Returns:
+            A requests.Response object with the result of the HTTP call.
+        """
+        url = Endpoint(self.api_key, self.base_path).get_url(
+            endpoint="skill/enrich"
+        )
+        return Request(
+            api_key=self.api_key,
+            url=url,
+            headers={
+                "Accept-Encoding": "gzip",
+                "User-Agent": "PDL-PYTHON-SDK",
+                "Content-Type": "application/json",
+            },
+            params=kwargs,
+            validator=SkillModel,
+        ).get()
+
+    @check_empty_parameters
+    def job_title(self, **kwargs):
+        """
+        Calls PeopleDataLabs' job_title API.
+
+        Args:
+            **kwargs: Parameters for the API as defined
+                in the documentation.
+
+        Returns:
+            A requests.Response object with the result of the HTTP call.
+        """
+        url = Endpoint(self.api_key, self.base_path).get_url(
+            endpoint="job_title/enrich"
+        )
+        return Request(
+            api_key=self.api_key,
+            url=url,
+            headers={
+                "Accept-Encoding": "gzip",
+                "User-Agent": "PDL-PYTHON-SDK",
+                "Content-Type": "application/json",
+            },
+            params=kwargs,
+            validator=JobTitleModel,
         ).get()
 
     @property
