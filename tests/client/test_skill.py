@@ -6,7 +6,6 @@ Tests calls to the skill API.
 import logging
 import pytest
 
-from pydantic import ValidationError
 import requests
 
 from peopledatalabs.errors import EmptyParametersException

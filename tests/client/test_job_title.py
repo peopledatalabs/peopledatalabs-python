@@ -6,7 +6,6 @@ Tests calls to the job_title API.
 import logging
 import pytest
 
-from pydantic import ValidationError
 import requests
 
 from peopledatalabs.errors import EmptyParametersException
