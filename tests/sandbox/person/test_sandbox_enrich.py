@@ -15,15 +15,15 @@ logging.basicConfig()
 logger = logging.getLogger("PeopleDataLabs.tests.sandbox.person.enrichment")
 
 
-@pytest.mark.usefixtures("client_sandbox_enabled")
-def test_enrichment_sandbox_no_params_throw_error(client_sandbox_enabled):
+@pytest.mark.usefixtures("client_with_fake_api_key")
+def test_enrichment_sandbox_no_params_throw_error(client_with_fake_api_key):
     """
     Tests calling the sandbox person enrichment method without parameters.
 
     Should raise EmptyParametersException
     """
     with pytest.raises(EmptyParametersException):
-        client_sandbox_enabled.person.enrichment()
+        client_with_fake_api_key.person.enrichment()
 
 
 @pytest.mark.usefixtures("client_sandbox_enabled")
