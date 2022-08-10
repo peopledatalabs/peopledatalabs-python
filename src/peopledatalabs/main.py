@@ -46,6 +46,7 @@ class PDLPY:
     base_path: HttpUrl = None
     version: constr(regex=settings.version_re) = settings.version
     log_level: str = None
+    sandbox: bool = False
 
     @validator("api_key", pre=True, always=True)
     def api_key_not_none(cls, v):
@@ -68,6 +69,8 @@ class PDLPY:
         if self.log_level is not None:
             settings.log_level = self.log_level
             logger.setLevel(self.log_level)
+        if self.sandbox:
+            self.base_path = settings.sandbox_base_path + self.version
 
     @check_empty_parameters
     def autocomplete(self, **kwargs):

@@ -23,6 +23,7 @@
 
 - [🔧 Installation](#installation)
 - [🚀 Usage](#usage)
+- [🏝 Sandbox Usage] (#usage)
 - [🌐 Endpoints](#endpoints)
 - [📘 Documentation](#documentation)
 
@@ -376,6 +377,13 @@ else:
         f"\nReason: {result.reason}"
         f"\nMessage: {result.json()['error']['message']}"
     )
+```
+
+## 🏝 Sandbox Usage <a name="sandbox"></a>
+#### To enable sandbox usage, use the sandbox flag on PDLPY
+
+```python
+PDLPY(sandbox=True)
 ```
 
 ## 🌐 Endpoints <a name="endpoints"></a>
