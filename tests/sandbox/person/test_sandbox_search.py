@@ -56,10 +56,7 @@ def test_api_endpoint_sandbox_search_sql(client_sandbox_enabled):
     """
     Tests successful execution of search API by SQL query.
     """
-    sql_query = (
-        "SELECT * FROM person"
-        " WHERE location_country='mexico';"
-    )
+    sql_query = "SELECT * FROM person" " WHERE location_country='mexico';"
     data = {
         "sql": sql_query,
         "size": 10,
@@ -72,7 +69,7 @@ def test_api_endpoint_sandbox_search_sql(client_sandbox_enabled):
 
 @pytest.mark.usefixtures("client_sandbox_enabled")
 def test_api_endpoint_sandbox_search_both_queries_raises_validation_error(
-    client_sandbox_enabled
+    client_sandbox_enabled,
 ):
     """
     Raises ValidationError if both ES and SQL queries are used.
@@ -86,10 +83,7 @@ def test_api_endpoint_sandbox_search_both_queries_raises_validation_error(
             }
         }
     }
-    sql_query = (
-        "SELECT * FROM person"
-        " WHERE location_country='mexico';"
-    )
+    sql_query = "SELECT * FROM person" " WHERE location_country='mexico';"
     data = {
         "query": es_query,
         "sql": sql_query,
@@ -102,7 +96,7 @@ def test_api_endpoint_sandbox_search_both_queries_raises_validation_error(
 
 @pytest.mark.usefixtures("client")
 def test_api_endpoint_sandbox_search_invalid_dataset_raises_validation_error(
-    client_sandbox_enabled
+    client_sandbox_enabled,
 ):
     """
     Raises ValidationError with invalid dataset.

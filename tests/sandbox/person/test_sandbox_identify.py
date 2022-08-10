@@ -40,7 +40,7 @@ def test_api_endpoint_sandbox_identify(client_sandbox_enabled):
 
 @pytest.mark.usefixtures("client_sandbox_enabled")
 def test_api_endpoint_sandbox_identify_list_values_raise_validation_error(
-    client_sandbox_enabled
+    client_sandbox_enabled,
 ):
     """
     Raises ValidationError for parameters passed as lists to the identify API.
