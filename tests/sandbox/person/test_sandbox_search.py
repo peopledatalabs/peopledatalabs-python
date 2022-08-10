@@ -13,7 +13,7 @@ from peopledatalabs.errors import EmptyParametersException
 
 
 logging.basicConfig()
-logger = logging.getLogger("PeopleDataLabs.tests.person.search")
+logger = logging.getLogger("PeopleDataLabs.tests.sandbox.person.search")
 
 
 @pytest.mark.usefixtures("client_with_fake_api_key")
@@ -71,7 +71,9 @@ def test_api_endpoint_sandbox_search_sql(client_sandbox_enabled):
 
 
 @pytest.mark.usefixtures("client_sandbox_enabled")
-def test_api_endpoint_sandbox_search_both_queries_raises_validation_error(client_sandbox_enabled):
+def test_api_endpoint_sandbox_search_both_queries_raises_validation_error(
+    client_sandbox_enabled
+    ):
     """
     Raises ValidationError if both ES and SQL queries are used.
     """
@@ -99,7 +101,9 @@ def test_api_endpoint_sandbox_search_both_queries_raises_validation_error(client
 
 
 @pytest.mark.usefixtures("client")
-def test_api_endpoint_sandbox_search_invalid_dataset_raises_validation_error(client_sandbox_enabled):
+def test_api_endpoint_sandbox_search_invalid_dataset_raises_validation_error(
+    client_sandbox_enabled
+    ):
     """
     Raises ValidationError with invalid dataset.
     """
