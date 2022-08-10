@@ -73,7 +73,7 @@ def test_api_endpoint_sandbox_search_sql(client_sandbox_enabled):
 @pytest.mark.usefixtures("client_sandbox_enabled")
 def test_api_endpoint_sandbox_search_both_queries_raises_validation_error(
     client_sandbox_enabled
-    ):
+):
     """
     Raises ValidationError if both ES and SQL queries are used.
     """
@@ -103,7 +103,7 @@ def test_api_endpoint_sandbox_search_both_queries_raises_validation_error(
 @pytest.mark.usefixtures("client")
 def test_api_endpoint_sandbox_search_invalid_dataset_raises_validation_error(
     client_sandbox_enabled
-    ):
+):
     """
     Raises ValidationError with invalid dataset.
     """
