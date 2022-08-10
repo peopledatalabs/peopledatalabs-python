@@ -23,7 +23,7 @@
 
 - [🔧 Installation](#installation)
 - [🚀 Usage](#usage)
-- [🏝 Sandbox Usage] (#usage)
+- [🏝 Sandbox Usage](#usage)
 - [🌐 Endpoints](#endpoints)
 - [📘 Documentation](#documentation)
 
