@@ -36,3 +36,11 @@ def client_with_fake_api_key(fake_api_key):
     Client instance with fake API key.
     """
     return PDLPY(api_key=fake_api_key)
+
+
+@pytest.fixture
+def client_sandbox_enabled():
+    """
+    Client instance loads PDL_API_KEY from .env file and Sandbox enabled.
+    """
+    return PDLPY(sandbox=True)

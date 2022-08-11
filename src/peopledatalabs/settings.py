@@ -27,6 +27,7 @@ class Settings:
     log_format: str = "{asctime} [{levelname}] - {name}.{funcName}: {message}"
     version: str = "v5"
     version_re: str = r"^v[0-9]$"
+    sandbox_base_path: HttpUrl = "https://sandbox.api.peopledatalabs.com/"
 
     def __post_init__(self):
         load_dotenv(dotenv_path=find_dotenv(usecwd=True))

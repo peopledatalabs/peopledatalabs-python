@@ -23,6 +23,7 @@
 
 - [🔧 Installation](#installation)
 - [🚀 Usage](#usage)
+- [🏝 Sandbox Usage](#sandbox)
 - [🌐 Endpoints](#endpoints)
 - [📘 Documentation](#documentation)
 
@@ -346,6 +347,45 @@ else:
     )
 ```
 
+#### Get Job Title Enrichment
+
+```python
+result = client.job_title(
+    job_title="data scientist",
+)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code}"
+        f"\nReason: {result.reason}"
+        f"\nMessage: {result.json()['error']['message']}"
+    )
+```
+
+#### Get Skill Enrichment
+
+```python
+result = client.skill(
+    skill="c++",
+)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code}"
+        f"\nReason: {result.reason}"
+        f"\nMessage: {result.json()['error']['message']}"
+    )
+```
+
+## 🏝 Sandbox Usage <a name="sandbox"></a>
+#### To enable sandbox usage, use the sandbox flag on PDLPY
+
+```python
+PDLPY(sandbox=True)
+```
+
 ## 🌐 Endpoints <a name="endpoints"></a>
 
 **Person Endpoints**
@@ -373,7 +413,8 @@ else:
 | [Company Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#companyclean)   | `PDLPY.company.cleaner(**params)`  |
 | [Location Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#locationclean) | `PDLPY.location.cleaner(**params)` |
 | [School Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#schoolclean)     | `PDLPY.school.cleaner(**params)`   |
-
+| [Job Title Enrichment API](https://docs.peopledatalabs.com/docs/job-title-enrichment-api) | `PDLPY.job_title(**params)` |
+| [Skill Enrichment API](https://docs.peopledatalabs.com/docs/skill-enrichment-api) | `PDLPY.skill(**params)` |
 
 ## 📘 Documentation <a name="documentation"></a>
 
