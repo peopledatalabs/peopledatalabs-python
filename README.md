@@ -366,7 +366,7 @@ else:
 #### Get Skill Enrichment
 
 ```python
-result = client.autocomplete(
+result = client.skill(
     skill="c++",
 )
 if result.ok:
