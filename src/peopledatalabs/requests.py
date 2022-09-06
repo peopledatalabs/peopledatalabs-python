@@ -67,7 +67,7 @@ class Request:
         )
         self.params["api_key"] = self.params["api_key"].get_secret_value()
         return requests.get(
-            self.url, params=self.params, headers=self.headers, timeout=30
+            self.url, params=self.params, headers=self.headers, timeout=None
         )
 
     def post(self):
@@ -86,5 +86,5 @@ class Request:
             json.dumps(self.params, indent=2, default=utils.json_defaults),
         )
         return requests.post(
-            self.url, json=self.params, headers=self.headers, timeout=30
+            self.url, json=self.params, headers=self.headers, timeout=None
         )
