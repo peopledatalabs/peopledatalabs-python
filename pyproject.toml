@@ -30,7 +30,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.7.2"
 email-validator = "^1.1"
-pydantic = "^1.8"
+pydantic = "^1.8.2"
 python-dotenv = "^0.13"
 requests = "^2"
 
