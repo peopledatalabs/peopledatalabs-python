@@ -58,7 +58,7 @@ def client_env_test():
 
     p_i = PDLPY(sandbox=True)
 
-    del os.environ['VERSION']
-    del os.environ['PDL_VERSION']
-    
+    del os.environ["VERSION"]
+    del os.environ["PDL_VERSION"]
+
     return p_i.version == "v6"
