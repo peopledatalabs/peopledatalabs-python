@@ -5,6 +5,8 @@ Pytest testing configuration file.
 
 import uuid
 
+import os
+
 import pytest
 
 from peopledatalabs.main import PDLPY
@@ -46,15 +48,11 @@ def client_sandbox_enabled():
     return PDLPY(sandbox=True)
 
 @pytest.fixture
-def client_sandbox_enabled():
+def client_env_test():
     """
     Client instance loads correct env variables
     """
-
-    import os
     os.environ["VERSION"] = "PDL_TEST_FAIL"
     os.environ["PDL_VERSION"] = "v6"
-    p = PDLPY(sandbox=True)
-    
-    return p.version == "v6"
-    
+    p_i = PDLPY(sandbox=True)
+    return p_i.version == "v6"
