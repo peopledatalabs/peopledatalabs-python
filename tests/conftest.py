@@ -44,3 +44,17 @@ def client_sandbox_enabled():
     Client instance loads PDL_API_KEY from .env file and Sandbox enabled.
     """
     return PDLPY(sandbox=True)
+
+@pytest.fixture
+def client_sandbox_enabled():
+    """
+    Client instance loads correct env variables
+    """
+
+    import os
+    os.environ["VERSION"] = "PDL_TEST_FAIL"
+    os.environ["PDL_VERSION"] = "v6"
+    p = PDLPY(sandbox=True)
+    
+    return p.version == "v6"
+    
