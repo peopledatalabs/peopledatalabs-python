@@ -19,6 +19,8 @@ class Settings:
 
     Settings are eventually overridden if a .env file is provided, or
     environment variables are defined.
+
+    All env variables should be in the form of PDL_<setting name>
     """
 
     api_key: SecretStr = None
@@ -32,10 +34,8 @@ class Settings:
     def __post_init__(self):
         load_dotenv(dotenv_path=find_dotenv(usecwd=True))
         for key in self.__dict__:
-            if key == "api_key":
-                self.api_key = os.getenv("PDL_API_KEY", self.api_key)
-            else:
-                self.__dict__[key] = os.getenv(key.upper(), self.__dict__[key])
+            env_key = "PDL_" + key.upper()
+            self.__dict__[key] = os.getenv(env_key, self.__dict__[key])
 
 
 settings = Settings()
