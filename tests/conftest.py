@@ -51,7 +51,7 @@ def client_sandbox_enabled():
 @pytest.fixture
 def client_env_test():
     """
-    Client instance loads correct env variables
+    Client instance loads correct env variables.
     """
     os.environ["VERSION"] = "PDL_TEST_FAIL"
     os.environ["PDL_VERSION"] = "v6"
