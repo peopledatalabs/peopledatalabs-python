@@ -34,7 +34,7 @@ class Settings:
     def __post_init__(self):
         load_dotenv(dotenv_path=find_dotenv(usecwd=True))
         for key in self.__dict__:
-            env_key = "PDL_"+key.upper()
+            env_key = "PDL_" + key.upper()
             self.__dict__[key] = os.getenv(env_key, self.__dict__[key])
 
 
