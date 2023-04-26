@@ -163,9 +163,9 @@ packaging==21.3; python_version >= "3.7" \
 pathspec==0.9.0; python_full_version >= "3.6.2" \
     --hash=sha256:7d15c4ddb0b5c802d161efc417ec1a2558ea2653c2e8ad9c19098201dc1c993a \
     --hash=sha256:e564499435a2673d586f6b2130bb5b95f04a3ba06f81b8f895b651a3c76aabb1
-platformdirs==2.5.2; python_version >= "3.7" and python_full_version >= "3.6.2" \
-    --hash=sha256:027d8e83a2d7de06bbac4e5ef7e023c02b863d7ea5d079477e722bb41ab25788 \
-    --hash=sha256:58c8abb07dcb441e6ee4b11d8df0ac856038f944ab98b7be6b27b2a3c7feef19
+platformdirs==3.4.0; python_version >= "3.7" and python_full_version >= "3.6.2" \
+    --hash=sha256:01437886022decaf285d8972f9526397bfae2ac55480ed372ed6d9eca048870a \
+    --hash=sha256:a5e1536e5ea4b1c238a1364da17ff2993d5bd28e15600c2c8224008aff6bbcad
 pluggy==1.0.0; python_version >= "3.7" \
     --hash=sha256:74134bbf457f031a36d68416e1509f34bd5ccc019f0bcc952c7b909d06b37bd3 \
     --hash=sha256:4224373bacce55f955a878bf9cfa763c1e360858e330072059e10bad68531159
