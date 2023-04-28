@@ -43,6 +43,7 @@ class PersonBaseModel(BaseModel):
     region: Optional[str]
     school: Optional[Union[List[str], str]]
     street_address: Optional[str]
+    pdl_id: Optional[str]
 
     @root_validator(pre=True)
     def at_least_one(cls, value):
