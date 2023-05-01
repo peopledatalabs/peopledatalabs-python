@@ -160,9 +160,9 @@ coverage==6.3.2; python_version >= "3.7" \
     --hash=sha256:9548f10d8be799551eb3a9c74bbf2b4934ddb330e08a73320123c07f95cc2d92 \
     --hash=sha256:18d520c6860515a771708937d2f78f63cc47ab3b80cb78e86573b0a760161faf \
     --hash=sha256:03e2a7826086b91ef345ff18742ee9fc47a6839ccd517061ef8fa1976e652ce9
-dill==0.3.4; python_full_version >= "3.6.2" \
-    --hash=sha256:7e40e4a70304fd9ceab3535d36e58791d9c4a776b38ec7f7ec9afc8d3dca4d4f \
-    --hash=sha256:9f9734205146b2b353ab3fec9af0070237b6ddae78452af83d2fca84d739e675
+dill==0.3.6; python_full_version >= "3.6.2" \
+    --hash=sha256:a07ffd2351b8c678dfc4a856a3005f8067aea51d6ba6c700796a4d9e280f39f0 \
+    --hash=sha256:e5db55f3687856d8fbdab002ed78544e1c4559a130302693d839dfe8f93f2373
 dnspython==2.2.1; python_version >= "3.6" and python_version < "4.0" and (python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0") \
     --hash=sha256:a851e51367fb93e9e1361732c1d60dab63eff98712e503ea7d92e6eccb109b4f \
     --hash=sha256:0f7569a4a6ff151958b64304071d370daa3243d15941a7beedf0c9fe5105603e
