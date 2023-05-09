@@ -1,6 +1,6 @@
 ## Description of the change
 
-> Description here
+- Description here
 
 ## Type of change
 
