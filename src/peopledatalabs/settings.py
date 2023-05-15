@@ -8,7 +8,7 @@ file.
 import os
 
 from dotenv import find_dotenv, load_dotenv
-from pydantic import HttpUrl, SecretStr
+from pydantic import HttpUrl
 from pydantic.dataclasses import dataclass
 
 
@@ -23,7 +23,7 @@ class Settings:
     All env variables should be in the form of PDL_<setting name>
     """
 
-    api_key: SecretStr = None
+    api_key: str = None
     base_path: HttpUrl = "https://api.peopledatalabs.com/"
     log_level: str = None
     log_format: str = "{asctime} [{levelname}] - {name}.{funcName}: {message}"

@@ -10,6 +10,7 @@ from pydantic import (
     BaseModel,
     EmailStr,
     root_validator,
+    conint,
     validator,
 )
 
@@ -44,6 +45,10 @@ class PersonBaseModel(BaseModel):
     school: Optional[Union[List[str], str]]
     street_address: Optional[str]
     pdl_id: Optional[str]
+    min_likelihood: Optional[conint(ge=1, le=10)]
+    required: Optional[str]
+    data_include: Optional[str]
+    include_if_matched: Optional[bool]
 
     @root_validator(pre=True)
     def at_least_one(cls, value):
