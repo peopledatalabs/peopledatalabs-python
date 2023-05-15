@@ -707,18 +707,18 @@ cli = ["click (>=5.0)"]
 
 [[package]]
 name = "pyupgrade"
-version = "2.38.4"
+version = "3.3.2"
 description = "A tool to automatically upgrade syntax for newer versions."
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pyupgrade-2.38.4-py2.py3-none-any.whl", hash = "sha256:944ff993c396ddc2b9012eb3de4cda138eb4c149b22c6c560d4c8bfd0e180982"},
-    {file = "pyupgrade-2.38.4.tar.gz", hash = "sha256:1eb43a49f416752929741ba4d706bf3f33593d3cac9bdc217fc1ef55c047c1f4"},
+    {file = "pyupgrade-3.3.2-py2.py3-none-any.whl", hash = "sha256:c05b82c911934b3a638b29f48f48dc6e0ef6c57c55ec36f2b41ae9dbf6711b4b"},
+    {file = "pyupgrade-3.3.2.tar.gz", hash = "sha256:bcfed63d38811809f179fd269dec246680b0aaa5bbe662b535826e5fa2275219"},
 ]
 
 [package.dependencies]
-tokenize-rt = "<5"
+tokenize-rt = ">=3.2.0"
 
 [[package]]
 name = "requests"
@@ -957,4 +957,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.7.2"
-content-hash = "a47b809b47ce6d716da1bf40b2632b1f3cb0047116e34bed46ea92078f356f38"
+content-hash = "bfcc54e8e17c952c1cc43a9896b0572a3f414f74bac0a2fa318bddafccd467bc"
