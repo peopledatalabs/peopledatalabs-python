@@ -107,7 +107,7 @@ class PersonBulkParamsModel(BaseModel):
     """
 
     metadata: Optional[dict]
-    params: PersonBaseModel
+    params: PersonBaseModel = ...
 
 
 class BulkModel(BaseRequestModel, AdditionalParametersModel):
