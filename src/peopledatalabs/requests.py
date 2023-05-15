@@ -11,7 +11,6 @@ from typing import Dict, Type
 from pydantic import (
     BaseModel,
     HttpUrl,
-    SecretStr,
 )
 from pydantic.dataclasses import dataclass
 import requests
@@ -36,7 +35,7 @@ class Request:
         validator: The validator to use to validate params.
     """
 
-    api_key: SecretStr
+    api_key: str
     url: HttpUrl
     headers: Dict[str, str]
     params: dict
@@ -63,9 +62,8 @@ class Request:
         logger.info(
             "Calling %s with params: %s",
             self.url,
-            json.dumps(self.params, indent=2, default=utils.json_defaults),
+            json.dumps(self.params, indent=2),
         )
-        self.params["api_key"] = self.params["api_key"].get_secret_value()
         return requests.get(
             self.url, params=self.params, headers=self.headers, timeout=None
         )
@@ -79,11 +77,11 @@ class Request:
         Returns:
             A requests.Response object with the result of the HTTP call.
         """
-        self.headers["X-api-key"] = self.api_key.get_secret_value()
+        self.headers["X-api-key"] = self.api_key
         logger.info(
             "Calling %s with params: %s",
             self.url,
-            json.dumps(self.params, indent=2, default=utils.json_defaults),
+            json.dumps(self.params, indent=2),
         )
         return requests.post(
             self.url, json=self.params, headers=self.headers, timeout=None

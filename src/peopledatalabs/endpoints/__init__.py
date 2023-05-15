@@ -8,7 +8,6 @@ from typing import Type
 from pydantic import (
     BaseModel,
     HttpUrl,
-    SecretStr,
     StrictStr,
 )
 from pydantic.dataclasses import dataclass
@@ -36,7 +35,7 @@ class Endpoint:
             API endpoint.
     """
 
-    api_key: SecretStr
+    api_key: str
     base_path: HttpUrl
     section: str = None
 

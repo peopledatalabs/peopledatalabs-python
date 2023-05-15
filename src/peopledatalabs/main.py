@@ -5,7 +5,6 @@ Client's main module.
 
 from pydantic import (
     HttpUrl,
-    SecretStr,
     constr,
     validator,
 )
@@ -42,7 +41,7 @@ class PDLPY:
         log_level (:obj:`str`, optional): The logger level.
     """
 
-    api_key: SecretStr = settings.api_key
+    api_key: str = settings.api_key
     base_path: HttpUrl = None
     version: constr(regex=settings.version_re) = settings.version
     log_level: str = None
