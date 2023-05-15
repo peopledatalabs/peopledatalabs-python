@@ -15,7 +15,6 @@ from pydantic import (
 from pydantic.dataclasses import dataclass
 import requests
 
-from . import utils
 from .logger import get_logger
 
 
