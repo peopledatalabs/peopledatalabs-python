@@ -286,9 +286,9 @@ pydantic==1.9.0; python_full_version >= "3.6.1" \
 pyflakes==2.4.0; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.6" \
     --hash=sha256:3bb3a3f256f4b7968c9c788781e4ff07dce46bdf12339dcda61053375426ee2e \
     --hash=sha256:05a85c2872edf37a4ed30b0cce2f6093e1d0581f8c19d7393122da7e25b2b24c
-pylint==2.13.5; python_full_version >= "3.6.2" \
-    --hash=sha256:c149694cfdeaee1aa2465e6eaab84c87a881a7d55e6e93e09466be7164764d1e \
-    --hash=sha256:dab221658368c7a05242e673c275c488670144123f4bd262b2777249c1c0de9b
+pylint==2.17.4; python_full_version >= "3.6.2" \
+    --hash=sha256:5dcf1d9e19f41f38e4e85d10f511e5b9c35e1aa74251bf95cdd8cb23584e2db1 \
+    --hash=sha256:7a1145fb08c251bdb5cca11739722ce64a63db479283d10ce718b2460e54123c
 pyparsing==3.0.9; python_full_version >= "3.6.8" and python_version >= "3.7" \
     --hash=sha256:2b020ecf7d21b687f219b71ecad3631f644a47f01403fa1d1036b0c6416d70fb \
     --hash=sha256:5026bae9a10eeaefb61dab2f09052b9f4307d44aee4eda64b309723d8d206bbc
