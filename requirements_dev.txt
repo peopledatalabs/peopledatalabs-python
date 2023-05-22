@@ -298,9 +298,9 @@ pytest==7.1.1; python_version >= "3.7" \
 python-dotenv==0.20.0; python_version >= "3.5" \
     --hash=sha256:b7e3b04a59693c42c36f9ab1cc2acc46fa5df8c78e178fc33a8d4cd05c8d498f \
     --hash=sha256:d92a187be61fe482e4fd675b6d52200e7be63a12b724abbf931a40ce4fa92938
-pyupgrade==2.32.0; python_version >= "3.7" \
-    --hash=sha256:f45d4afb6ccdf7b0cea757958d0a11306324052668d9ff99d2bcb06bda46c00d \
-    --hash=sha256:6878116d364b72f0c0011dd62dfe96425041a5f753da298b6eacde0f9fd9c004
+pyupgrade==3.3.2; python_version >= "3.7" \
+    --hash=sha256:bcfed63d38811809f179fd269dec246680b0aaa5bbe662b535826e5fa2275219 \
+    --hash=sha256:c05b82c911934b3a638b29f48f48dc6e0ef6c57c55ec36f2b41ae9dbf6711b4b
 requests==2.27.1; (python_version >= "2.7" and python_full_version < "3.0.0") or (python_full_version >= "3.6.0") \
     --hash=sha256:f22fa1e554c9ddfd16e6e41ac79759e17be9e492b3587efa038054674760e72d \
     --hash=sha256:68d7c56fd5a8999887728ef304a6d12edc7be74f1cfa47714fc8b414525c9a61
