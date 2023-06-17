@@ -60,7 +60,7 @@ class Endpoint:
 
         # disregard dunder methods
         if method_name.startswith("__") and method_name.endswith("__"):
-            return super().__getattr__(method_name)
+            return self.__getattribute__(method_name)
 
         # pylint: disable=unused-argument
         def method(*args, **kwargs):
