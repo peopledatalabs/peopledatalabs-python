@@ -58,6 +58,10 @@ class Endpoint:
         Raises InvalidEndpointError when an undefined method is called.
         """
 
+        # disregard dunder methods
+        if method_name.startswith("__") and method_name.endswith("__"):
+            return self.__getattribute__(method_name)
+
         # pylint: disable=unused-argument
         def method(*args, **kwargs):
             cls_name = self.__class__.__name__
