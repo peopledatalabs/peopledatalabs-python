@@ -112,6 +112,7 @@ class JobTitleModel(BaseRequestModel):
 
     job_title: str
 
+
 class IPModel(BaseModel):
     """
     Validator model for ip API.

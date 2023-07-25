@@ -36,7 +36,7 @@ def test_calls_unsupported_endpoints(client_with_fake_api_key):
         "search",
         "skill",
         "job_title",
-        "ip"
+        "ip",
     ]
     for method in unsupported:
         with pytest.raises(InvalidEndpointError):

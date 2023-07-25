@@ -151,7 +151,7 @@ class PDLPY:
             params=kwargs,
             validator=JobTitleModel,
         ).get()
-    
+
     @check_empty_parameters
     def ip(self, **kwargs):
         """
