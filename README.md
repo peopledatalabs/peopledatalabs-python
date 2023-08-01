@@ -379,6 +379,22 @@ else:
     )
 ```
 
+#### Get IP Enrichment
+
+```python
+result = client.ip(
+    ip="72.212.42.169",
+)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code};"
+        f"\nReason: {result.reason};"
+        f"\nMessage: {result.json()['error']['message']};"
+    )
+```
+
 ## 🏝 Sandbox Usage <a name="sandbox"></a>
 #### To enable sandbox usage, use the sandbox flag on PDLPY
 
@@ -415,6 +431,7 @@ PDLPY(sandbox=True)
 | [School Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#schoolclean)     | `PDLPY.school.cleaner(**params)`   |
 | [Job Title Enrichment API](https://docs.peopledatalabs.com/docs/job-title-enrichment-api) | `PDLPY.job_title(**params)` |
 | [Skill Enrichment API](https://docs.peopledatalabs.com/docs/skill-enrichment-api) | `PDLPY.skill(**params)` |
+| [IP Enrichment API](https://docs.peopledatalabs.com/docs/ip-enrichment-api) | `PDLPY.ip(**params)` |
 
 ## 📘 Documentation <a name="documentation"></a>
 
