@@ -122,5 +122,6 @@ class IPModel(BaseModel):
     return_ip_metadata: Optional[bool]
     return_ip_location: Optional[bool]
     return_person: Optional[bool]
+    return_if_unmatched: Optional[bool]
     pretty: Optional[bool]
     titlecase: Optional[bool]
