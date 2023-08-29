@@ -39,6 +39,7 @@ class PersonBaseModel(BaseModel):
     middle_name: Optional[Union[List[str], str]]
     name: Optional[Union[List[str], str]]
     phone: Optional[Union[List[str], str]]
+    pdl_id: Optional[Union[List[str], str]]
     postal_code: Optional[Union[List[str], str]]
     profile: Optional[Union[List[str], str]]
     region: Optional[str]

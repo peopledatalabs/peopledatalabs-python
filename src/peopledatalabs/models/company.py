@@ -26,6 +26,7 @@ class CompanyBaseModel(BaseModel):
     locality: Optional[str]
     location: Optional[Union[List[str], str]]
     name: Optional[str]
+    pdl_id: Optional[str]
     postal_code: Optional[str]
     profile: Optional[str]
     region: Optional[str]
