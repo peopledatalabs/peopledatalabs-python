@@ -41,7 +41,7 @@ coverage = "^7.2.7"
 docformatter = "^1.7"
 flake8 = "^5.0.4"
 pylint = "^2.17.5"
-pytest = "^7.4.1"
+pytest = "^7.4.2"
 pyupgrade = "^3.3.2"
 
 [build-system]
