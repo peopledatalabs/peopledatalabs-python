@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "peopledatalabs"
-version = "2.0.1"
+version = "2.0.2"
 description = "Official Python client for the People Data Labs API"
 homepage = "https://www.peopledatalabs.com"
 repository = "https://github.com/peopledatalabs/peopledatalabs-python"
@@ -36,12 +36,12 @@ requests = "^2"
 
 [tool.poetry.dev-dependencies]
 autoflake = "^1.7"
-black = "^23.3.0"
-coverage = "^7.2.7"
+black = "^23.9.1"
+coverage = "^7.3.1"
 docformatter = "^1.7"
 flake8 = "^5.0.4"
 pylint = "^2.17.5"
-pytest = "^7.4.1"
+pytest = "^7.4.2"
 pyupgrade = "^3.3.2"
 
 [build-system]
