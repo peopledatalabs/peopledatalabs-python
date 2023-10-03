@@ -8,8 +8,8 @@ file.
 import os
 
 from dotenv import find_dotenv, load_dotenv
-from pydantic import HttpUrl
-from pydantic.dataclasses import dataclass
+from pydantic.v1 import HttpUrl
+from pydantic.v1.dataclasses import dataclass
 
 
 @dataclass

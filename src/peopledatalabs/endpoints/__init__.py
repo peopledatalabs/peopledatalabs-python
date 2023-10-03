@@ -5,12 +5,12 @@ Package to resolve endpoints from the People Data Labs' API.
 
 from typing import Type
 
-from pydantic import (
+from pydantic.v1 import (
     BaseModel,
     HttpUrl,
     StrictStr,
 )
-from pydantic.dataclasses import dataclass
+from pydantic.v1.dataclasses import dataclass
 
 from ..errors import InvalidEndpointError
 from ..requests import Request

@@ -6,7 +6,7 @@ All tests related to the client instance.
 import logging
 
 import pytest
-from pydantic import ValidationError
+from pydantic.v1 import ValidationError
 
 from peopledatalabs import __version__
 from peopledatalabs.main import PDLPY
@@ -20,7 +20,7 @@ def test_version():
     """
     Version check.
     """
-    assert __version__ == "2.0.2"
+    assert __version__ == "2.0.3"
 
 
 @pytest.mark.usefixtures("fake_api_key")

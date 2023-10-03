@@ -5,7 +5,7 @@ Models for input parameters of the Company APIs.
 
 from typing import List, Optional, Union
 
-from pydantic import (
+from pydantic.v1 import (
     BaseModel,
     root_validator,
 )

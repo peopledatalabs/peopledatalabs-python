@@ -6,7 +6,7 @@ Models for input parameters of the Person APIs.
 from enum import Enum
 from typing import List, Optional, Union
 
-from pydantic import (
+from pydantic.v1 import (
     BaseModel,
     EmailStr,
     root_validator,

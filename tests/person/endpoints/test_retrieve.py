@@ -6,7 +6,7 @@ Tests calls to the person/retrieve API.
 import logging
 import pytest
 
-from pydantic import ValidationError
+from pydantic.v1 import ValidationError
 import requests
 
 

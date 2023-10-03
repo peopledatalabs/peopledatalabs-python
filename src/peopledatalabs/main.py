@@ -3,12 +3,12 @@ Client's main module.
 """
 
 
-from pydantic import (
+from pydantic.v1 import (
     HttpUrl,
     constr,
     validator,
 )
-from pydantic.dataclasses import dataclass
+from pydantic.v1.dataclasses import dataclass
 
 
 from .endpoints import Endpoint

@@ -8,11 +8,11 @@ All requests are handled here.
 import json
 from typing import Dict, Type
 
-from pydantic import (
+from pydantic.v1 import (
     BaseModel,
     HttpUrl,
 )
-from pydantic.dataclasses import dataclass
+from pydantic.v1.dataclasses import dataclass
 import requests
 
 from .logger import get_logger
