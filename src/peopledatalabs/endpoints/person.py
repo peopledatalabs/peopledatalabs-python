@@ -3,11 +3,11 @@ Defines all API endpoints for the 'Person' section.
 """
 
 
-from pydantic import (
+from pydantic.v1 import (
     StrictStr,
     validate_arguments,
 )
-from pydantic.dataclasses import dataclass
+from pydantic.v1.dataclasses import dataclass
 
 from . import Endpoint
 from .. import models

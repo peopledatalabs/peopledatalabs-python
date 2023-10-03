@@ -6,7 +6,7 @@ Tests calls to the sandbox person/search API.
 import logging
 import pytest
 
-from pydantic import ValidationError
+from pydantic.v1 import ValidationError
 import requests
 
 from peopledatalabs.errors import EmptyParametersException

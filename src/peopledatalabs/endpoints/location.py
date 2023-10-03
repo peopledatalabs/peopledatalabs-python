@@ -3,7 +3,7 @@ Defines all API endpoints for the 'Location' section.
 """
 
 
-from pydantic.dataclasses import dataclass
+from pydantic.v1.dataclasses import dataclass
 
 from . import Endpoint
 from ..logger import get_logger

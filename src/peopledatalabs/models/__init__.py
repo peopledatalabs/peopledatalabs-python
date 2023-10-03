@@ -6,7 +6,7 @@ Client's models for validation.
 from enum import Enum
 from typing import Optional
 
-from pydantic import (
+from pydantic.v1 import (
     BaseModel,
     conint,
     root_validator,

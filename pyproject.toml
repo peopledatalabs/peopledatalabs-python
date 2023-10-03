@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "peopledatalabs"
-version = "2.0.2"
+version = "3.0.0"
 description = "Official Python client for the People Data Labs API"
 homepage = "https://www.peopledatalabs.com"
 repository = "https://github.com/peopledatalabs/peopledatalabs-python"
@@ -30,7 +30,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.8"
 email-validator = ">=1.1,<3.0"
-pydantic = "^1.8"
+pydantic = "^2"
 python-dotenv = "^0"
 requests = "^2"
 
