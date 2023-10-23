@@ -40,7 +40,7 @@ black = "^23.9.1"
 coverage = "^7.3.1"
 docformatter = "^1.7"
 flake8 = "^5.0.4"
-pylint = "^3.0.1"
+pylint = "^3.0.2"
 pytest = "^7.4.2"
 pyupgrade = "^3.3.2"
 
