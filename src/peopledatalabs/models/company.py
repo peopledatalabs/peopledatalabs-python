@@ -42,6 +42,7 @@ class CompanyBaseModel(BaseModel):
         """
         if not any(
             [
+                v.get("pdl_id"),
                 v.get("name"),
                 v.get("profile"),
                 v.get("ticker"),
