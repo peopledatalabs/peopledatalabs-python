@@ -86,6 +86,7 @@ class FieldEnum(str, Enum):
     sub_role = "sub_role"
     skill = "skill"
     title = "title"
+    website = "website"
 
 
 class AutocompleteModel(BaseRequestModel):
@@ -95,6 +96,9 @@ class AutocompleteModel(BaseRequestModel):
 
     field: FieldEnum
     text: Optional[str]
+    pretty: Optional[bool]
+    titlecase: Optional[bool]
+    beta: Optional[bool]
 
 
 class SkillModel(BaseRequestModel):
@@ -103,6 +107,8 @@ class SkillModel(BaseRequestModel):
     """
 
     skill: str
+    pretty: Optional[bool]
+    titlecase: Optional[bool]
 
 
 class JobTitleModel(BaseRequestModel):
@@ -111,6 +117,8 @@ class JobTitleModel(BaseRequestModel):
     """
 
     job_title: str
+    pretty: Optional[bool]
+    titlecase: Optional[bool]
 
 
 class IPModel(BaseModel):
