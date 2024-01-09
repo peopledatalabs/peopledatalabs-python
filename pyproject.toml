@@ -36,11 +36,11 @@ requests = "^2"
 
 [tool.poetry.dev-dependencies]
 autoflake = "^1.7"
-black = "^23.9.1"
-coverage = "^7.3.1"
+black = "^23.12.1"
+coverage = "^7.4.0"
 docformatter = "^1.7"
 flake8 = "^5.0.4"
-pylint = "^3.0.1"
+pylint = "^3.0.3"
 pytest = "^7.4.4"
 pyupgrade = "^3.3.2"
 
