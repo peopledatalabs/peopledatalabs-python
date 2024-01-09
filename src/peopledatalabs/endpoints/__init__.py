@@ -209,7 +209,7 @@ class Endpoint:
             params=kwargs,
             validator=model,
         ).post()
-    
+
     @check_empty_parameters
     def _company_bulk(self, model: Type[BaseModel], **kwargs):
         """
