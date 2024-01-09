@@ -227,6 +227,39 @@ else:
     )
 ```
 
+#### By Bulk Enrichment
+
+```python
+result = client.company.bulk(
+    requests=[
+        {
+            "metadata": {
+                "company_id": "123"
+            },
+            "params": {
+                "profile": "linkedin.com/company/peopledatalabs",
+            }
+        },
+        {
+            "metadata": {
+                "company_id": "345"
+            },
+            "params": {
+                "profile": "https://www.linkedin.com/company/apple/",
+            }
+        }
+    ]
+)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code}"
+        f"\nReason: {result.reason}"
+        f"\nMessage: {result.json()['error']['message']}"
+    )
+```
+
 #### By Search (Elasticsearch)
 
 ```python
@@ -409,32 +442,33 @@ PDLPY(sandbox=True)
 
 **Person Endpoints**
 
-| API Endpoint                                                                           | PDLPY Function                      |
-| -------------------------------------------------------------------------------------- | ----------------------------------- |
-| [Person Enrichment API](https://docs.peopledatalabs.com/docs/enrichment-api)           | `PDLPY.person.enrichment(**params)` |
-| [Person Bulk Enrichment API](https://docs.peopledatalabs.com/docs/bulk-enrichment-api) | `PDLPY.person.bulk(**params)`       |
-| [Person Search API](https://docs.peopledatalabs.com/docs/search-api)                   | `PDLPY.person.search(**params)`     |
-| [Person Retrieve API](https://docs.peopledatalabs.com/docs/person-retrieve-api)        | `PDLPY.person.retrieve(**params)`   |
-| [Person Identify API](https://docs.peopledatalabs.com/docs/identify-api)               | `PDLPY.person.identify(**params)`   |
+| API Endpoint                                                                                    | PDLPY Function                      |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------- |
+| [Person Enrichment API](https://docs.peopledatalabs.com/docs/enrichment-api)                    | `PDLPY.person.enrichment(**params)` |
+| [Person Bulk Enrichment API](https://docs.peopledatalabs.com/docs/bulk-enrichment-api)          | `PDLPY.person.bulk(**params)`       |
+| [Person Search API](https://docs.peopledatalabs.com/docs/search-api)                            | `PDLPY.person.search(**params)`     |
+| [Person Retrieve API](https://docs.peopledatalabs.com/docs/person-retrieve-api)                 | `PDLPY.person.retrieve(**params)`   |
+| [Person Identify API](https://docs.peopledatalabs.com/docs/identify-api)                        | `PDLPY.person.identify(**params)`   |
 
 **Company Endpoints**
 
-| API Endpoint                                                                          | PDLPY Function                       |
-| ------------------------------------------------------------------------------------- | ------------------------------------ |
-| [Company Enrichment API](https://docs.peopledatalabs.com/docs/company-enrichment-api) | `PDLPY.company.enrichment(**params)` |
-| [Company Search API](https://docs.peopledatalabs.com/docs/company-search-api)         | `PDLPY.company.search(**params)`     |
+| API Endpoint                                                                                    | PDLPY Function                       |
+| ----------------------------------------------------------------------------------------------- | ------------------------------------ |
+| [Company Enrichment API](https://docs.peopledatalabs.com/docs/company-enrichment-api)           | `PDLPY.company.enrichment(**params)` |
+| [Company Bulk Enrichment API](https://docs.peopledatalabs.com/docs/bulk-company-enrichment-api) | `PDLPY.company.bulk(**params)`       |
+| [Company Search API](https://docs.peopledatalabs.com/docs/company-search-api)                   | `PDLPY.company.search(**params)`     |
 
 **Supporting Endpoints**
 
-| API Endpoint                                                                            | PDLJS Function                     |
-| --------------------------------------------------------------------------------------- | ---------------------------------- |
-| [Autocomplete API](https://docs.peopledatalabs.com/docs/autocomplete-api)               | `PDLPY.autocomplete(**params)`     |
-| [Company Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#companyclean)   | `PDLPY.company.cleaner(**params)`  |
-| [Location Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#locationclean) | `PDLPY.location.cleaner(**params)` |
-| [School Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#schoolclean)     | `PDLPY.school.cleaner(**params)`   |
-| [Job Title Enrichment API](https://docs.peopledatalabs.com/docs/job-title-enrichment-api) | `PDLPY.job_title(**params)` |
-| [Skill Enrichment API](https://docs.peopledatalabs.com/docs/skill-enrichment-api) | `PDLPY.skill(**params)` |
-| [IP Enrichment API](https://docs.peopledatalabs.com/docs/ip-enrichment-api) | `PDLPY.ip(**params)` |
+| API Endpoint                                                                              | PDLJS Function                     |
+| ----------------------------------------------------------------------------------------- | ---------------------------------- |
+| [Autocomplete API](https://docs.peopledatalabs.com/docs/autocomplete-api)                 | `PDLPY.autocomplete(**params)`     |
+| [Company Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#companyclean)     | `PDLPY.company.cleaner(**params)`  |
+| [Location Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#locationclean)   | `PDLPY.location.cleaner(**params)` |
+| [School Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#schoolclean)       | `PDLPY.school.cleaner(**params)`   |
+| [Job Title Enrichment API](https://docs.peopledatalabs.com/docs/job-title-enrichment-api) | `PDLPY.job_title(**params)`        |
+| [Skill Enrichment API](https://docs.peopledatalabs.com/docs/skill-enrichment-api)         | `PDLPY.skill(**params)`            |
+| [IP Enrichment API](https://docs.peopledatalabs.com/docs/ip-enrichment-api)               | `PDLPY.ip(**params)`               |
 
 ## 📘 Documentation <a name="documentation"></a>
 

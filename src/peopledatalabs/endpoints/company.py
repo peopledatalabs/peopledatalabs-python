@@ -35,6 +35,20 @@ class Company(Endpoint):
         """
         return self._enrichment(company_models.EnrichmentModel, **kwargs)
 
+    def bulk(self, **kwargs):
+        """
+        Calls PeopleDataLabs' company bulk enrichment API.
+        https://docs.peopledatalabs.com/docs/bulk-company-enrichment-api.
+
+        Args:
+            **kwargs: Parameters for the API as defined
+                in the documentation.
+
+        Returns:
+            A requests.Response object with the result of the HTTP call.
+        """
+        return self._company_bulk(company_models.CompanyBulkModel, **kwargs)
+
     def search(self, **kwargs):
         """
         Calls PeopleDataLabs' company/search API.

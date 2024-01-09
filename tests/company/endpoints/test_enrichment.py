@@ -40,6 +40,16 @@ def test_api_endpoint_enrichment(client):
 
 
 @pytest.mark.usefixtures("client")
+def test_api_endpoint_enrichment_multiple_results(client):
+    """
+    Tests successful execution of enrichment API returning multiple results.
+    """
+    enriched = client.company.enrichment(name="MRI", min_likelihood=1, size=2)
+    assert isinstance(enriched, requests.Response)
+    assert enriched.status_code == 200
+
+
+@pytest.mark.usefixtures("client")
 def test_api_endpoint_enrichment_ambiguous_raises_validation_error(client):
     """
     Tests successful execution of enrichment API.
