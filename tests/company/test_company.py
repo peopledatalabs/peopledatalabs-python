@@ -29,7 +29,6 @@ def test_calls_unsupported_endpoints(client_with_fake_api_key):
     """
     unsupported = [
         "autocomplete",
-        "bulk",
         "identify",
         "retrieve",
         "skill",

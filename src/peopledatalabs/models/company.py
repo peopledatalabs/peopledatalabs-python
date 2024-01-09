@@ -8,6 +8,7 @@ from typing import List, Optional, Union
 from pydantic.v1 import (
     BaseModel,
     root_validator,
+    validator,
 )
 
 from . import (
@@ -64,6 +65,39 @@ class EnrichmentModel(
     """
     Model for the enrichment API.
     """
+
+
+class CompanyBulkParamsModel(BaseModel):
+    """
+    Model for the validation of the 'params' field in the company bulk API.
+    """
+
+    metadata: Optional[dict]
+    params: CompanyBaseModel = ...
+
+
+class CompanyBulkModel(BaseRequestModel, AdditionalParametersModel):
+    """
+    Model for the company bulk API.
+    """
+
+    requests: List[CompanyBulkParamsModel]
+
+    @validator("requests", pre=True)
+    def must_contain_params(cls, value):
+        """
+        Checks that 'requests' is not empty.
+        """
+        if not value:
+            raise ValueError(
+                "'requests' cannot be empty."
+                " See documentation @"
+                # pylint: disable=line-too-long
+                # flake8: noqa: E501
+                " https://docs.peopledatalabs.com/docs/bulk-company-enrichment-api"
+            )
+
+        return value
 
 
 class SearchModel(BaseSearchModel):
