@@ -44,9 +44,7 @@ def test_api_endpoint_enrichment_multiple_results(client):
     """
     Tests successful execution of enrichment API returning multiple results.
     """
-    enriched = client.company.enrichment(
-        name="MRI", min_likelihood=1, size=2
-    )
+    enriched = client.company.enrichment(name="MRI", min_likelihood=1, size=2)
     assert isinstance(enriched, requests.Response)
     assert enriched.status_code == 200
 
