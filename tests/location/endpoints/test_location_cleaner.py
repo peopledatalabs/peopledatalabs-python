@@ -2,7 +2,6 @@
 Tests calls to the location/clean API.
 """
 
-
 import logging
 import pytest
 

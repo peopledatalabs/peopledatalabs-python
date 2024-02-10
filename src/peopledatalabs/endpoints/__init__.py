@@ -2,7 +2,6 @@
 Package to resolve endpoints from the People Data Labs' API.
 """
 
-
 from typing import Type
 
 from pydantic.v1 import (

@@ -2,7 +2,6 @@
 Utility scripts which do not strictly belong to any other module.
 """
 
-
 import functools
 
 from .errors import EmptyParametersException

@@ -2,7 +2,6 @@
 Models for input parameters of the Person APIs.
 """
 
-
 from enum import Enum
 from typing import List, Optional, Union
 

@@ -2,7 +2,6 @@
 Pytest testing configuration file.
 """
 
-
 import uuid
 
 import os

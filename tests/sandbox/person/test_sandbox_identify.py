@@ -2,7 +2,6 @@
 Tests calls to the sandbox person/identify API.
 """
 
-
 import logging
 import pytest
 

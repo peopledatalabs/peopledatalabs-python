@@ -2,7 +2,6 @@
 Defines all API endpoints for the 'Person' section.
 """
 
-
 from pydantic.v1 import (
     StrictStr,
     validate_arguments,

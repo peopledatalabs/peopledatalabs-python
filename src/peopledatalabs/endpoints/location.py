@@ -2,7 +2,6 @@
 Defines all API endpoints for the 'Location' section.
 """
 
-
 from pydantic.v1.dataclasses import dataclass
 
 from . import Endpoint

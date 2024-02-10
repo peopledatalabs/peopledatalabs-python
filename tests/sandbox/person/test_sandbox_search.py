@@ -2,7 +2,6 @@
 Tests calls to the sandbox person/search API.
 """
 
-
 import logging
 import pytest
 

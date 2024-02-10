@@ -2,7 +2,6 @@
 Tests calls to the sandbox person/enrich API.
 """
 
-
 import logging
 import pytest
 

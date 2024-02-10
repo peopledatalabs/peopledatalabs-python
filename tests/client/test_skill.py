@@ -2,7 +2,6 @@
 Tests calls to the skill API.
 """
 
-
 import logging
 import pytest
 

@@ -2,7 +2,6 @@
 Tests calls to the school/clean API.
 """
 
-
 import logging
 import pytest
 

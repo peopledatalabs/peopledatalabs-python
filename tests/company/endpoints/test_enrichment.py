@@ -2,7 +2,6 @@
 Tests calls to the company/enrich API.
 """
 
-
 import logging
 import pytest
 

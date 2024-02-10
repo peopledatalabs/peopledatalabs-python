@@ -2,7 +2,6 @@
 Tests calls to the job_title API.
 """
 
-
 import logging
 import pytest
 

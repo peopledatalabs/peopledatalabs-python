@@ -2,7 +2,6 @@
 Tests calls to the ip API.
 """
 
-
 import logging
 import pytest
 

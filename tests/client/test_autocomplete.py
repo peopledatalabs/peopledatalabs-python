@@ -2,7 +2,6 @@
 Tests calls to the autocomplete API.
 """
 
-
 import logging
 import pytest
 
