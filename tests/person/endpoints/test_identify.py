@@ -2,7 +2,6 @@
 Tests calls to the person/identify API.
 """
 
-
 import logging
 import pytest
 

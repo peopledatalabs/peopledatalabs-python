@@ -2,7 +2,6 @@
 Tests calls to the person/enrich API.
 """
 
-
 import logging
 import pytest
 

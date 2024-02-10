@@ -2,7 +2,6 @@
 Tests calls to the person/bulk API.
 """
 
-
 import logging
 import pytest
 

@@ -2,7 +2,6 @@
 Models for input parameters of the School APIs.
 """
 
-
 from typing import Optional
 
 from pydantic.v1 import root_validator

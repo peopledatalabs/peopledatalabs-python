@@ -2,7 +2,6 @@
 Tests calls to the person/search API.
 """
 
-
 import logging
 import pytest
 

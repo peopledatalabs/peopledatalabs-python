@@ -2,7 +2,6 @@
 Models for input parameters of the Location APIs.
 """
 
-
 from . import BaseRequestModel
 
 

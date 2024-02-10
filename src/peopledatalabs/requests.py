@@ -4,7 +4,6 @@ Requests module.
 All requests are handled here.
 """
 
-
 import json
 from typing import Dict, Type
 

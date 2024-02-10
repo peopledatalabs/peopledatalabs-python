@@ -3,7 +3,6 @@ Logging utility module to invoke different children of the same root logger,
 from different modules (and tests).
 """
 
-
 import logging
 
 from .settings import settings

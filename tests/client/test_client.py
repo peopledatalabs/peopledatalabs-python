@@ -2,7 +2,6 @@
 All tests related to the client instance.
 """
 
-
 import logging
 
 import pytest
@@ -20,7 +19,7 @@ def test_version():
     """
     Version check.
     """
-    assert __version__ == "3.0.5"
+    assert __version__ == "3.0.6"
 
 
 @pytest.mark.usefixtures("fake_api_key")

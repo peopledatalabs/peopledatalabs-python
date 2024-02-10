@@ -2,7 +2,6 @@
 Tests calls to the company/search API.
 """
 
-
 import logging
 import pytest
 

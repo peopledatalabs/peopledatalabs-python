@@ -2,7 +2,6 @@
 All tests related to the Location object of the client instance.
 """
 
-
 import logging
 import pytest
 

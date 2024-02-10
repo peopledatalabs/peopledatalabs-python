@@ -2,7 +2,6 @@
 Client's models for validation.
 """
 
-
 from enum import Enum
 from typing import Optional
 

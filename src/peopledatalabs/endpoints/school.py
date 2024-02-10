@@ -2,7 +2,6 @@
 Defines all API endpoints for the 'School' section.
 """
 
-
 from pydantic.v1.dataclasses import dataclass
 
 from . import Endpoint

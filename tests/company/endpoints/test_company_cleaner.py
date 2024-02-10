@@ -2,7 +2,6 @@
 Tests calls to the company/clean API.
 """
 
-
 import logging
 import pytest
 

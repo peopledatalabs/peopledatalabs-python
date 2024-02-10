@@ -2,7 +2,6 @@
 Client's main module.
 """
 
-
 from pydantic.v1 import (
     HttpUrl,
     constr,
