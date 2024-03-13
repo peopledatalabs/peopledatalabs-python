@@ -97,7 +97,6 @@ class AutocompleteModel(BaseRequestModel):
     text: Optional[str]
     pretty: Optional[bool]
     titlecase: Optional[bool]
-    beta: Optional[bool]
 
 
 class SkillModel(BaseRequestModel):
