@@ -35,7 +35,7 @@ def test_api_endpoint_sandbox_search_query(client_sandbox_enabled):
         "query": {
             "bool": {
                 "must": [
-                    {"term": {"location_country": "mexico"}},
+                    {"term": {"location_country": "united states"}},
                 ]
             }
         }

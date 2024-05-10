@@ -31,7 +31,7 @@ def test_api_endpoint_sandbox_identify(client_sandbox_enabled):
     """
     Tests successful execution of identify API.
     """
-    identified = client_sandbox_enabled.person.identify(company="walmart")
+    identified = client_sandbox_enabled.person.identify(company="browning-willis")
     assert isinstance(identified, requests.Response)
     assert identified.status_code == 200
     assert "matches" in identified.json()
@@ -46,5 +46,5 @@ def test_api_endpoint_sandbox_identify_list_values_raise_validation_error(
     """
     with pytest.raises(ValidationError):
         client_sandbox_enabled.person.identify(
-            company=["walmart"],
+            company=["browning-willis"],
         )
