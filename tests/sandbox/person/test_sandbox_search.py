@@ -35,7 +35,7 @@ def test_api_endpoint_sandbox_search_query(client_sandbox_enabled):
         "query": {
             "bool": {
                 "must": [
-                    {"term": {"location_country": "mexico"}},
+                    {"term": {"location_country": "united states"}},
                 ]
             }
         }
@@ -55,7 +55,7 @@ def test_api_endpoint_sandbox_search_sql(client_sandbox_enabled):
     """
     Tests successful execution of search API by SQL query.
     """
-    sql_query = "SELECT * FROM person WHERE location_country='mexico';"
+    sql_query = "SELECT * FROM person WHERE location_country='united states';"
     data = {
         "sql": sql_query,
         "size": 10,
@@ -77,12 +77,12 @@ def test_api_endpoint_sandbox_search_both_queries_raises_validation_error(
         "query": {
             "bool": {
                 "must": [
-                    {"term": {"location_country": "mexico"}},
+                    {"term": {"location_country": "united states"}},
                 ]
             }
         }
     }
-    sql_query = "SELECT * FROM person WHERE location_country='mexico';"
+    sql_query = "SELECT * FROM person WHERE location_country='united states';"
     data = {
         "query": es_query,
         "sql": sql_query,
@@ -104,7 +104,7 @@ def test_api_endpoint_sandbox_search_invalid_dataset_raises_validation_error(
         "query": {
             "bool": {
                 "must": [
-                    {"term": {"location_country": "mexico"}},
+                    {"term": {"location_country": "united states"}},
                 ]
             }
         }

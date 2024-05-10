@@ -31,7 +31,7 @@ def test_api_endpoint_sandbox_enrichment(client_sandbox_enabled):
     Tests successful execution of enrichment API.
     """
     enriched = client_sandbox_enabled.person.enrichment(
-        email="irussell@example.org"
+        email="reneewillis74@aol.com"
     )
     assert isinstance(enriched, requests.Response)
     assert enriched.status_code == 200
