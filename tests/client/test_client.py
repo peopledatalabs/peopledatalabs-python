@@ -59,11 +59,9 @@ def test_init_defaults_version_only(fake_api_key):
 
 def test_init_no_api_key_raises_validation_error():
     """
-    Tests that instantiating the client without providing either an .env file
-    or an api key explicitly, a ValidationError is raised.
+    Tests that instantiating the client without providing
+    an api key explicitly, a ValidationError is raised.
 
-    To make this test pass either ".env" file should not exist or
-    env_file modified in get_settings()
     """
     with pytest.raises(ValidationError):
         PDLPY()

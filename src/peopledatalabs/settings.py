@@ -1,8 +1,6 @@
 """
 A settings singleton to share settings across different modules of the package.
 
-Settings also loads environment variables eventually declared in an .env
-file.
 """
 
 from pydantic.v1 import HttpUrl
