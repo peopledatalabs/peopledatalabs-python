@@ -52,10 +52,7 @@ class PDLPY:
         Checks an API key is passed to the Client object.
         """
         if v is None:
-            raise ValueError(
-                "Please enter a value for API key, or define it either in"
-                " your environment or .env file as PDL_API_KEY"
-            )
+            raise ValueError("Please enter a value for API key.")
         return v
 
     def __post_init__(self):

@@ -28,6 +28,7 @@
 - [📘 Documentation](#documentation)
   - [Upgrading to v2.X.X](#upgrading-to-v2)
   - [Upgrading to v3.X.X](#upgrading-to-v3)
+  - [Upgrading to v4.X.X](#upgrading-to-v4)
 
 
 ## 🔧 Installation <a name="installation"></a>
@@ -39,7 +40,6 @@
     ```
 
 2. Sign up for a [free PDL API key](https://www.peopledatalabs.com/signup).
-3. Set your API key in the `PDL_API_KEY` environment variable.
 
 ## 🚀 Usage <a name="usage"></a>
 
@@ -49,16 +49,12 @@ First, create the PDLPY client:
 from peopledatalabs import PDLPY
 
 
-# specifying an API key
+# specify your API key
 client = PDLPY(
     api_key="YOUR API KEY",
 )
 
-# or leave blank if you have PDL_API_KEY set in your environment or .env file
-client = PDLPY()
 ```
-
-**Note:** You can provide your API key directly in code, or alternatively set a `PDL_API_KEY` variable in your environment or `.env` file.
 
 Then, send requests to any PDL API Endpoint.
 
@@ -499,3 +495,7 @@ NOTE: When upgrading to v2.X.X from vX.X.X and below, the minimum required pytho
 ### Upgrading to v3.X.X <a name="upgrading-to-v3"></a>
 
 NOTE: When upgrading to v3.X.X from vX.X.X and below, the minimum required pydantic version is now 2.
+
+### Upgrading to v4.X.X <a name="upgrading-to-v4"></a>
+
+NOTE: When upgrading to v4.X.X from vX.X.X and below, we no longer auto load the API key from the environment variable `PDL_API_KEY`. You must now pass the API key as a parameter to the `PDLPY` class.
