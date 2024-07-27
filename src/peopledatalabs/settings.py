@@ -1,6 +1,5 @@
 """
 A settings singleton to share settings across different modules of the package.
-
 """
 
 from pydantic.v1 import HttpUrl
@@ -11,7 +10,6 @@ from pydantic.v1.dataclasses import dataclass
 class Settings:
     """
     Singleton holding app's settings.
-
     """
 
     api_key: str = None
