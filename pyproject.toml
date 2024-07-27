@@ -41,7 +41,6 @@ docformatter = "^1.7"
 flake8 = "^5.0.4"
 pylint = "^3.2.6"
 pytest = "^8.3.1"
-python-dotenv = "<2"
 pyupgrade = "^3.3.2"
 
 [build-system]
