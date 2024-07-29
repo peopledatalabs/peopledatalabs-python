@@ -26,9 +26,9 @@ def fixture_fake_api_key():
 @pytest.fixture
 def client():
     """
-    Client instance loads PDL_API_KEY from .env file.
+    Client instance loads with real API key.
     """
-    return PDLPY()
+    return PDLPY(api_key=os.environ["PDL_API_KEY"])
 
 
 @pytest.fixture
@@ -42,9 +42,9 @@ def client_with_fake_api_key(fake_api_key):
 @pytest.fixture
 def client_sandbox_enabled():
     """
-    Client instance loads PDL_API_KEY from .env file and Sandbox enabled.
+    Client instance loads with real API key and Sandbox enabled.
     """
-    return PDLPY(sandbox=True)
+    return PDLPY(sandbox=True, api_key=os.environ["PDL_API_KEY"])
 
 
 @pytest.fixture

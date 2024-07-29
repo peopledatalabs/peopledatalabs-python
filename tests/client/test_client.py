@@ -19,7 +19,7 @@ def test_version():
     """
     Version check.
     """
-    assert __version__ == "3.1.4"
+    assert __version__ == "4.0.0"
 
 
 @pytest.mark.usefixtures("fake_api_key")
@@ -59,11 +59,8 @@ def test_init_defaults_version_only(fake_api_key):
 
 def test_init_no_api_key_raises_validation_error():
     """
-    Tests that instantiating the client without providing either an .env file
-    or an api key explicitly, a ValidationError is raised.
-
-    To make this test pass either ".env" file should not exist or
-    env_file modified in get_settings()
+    Tests that instantiating the client without providing an api key
+    explicitly, a ValidationError is raised.
     """
     with pytest.raises(ValidationError):
         PDLPY()
