@@ -36,7 +36,7 @@ requests = "^2"
 [tool.poetry.dev-dependencies]
 autoflake = "^1.7"
 black = "^24.4.2"
-coverage = "^7.5.3"
+coverage = "^7.6.1"
 docformatter = "^1.7"
 flake8 = "^5.0.4"
 pylint = "^3.2.6"
