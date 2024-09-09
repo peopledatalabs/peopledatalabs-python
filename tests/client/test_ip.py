@@ -35,3 +35,16 @@ def test_api_endpoint_ip(client):
     )
     assert isinstance(completion, requests.Response)
     assert completion.status_code == 200
+
+
+@pytest.mark.usefixtures("client")
+def test_api_endpoint_ip(client):
+    """
+    Tests successful execution of ip API with min_confidence.
+    """
+    completion = client.ip(
+        ip="72.212.42.169",
+        min_confidence="very high",
+    )
+    assert isinstance(completion, requests.Response)
+    assert completion.status_code == 200
