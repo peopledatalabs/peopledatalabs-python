@@ -49,6 +49,7 @@ class BaseSearchModel(BaseRequestModel):
     from_: Optional[conint(ge=0, le=9999)]
     scroll_token: Optional[str]
     titlecase: Optional[bool]
+    updated_title_roles: Optional[bool]
 
     @root_validator(pre=True)
     def query_or_sql(cls, v):
@@ -132,5 +133,5 @@ class IPModel(BaseModel):
     return_if_unmatched: Optional[bool]
     pretty: Optional[bool]
     titlecase: Optional[bool]
-    updated_title_roles: Optional[bool]
     min_confidence: Optional[Literal['very high', 'high', 'moderate', 'low', 'very low']]
+    updated_title_roles: Optional[bool]
