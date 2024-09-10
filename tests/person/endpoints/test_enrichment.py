@@ -53,7 +53,7 @@ def test_api_endpoint_enrichment_list_values(client):
 
 
 @pytest.mark.usefixtures("client")
-def test_api_endpoint_enrichment(client):
+def test_api_endpoint_enrichment_with_updated_title_roles(client):
     """
     Tests successful execution of enrichment API with updated_title_roles.
     """
