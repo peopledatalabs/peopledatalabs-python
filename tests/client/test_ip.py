@@ -40,8 +40,7 @@ def test_api_endpoint_ip(client):
 @pytest.mark.usefixtures("client")
 def test_api_endpoint_ip_with_min_confidence(client):
     """
-    Tests successful execution of IP API
-    with min_confidence.
+    Tests successful execution of IP API with min_confidence.
     """
     completion = client.ip(
         ip="72.212.42.169",
