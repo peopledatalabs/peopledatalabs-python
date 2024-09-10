@@ -133,5 +133,5 @@ class IPModel(BaseModel):
     return_if_unmatched: Optional[bool]
     pretty: Optional[bool]
     titlecase: Optional[bool]
-    min_confidence: Optional[Literal['very high', 'high', 'moderate', 'low', 'very low']]
+    min_confidence: Optional[Literal["very high", "high", "moderate", "low", "very low"]]
     updated_title_roles: Optional[bool]
