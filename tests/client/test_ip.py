@@ -17,7 +17,7 @@ logger = logging.getLogger("PeopleDataLabs.tests.ip")
 @pytest.mark.usefixtures("client_with_fake_api_key")
 def test_ip_no_params_throw_error(client_with_fake_api_key):
     """
-    Tests calling the ip method without parameters.
+    Tests calling the IP method without parameters.
 
     Should raise EmptyParametersException
     """
@@ -28,10 +28,23 @@ def test_ip_no_params_throw_error(client_with_fake_api_key):
 @pytest.mark.usefixtures("client")
 def test_api_endpoint_ip(client):
     """
-    Tests successful execution of ip API.
+    Tests successful execution of IP API.
     """
     completion = client.ip(
         ip="72.212.42.169",
+    )
+    assert isinstance(completion, requests.Response)
+    assert completion.status_code == 200
+
+
+@pytest.mark.usefixtures("client")
+def test_api_endpoint_ip_with_min_confidence(client):
+    """
+    Tests successful execution of IP API with min_confidence.
+    """
+    completion = client.ip(
+        ip="72.212.42.169",
+        min_confidence="very high",
     )
     assert isinstance(completion, requests.Response)
     assert completion.status_code == 200
