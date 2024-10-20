@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://i.imgur.com/S7DkZtr.png" width="250" alt="People Data Labs Logo">
+<img src="https://www.peopledatalabs.com/images/company-logo.png" style="background-color: white; padding: 5px 10px;" width="250" alt="People Data Labs Logo">
 </p>
 <h1 align="center">People Data Labs Python Client</h1>
 <p align="center">Official Python client for the People Data Labs API.</p>
