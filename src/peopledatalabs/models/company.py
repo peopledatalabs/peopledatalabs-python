@@ -22,17 +22,17 @@ class CompanyBaseModel(BaseModel):
     Base parameters model for the enrichment API.
     """
 
-    country: Optional[str]
-    locality: Optional[str]
+    country: Optional[Union[str, List[str]]]
+    locality: Optional[Union[str, List[str]]]
     location: Optional[Union[List[str], str]]
-    name: Optional[str]
+    name: Optional[Union[str, List[str]]]
     pdl_id: Optional[str]
-    postal_code: Optional[str]
-    profile: Optional[str]
-    region: Optional[str]
-    street_address: Optional[str]
-    ticker: Optional[str]
-    website: Optional[str]
+    postal_code: Optional[Union[str, List[str]]]
+    profile: Optional[Union[str, List[str]]]
+    region: Optional[Union[str, List[str]]]
+    street_address: Optional[Union[str, List[str]]]
+    ticker: Optional[Union[str, List[str]]]
+    website: Optional[Union[str, List[str]]]
 
     @root_validator(pre=True)
     def non_ambiguous(cls, v):
