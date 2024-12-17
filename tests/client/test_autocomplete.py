@@ -63,7 +63,7 @@ def test_api_endpoint_autocomplete_with_class(client):
     """
     completion = client.autocomplete(
         field="class",
-        text="product",
+        text="sales",
         size=20,
         updated_title_roles=True,
     )
