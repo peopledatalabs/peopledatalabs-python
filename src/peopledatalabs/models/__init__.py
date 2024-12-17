@@ -76,6 +76,7 @@ class FieldEnum(str, Enum):
     Valid values for 'field' parameter of autocomplete API.
     """
 
+    class_ = "class"
     company = "company"
     country = "country"
     industry = "industry"
@@ -99,6 +100,7 @@ class AutocompleteModel(BaseRequestModel):
     text: Optional[str]
     pretty: Optional[bool]
     titlecase: Optional[bool]
+    updated_title_roles: Optional[bool]
 
 
 class SkillModel(BaseRequestModel):
