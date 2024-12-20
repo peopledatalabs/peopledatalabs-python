@@ -65,7 +65,6 @@ def test_api_endpoint_autocomplete_with_class(client):
         field="class",
         text="sales",
         size=20,
-        updated_title_roles=True,
     )
     assert isinstance(completion, requests.Response)
     assert completion.status_code == 200
