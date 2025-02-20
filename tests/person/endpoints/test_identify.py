@@ -31,7 +31,7 @@ def test_api_endpoint_identify(client):
     """
     Tests successful execution of identify API.
     """
-    identified = client.person.identify(name="sean thorne")
+    identified = client.person.identify(name="varun villait")
     assert isinstance(identified, requests.Response)
     assert identified.status_code == 200
     assert "matches" in identified.json()

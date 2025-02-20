@@ -191,7 +191,7 @@ else:
 
 ```python
 result = client.person.enrichment(
-    name="sean thorne",
+    name="varun villait",
     pretty=True,
 )
 if result.ok:
@@ -479,7 +479,7 @@ As an example:
 The following is **valid** because `name` is a [supported input parameter to the Person Identify API](https://docs.peopledatalabs.com/docs/identify-api-reference#input-parameters):
 
 ```python
-PDLPY().person.identify({"name": "sean thorne"})
+PDLPY().person.identify({"name": "varun villait"})
 ```
 
 Conversely, this would be **invalid** because `fake_parameter` is not an input parameter to the Person Identify API:

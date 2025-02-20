@@ -50,16 +50,3 @@ def test_api_endpoint_enrichment_list_values(client):
     )
     assert isinstance(enriched, requests.Response)
     assert enriched.status_code == 200
-
-
-@pytest.mark.usefixtures("client")
-def test_api_endpoint_enrichment_with_updated_title_roles(client):
-    """
-    Tests successful execution of enrichment API with updated_title_roles.
-    """
-    enriched = client.person.enrichment(
-        email="varun@peopledatalabs.com",
-        updated_title_roles=True,
-    )
-    assert isinstance(enriched, requests.Response)
-    assert enriched.status_code == 200

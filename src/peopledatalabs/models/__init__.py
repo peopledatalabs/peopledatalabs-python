@@ -36,7 +36,6 @@ class AdditionalParametersModel(BaseModel):
     titlecase: Optional[bool]
     data_include: Optional[str]
     include_if_matched: Optional[bool]
-    updated_title_roles: Optional[bool]
 
 
 class BaseSearchModel(BaseRequestModel):
@@ -49,7 +48,6 @@ class BaseSearchModel(BaseRequestModel):
     from_: Optional[conint(ge=0, le=9999)]
     scroll_token: Optional[str]
     titlecase: Optional[bool]
-    updated_title_roles: Optional[bool]
 
     @root_validator(pre=True)
     def query_or_sql(cls, v):
@@ -100,7 +98,6 @@ class AutocompleteModel(BaseRequestModel):
     text: Optional[str]
     pretty: Optional[bool]
     titlecase: Optional[bool]
-    updated_title_roles: Optional[bool]
 
 
 class SkillModel(BaseRequestModel):
@@ -138,4 +135,3 @@ class IPModel(BaseModel):
     min_confidence: Optional[
         Literal["very high", "high", "moderate", "low", "very low"]
     ]
-    updated_title_roles: Optional[bool]
