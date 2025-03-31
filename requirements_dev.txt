@@ -371,9 +371,9 @@ pyupgrade==3.8.0 ; python_version >= "3.8" and python_version < "4.0" \
 requests==2.32.3 ; python_version >= "3.8" and python_version < "4.0" \
     --hash=sha256:55365417734eb18255590a9ff9eb97e9e1da868d4ccd6402399eaf68af20a760 \
     --hash=sha256:70761cfe03c773ceb22aa2f671b4757976145175cdfca038c02654d061d6dcc6
-tokenize-rt==6.0.0 ; python_version >= "3.8" and python_version < "4.0" \
-    --hash=sha256:b9711bdfc51210211137499b5e355d3de5ec88a85d2025c520cbb921b5194367 \
-    --hash=sha256:d4ff7ded2873512938b4f8cbb98c9b07118f01d30ac585a30d7a88353ca36d22
+tokenize-rt==6.1.0 ; python_version >= "3.8" and python_version < "4.0" \
+    --hash=sha256:d706141cdec4aa5f358945abe36b911b8cbdc844545da99e811250c0cee9b6fc \
+    --hash=sha256:e8ee836616c0877ab7c7b54776d2fefcc3bde714449a206762425ae114b53c86
 tomli==2.2.1 ; python_version >= "3.8" and python_version < "3.11" \
     --hash=sha256:023aa114dd824ade0100497eb2318602af309e5a55595f76b626d6d9f3b7b0a6 \
     --hash=sha256:02abe224de6ae62c19f090f68da4e27b10af2b93213d36cf44e6e1c5abd19fdd \
