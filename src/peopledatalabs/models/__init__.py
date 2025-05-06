@@ -100,16 +100,6 @@ class AutocompleteModel(BaseRequestModel):
     titlecase: Optional[bool]
 
 
-class SkillModel(BaseRequestModel):
-    """
-    Validator model for skill API.
-    """
-
-    skill: str
-    pretty: Optional[bool]
-    titlecase: Optional[bool]
-
-
 class JobTitleModel(BaseRequestModel):
     """
     Validator model for job_title API.

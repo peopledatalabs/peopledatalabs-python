@@ -395,22 +395,6 @@ else:
     )
 ```
 
-#### Get Skill Enrichment
-
-```python
-result = client.skill(
-    skill="c++",
-)
-if result.ok:
-    print(result.text)
-else:
-    print(
-        f"Status: {result.status_code}"
-        f"\nReason: {result.reason}"
-        f"\nMessage: {result.json()['error']['message']}"
-    )
-```
-
 #### Get IP Enrichment
 
 ```python
@@ -463,7 +447,6 @@ PDLPY(sandbox=True)
 | [Location Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#locationclean)   | `PDLPY.location.cleaner(**params)` |
 | [School Cleaner API](https://docs.peopledatalabs.com/docs/cleaner-apis#schoolclean)       | `PDLPY.school.cleaner(**params)`   |
 | [Job Title Enrichment API](https://docs.peopledatalabs.com/docs/job-title-enrichment-api) | `PDLPY.job_title(**params)`        |
-| [Skill Enrichment API](https://docs.peopledatalabs.com/docs/skill-enrichment-api)         | `PDLPY.skill(**params)`            |
 | [IP Enrichment API](https://docs.peopledatalabs.com/docs/ip-enrichment-api)               | `PDLPY.ip(**params)`               |
 
 ## 📘 Documentation <a name="documentation"></a>
