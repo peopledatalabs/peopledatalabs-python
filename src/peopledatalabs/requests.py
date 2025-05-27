@@ -57,10 +57,13 @@ class Request:
             A requests.Response object with the result of the HTTP call.
         """
         self.params["api_key"] = self.api_key
+        logger_params = self.params.copy()
+        if "api_key" in logger_params:
+            logger_params["api_key"] = "***"
         logger.info(
             "Calling %s with params: %s",
             self.url,
-            json.dumps(self.params, indent=2),
+            json.dumps(logger_params, indent=2),
         )
         return requests.get(
             self.url, params=self.params, headers=self.headers, timeout=None
@@ -76,10 +79,13 @@ class Request:
             A requests.Response object with the result of the HTTP call.
         """
         self.headers["X-api-key"] = self.api_key
+        logger_params = self.params.copy()
+        if "api_key" in logger_params:
+            logger_params["api_key"] = "***"
         logger.info(
             "Calling %s with params: %s",
             self.url,
-            json.dumps(self.params, indent=2),
+            json.dumps(logger_params, indent=2),
         )
         return requests.post(
             self.url, json=self.params, headers=self.headers, timeout=None
