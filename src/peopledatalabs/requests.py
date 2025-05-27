@@ -47,6 +47,18 @@ class Request:
         self.params = self.validator(**self.params).dict(exclude_none=True)
         logger.debug("Request object params after validation: %s", self.params)
 
+    def _sanitize_params(self) -> dict:
+        """
+        Creates a copy of params with sensitive data redacted for logging.
+
+        Returns:
+            A sanitized copy of the parameters dictionary.
+        """
+        logger_params = self.params.copy()
+        if "api_key" in logger_params:
+            logger_params["api_key"] = "***"
+        return logger_params
+
     def get(self):
         """
         Executes a GET request from the specified API.
@@ -60,7 +72,7 @@ class Request:
         logger.info(
             "Calling %s with params: %s",
             self.url,
-            json.dumps(self.params, indent=2),
+            json.dumps(self._sanitize_params(), indent=2),
         )
         return requests.get(
             self.url, params=self.params, headers=self.headers, timeout=None
@@ -79,7 +91,7 @@ class Request:
         logger.info(
             "Calling %s with params: %s",
             self.url,
-            json.dumps(self.params, indent=2),
+            json.dumps(self._sanitize_params(), indent=2),
         )
         return requests.post(
             self.url, json=self.params, headers=self.headers, timeout=None
