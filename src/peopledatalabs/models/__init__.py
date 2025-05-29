@@ -74,11 +74,13 @@ class FieldEnum(str, Enum):
     Valid values for 'field' parameter of autocomplete API.
     """
 
+    all_location = "all_location"
     class_ = "class"
     company = "company"
     country = "country"
     industry = "industry"
     location = "location"
+    location_name = "location_name"
     major = "major"
     region = "region"
     role = "role"
