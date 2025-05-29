@@ -68,3 +68,17 @@ def test_api_endpoint_autocomplete_with_class(client):
     )
     assert isinstance(completion, requests.Response)
     assert completion.status_code == 200
+
+
+@pytest.mark.usefixtures("client")
+def test_api_endpoint_autocomplete_with_all_location(client):
+    """
+    Tests successful execution of autocomplete API with all_location field.
+    """
+    completion = client.autocomplete(
+        field="all_location",
+        text="miami",
+        size=20,
+    )
+    assert isinstance(completion, requests.Response)
+    assert completion.status_code == 200
