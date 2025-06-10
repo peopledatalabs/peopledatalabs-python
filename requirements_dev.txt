@@ -368,9 +368,9 @@ pytest==8.3.5 ; python_version >= "3.8" and python_version < "4.0" \
 pyupgrade==3.8.0 ; python_version >= "3.8" and python_version < "4.0" \
     --hash=sha256:08d0e6129f5e9da7e7a581bdbea689e0d49c3c93eeaf156a07ae2fd794f52660 \
     --hash=sha256:1facb0b8407cca468dfcc1d13717e3a85aa37b9e6e7338664ad5bfe5ef50c867
-requests==2.32.3 ; python_version >= "3.8" and python_version < "4.0" \
-    --hash=sha256:55365417734eb18255590a9ff9eb97e9e1da868d4ccd6402399eaf68af20a760 \
-    --hash=sha256:70761cfe03c773ceb22aa2f671b4757976145175cdfca038c02654d061d6dcc6
+requests==2.32.4 ; python_version >= "3.8" and python_version < "4.0" \
+    --hash=sha256:27babd3cda2a6d50b30443204ee89830707d396671944c998b5975b031ac2b2c \
+    --hash=sha256:27d0316682c8a29834d3264820024b62a36942083d52caf2f14c0591336d3422
 tokenize-rt==6.2.0 ; python_version >= "3.8" and python_version < "4.0" \
     --hash=sha256:8439c042b330c553fdbe1758e4a05c0ed460dbbbb24a606f11f0dee75da4cad6 \
     --hash=sha256:a152bf4f249c847a66497a4a95f63376ed68ac6abf092a2f7cfb29d044ecff44
