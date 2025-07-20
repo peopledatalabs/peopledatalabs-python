@@ -204,6 +204,24 @@ else:
     )
 ```
 
+#### By Changelog
+
+```python
+result = client.person.changelog(
+    origin_version="30.2",
+    target_version="31.0",
+    type="updated",
+)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code}"
+        f"\nReason: {result.reason}"
+        f"\nMessage: {result.json()['error']['message']}"
+    )
+```
+
 ### Getting Company Data
 
 #### By Enrichment
@@ -429,6 +447,7 @@ PDLPY(sandbox=True)
 | [Person Search API](https://docs.peopledatalabs.com/docs/search-api)                            | `PDLPY.person.search(**params)`     |
 | [Person Retrieve API](https://docs.peopledatalabs.com/docs/person-retrieve-api)                 | `PDLPY.person.retrieve(**params)`   |
 | [Person Identify API](https://docs.peopledatalabs.com/docs/identify-api)                        | `PDLPY.person.identify(**params)`   |
+| [Person Changelog API](https://docs.peopledatalabs.com/docs/person-changelog-api)               | `PDLPY.person.changelog(**params)`  |
 
 **Company Endpoints**
 

@@ -97,3 +97,17 @@ class Person(Endpoint):
             A requests.Response object with the result of the HTTP call.
         """
         return self._search(person_models.SearchModel, **kwargs)
+
+    def changelog(self, **kwargs):
+        """
+        Calls PeopleDataLabs' person/changelog API.
+        https://docs.peopledatalabs.com/docs/person-changelog-api.
+
+        Args:
+            **kwargs: Parameters for the API as defined
+                in the documentation.
+
+        Returns:
+            A requests.Response object with the result of the HTTP call.
+        """
+        return self._changelog(person_models.ChangelogModel, **kwargs)
