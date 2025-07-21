@@ -167,3 +167,37 @@ class SearchModel(BaseSearchModel):
                 res.append(DatasetEnum(dataset))
 
         return ",".join(res)
+
+
+class ChangelogModel(BaseModel):
+    """
+    Model for validation of person changelog API.
+    """
+
+    origin_version: Optional[str] = None
+    current_version: Optional[str] = None
+    type: Optional[str] = None
+    ids: Optional[List[str]] = None
+    fields_updated: Optional[List[str]] = None
+    scroll_token: Optional[str] = None
+
+    @root_validator(pre=True)
+    def check_required_fields(cls, values):
+        """
+        Validate that:
+        - origin_version and current_version are both provided.
+        - Either 'ids' or 'type' is provided.
+        """
+        origin = values.get("origin_version")
+        current = values.get("current_version")
+        ids = values.get("ids")
+        typ = values.get("type")
+
+        if not origin:
+            raise ValueError("origin_version must be provided.")
+        if not current:
+            raise ValueError("current_version must be provided.")
+        if not ids and not typ:
+            raise ValueError("Either 'ids' or 'type' must be provided.")
+
+        return values

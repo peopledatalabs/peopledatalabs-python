@@ -210,6 +210,28 @@ class Endpoint:
         ).post()
 
     @check_empty_parameters
+    def _changelog(self, model: Type[BaseModel], **kwargs):
+        """
+        Calls PeopleDataLabs' changelog API.
+
+        Args:
+            model: The model used for parameters validation.
+            **kwargs: Parameters for the API as defined
+                in the documentation.
+
+        Returns:
+            A requests.Response object with the result of the HTTP call.
+        """
+        url = self.get_url(endpoint="changelog")
+        return Request(
+            api_key=self.api_key,
+            url=url,
+            headers=headers,
+            params=kwargs,
+            validator=model,
+        ).post()
+
+    @check_empty_parameters
     def _company_bulk(self, model: Type[BaseModel], **kwargs):
         """
         Calls PeopleDataLabs' company bulk enrichment API.
