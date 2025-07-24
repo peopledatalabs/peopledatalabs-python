@@ -19,6 +19,7 @@ class Settings:
     version: str = "v5"
     version_re: str = r"^v[0-9]$"
     sandbox_base_path: HttpUrl = "https://sandbox.api.peopledatalabs.com/"
+    sdk_version: str = "6.4.0"
 
 
 settings = Settings()

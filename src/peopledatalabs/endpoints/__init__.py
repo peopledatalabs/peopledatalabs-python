@@ -11,17 +11,16 @@ from pydantic.v1 import (
 )
 from pydantic.v1.dataclasses import dataclass
 
-from peopledatalabs import __version__
-
 from ..errors import InvalidEndpointError
 from ..requests import Request
+from ..settings import settings
 from ..utils import check_empty_parameters
 
 headers = {
     "Accept-Encoding": "gzip",
     "Content-Type": "application/json",
     "User-Agent": "PDL-PYTHON-SDK",
-    "SDK-Version": __version__,
+    "SDK-Version": settings.sdk_version,
 }
 
 
