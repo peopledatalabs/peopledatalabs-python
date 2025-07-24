@@ -9,6 +9,7 @@ from pydantic.v1 import (
 )
 from pydantic.v1.dataclasses import dataclass
 
+from peopledatalabs import __version__
 
 from .endpoints import Endpoint
 from .endpoints.person import Person
@@ -87,8 +88,9 @@ class PDLPY:
             url=url,
             headers={
                 "Accept-Encoding": "gzip",
-                "User-Agent": "PDL-PYTHON-SDK",
                 "Content-Type": "application/json",
+                "User-Agent": "PDL-PYTHON-SDK",
+                "SDK-Version": __version__,
             },
             params=kwargs,
             validator=AutocompleteModel,
@@ -114,8 +116,9 @@ class PDLPY:
             url=url,
             headers={
                 "Accept-Encoding": "gzip",
-                "User-Agent": "PDL-PYTHON-SDK",
                 "Content-Type": "application/json",
+                "User-Agent": "PDL-PYTHON-SDK",
+                "SDK-Version": __version__,
             },
             params=kwargs,
             validator=JobTitleModel,
@@ -141,8 +144,9 @@ class PDLPY:
             url=url,
             headers={
                 "Accept-Encoding": "gzip",
-                "User-Agent": "PDL-PYTHON-SDK",
                 "Content-Type": "application/json",
+                "User-Agent": "PDL-PYTHON-SDK",
+                "SDK-Version": __version__,
             },
             params=kwargs,
             validator=IPModel,
