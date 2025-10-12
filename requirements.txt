@@ -90,9 +90,9 @@ dnspython==2.7.0 ; python_version >= "3.8" and python_version < "4.0" \
 email-validator==2.3.0 ; python_version >= "3.8" and python_version < "4.0" \
     --hash=sha256:80f13f623413e6b197ae73bb10bf4eb0908faf509ad8362c5edeb0be7fd450b4 \
     --hash=sha256:9fc05c37f2f6cf439ff414f8fc46d917929974a82244c20eb10231ba60c54426
-idna==3.10 ; python_version >= "3.8" and python_version < "4.0" \
-    --hash=sha256:12f65c9b470abda6dc35cf8e63cc574b1c52b11df2c86030af0ac09b01b13ea9 \
-    --hash=sha256:946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3
+idna==3.11 ; python_version >= "3.8" and python_version < "4.0" \
+    --hash=sha256:771a87f49d9defaf64091e6e6fe9c18d4833f140bd19464795bc32d966ca37ea \
+    --hash=sha256:795dafcc9c04ed0c1fb032c2aa73654d8e8c5023a7df64a53f39190ada629902
 pydantic-core==2.40.1 ; python_version >= "3.8" and python_version < "4.0" \
     --hash=sha256:02d483531a0c5b5e772b15a5b5be7d188acb49ed8ea3a695b816b84a69e7d3bd \
     --hash=sha256:056b8a49fa1a5c4fcc205e06d44487d79d73bcc4696146a9b04c84f034b7d48c \
