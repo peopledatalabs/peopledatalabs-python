@@ -19,7 +19,7 @@ def test_version():
     """
     Version check.
     """
-    assert __version__ == "6.4.5"
+    assert __version__ == "6.4.6"
 
 
 @pytest.mark.usefixtures("fake_api_key")
