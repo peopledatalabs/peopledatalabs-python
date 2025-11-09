@@ -31,7 +31,7 @@ def test_api_endpoint_changelog(client):
     Tests successful execution of changelog API.
     """
     changelog = client.person.changelog(
-        current_version="31.0", origin_version="30.2", type="updated"
+        current_version="32.0", origin_version="31.2", type="updated"
     )
     assert isinstance(changelog, requests.Response)
     assert changelog.status_code == 200
