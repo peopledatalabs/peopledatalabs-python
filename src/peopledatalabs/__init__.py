@@ -5,6 +5,6 @@ PeopleDataLabs Python Client.
 from .main import PDLPY
 
 
-__version__ = "6.4.8"
+__version__ = "6.4.9"
 
 __all__ = ["PDLPY"]
