@@ -417,7 +417,7 @@ else:
 
 ```python
 result = client.ip(
-    ip="72.212.42.169",
+    ip="72.212.42.228",
 )
 if result.ok:
     print(result.text)

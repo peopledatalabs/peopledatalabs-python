@@ -31,7 +31,7 @@ def test_api_endpoint_ip(client):
     Tests successful execution of IP API.
     """
     completion = client.ip(
-        ip="72.212.42.169",
+        ip="72.212.42.228",
     )
     assert isinstance(completion, requests.Response)
     assert completion.status_code == 200
@@ -43,7 +43,7 @@ def test_api_endpoint_ip_with_min_confidence(client):
     Tests successful execution of IP API with min_confidence.
     """
     completion = client.ip(
-        ip="72.212.42.169",
+        ip="72.212.42.228",
         min_confidence="very high",
     )
     assert isinstance(completion, requests.Response)
