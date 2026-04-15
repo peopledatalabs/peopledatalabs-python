@@ -12,6 +12,7 @@ from pydantic.v1.dataclasses import dataclass
 from .endpoints import Endpoint
 from .endpoints.person import Person
 from .endpoints.company import Company
+from .endpoints.job_posting import JobPosting
 from .endpoints.location import Location
 from .endpoints.school import School
 from .logger import get_logger
@@ -177,3 +178,10 @@ class PDLPY:
         Calls API from the person section.
         """
         return Person(self.api_key, self.base_path)
+
+    @property
+    def job_posting(self):
+        """
+        Calls API from the job_posting section.
+        """
+        return JobPosting(self.api_key, self.base_path)
