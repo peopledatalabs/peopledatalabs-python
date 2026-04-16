@@ -2,16 +2,13 @@
 Models for input parameters of the Job Posting APIs.
 """
 
-import base64
-import json
 from datetime import date
 from enum import Enum
-from typing import Any, List, Optional
+from typing import Optional
 
 from pydantic.v1 import (
     BaseModel,
     conint,
-    validator,
 )
 
 
@@ -36,17 +33,6 @@ class SalaryPeriod(str, Enum):
     hour = "hour"
 
 
-def _parse_scroll_token(v):
-    """
-    Accepts either a decoded list or a base64-url-encoded JSON string and
-    normalizes to a list. Mirrors the server-side scroll_token decoding.
-    """
-    if isinstance(v, str):
-        json_str = base64.urlsafe_b64decode(v.encode()).decode()
-        v = json.loads(json_str)
-    return v
-
-
 class JobPostingQuerySearchModel(BaseModel):
     """
     Validator model for the job_posting search API when using an
@@ -54,13 +40,9 @@ class JobPostingQuerySearchModel(BaseModel):
     """
 
     query: dict
-    size: Optional[conint(le=100)] = 10
+    size: Optional[conint(ge=1, le=100)] = 10
     pretty: Optional[bool] = False
-    scroll_token: Optional[List[Any]] = None
-
-    _parse_scroll_token = validator(
-        "scroll_token", pre=True, allow_reuse=True
-    )(_parse_scroll_token)
+    scroll_token: Optional[str] = None
 
 
 class JobPostingParamSearchModel(BaseModel):
@@ -101,11 +83,7 @@ class JobPostingParamSearchModel(BaseModel):
     last_verified_min: Optional[date]
     last_verified_max: Optional[date]
 
-    is_active: Optional[bool] = False
+    is_active: Optional[bool]
     size: Optional[conint(ge=1, le=100)] = 10
     pretty: Optional[bool] = False
-    scroll_token: Optional[List[Any]] = None
-
-    _parse_scroll_token = validator(
-        "scroll_token", pre=True, allow_reuse=True
-    )(_parse_scroll_token)
+    scroll_token: Optional[str] = None
