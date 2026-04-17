@@ -68,8 +68,8 @@ def test_param_model_invalid_salary_period_raises_validation_error():
 
 def test_param_model_is_active_omitted_by_default():
     """
-    is_active is an opt-in filter and must not be sent unless the caller
-    sets it explicitly.
+    is_active is an opt-in filter and must not be sent unless the caller sets
+    it explicitly.
     """
     model = JobPostingParamSearchModel(title="engineer")
     assert "is_active" not in model.dict(exclude_none=True)
@@ -77,8 +77,8 @@ def test_param_model_is_active_omitted_by_default():
 
 def test_scroll_token_round_trips_as_opaque_string():
     """
-    scroll_token is the opaque base64 token returned by the API and must
-    be passed back unchanged on subsequent calls.
+    scroll_token is the opaque base64 token returned by the API and must be
+    passed back unchanged on subsequent calls.
     """
     token = "eyJhIjogMX0="
     query_model = JobPostingQuerySearchModel(

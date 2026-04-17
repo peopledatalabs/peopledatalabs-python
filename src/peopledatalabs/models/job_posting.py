@@ -35,8 +35,8 @@ class SalaryPeriod(str, Enum):
 
 class JobPostingQuerySearchModel(BaseModel):
     """
-    Validator model for the job_posting search API when using an
-    Elasticsearch-style query body.
+    Validator model for the job_posting search API when using an Elasticsearch-
+    style query body.
     """
 
     query: dict
@@ -47,8 +47,8 @@ class JobPostingQuerySearchModel(BaseModel):
 
 class JobPostingParamSearchModel(BaseModel):
     """
-    Validator model for the job_posting search API when using the
-    field-based parameter form (no 'query' body).
+    Validator model for the job_posting search API when using the field-based
+    parameter form (no 'query' body).
     """
 
     id: Optional[str]
