@@ -329,6 +329,58 @@ else:
     )
 ```
 
+### Getting Job Posting Data
+
+#### By Search (Elasticsearch)
+
+```python
+es_query = {
+    "query": {
+        "bool": {
+            "must": [
+                {"term": {"title_role": "engineering"}},
+                {"term": {"remote_work_policy": "remote"}},
+            ]
+        }
+    }
+}
+data = {
+    "query": es_query,
+    "size": 10,
+    "pretty": True,
+}
+result = client.job_posting.search(**data)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code}"
+        f"\nReason: {result.reason}"
+        f"\nMessage: {result.json()['error']['message']}"
+    )
+```
+
+#### By Search (Field Parameters)
+
+```python
+data = {
+    "title_role": "engineering",
+    "remote_work_policy": "remote",
+    "is_active": True,
+    "size": 10,
+    "pretty": True,
+}
+result = client.job_posting.search(**data)
+if result.ok:
+    print(result.text)
+else:
+    print(
+        f"Status: {result.status_code}"
+        f"\nReason: {result.reason}"
+        f"\nMessage: {result.json()['error']['message']}"
+    )
+```
+
 ### Using supporting APIs
 
 #### Get Autocomplete Suggestions
@@ -448,6 +500,12 @@ PDLPY(sandbox=True)
 | [Person Retrieve API](https://docs.peopledatalabs.com/docs/person-retrieve-api)                 | `PDLPY.person.retrieve(**params)`   |
 | [Person Identify API](https://docs.peopledatalabs.com/docs/identify-api)                        | `PDLPY.person.identify(**params)`   |
 | [Person Changelog API](https://docs.peopledatalabs.com/docs/person-changelog-api)               | `PDLPY.person.changelog(**params)`  |
+
+**Job Posting Endpoints**
+
+| API Endpoint                                                                                    | PDLPY Function                          |
+| ----------------------------------------------------------------------------------------------- | --------------------------------------- |
+| [Job Posting Search API](https://docs.peopledatalabs.com/docs/job-posting-search-api)           | `PDLPY.job_posting.search(**params)`    |
 
 **Company Endpoints**
 
