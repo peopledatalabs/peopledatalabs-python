@@ -2,12 +2,10 @@
 Client's main module.
 """
 
-from pydantic.v1 import (
-    HttpUrl,
-    constr,
-    validator,
-)
-from pydantic.v1.dataclasses import dataclass
+from typing import Annotated, Optional
+
+from pydantic import Field, field_validator
+from pydantic.dataclasses import dataclass
 
 from .endpoints import Endpoint
 from .endpoints.person import Person
@@ -40,13 +38,14 @@ class PDLPY:
         log_level (:obj:`str`, optional): The logger level.
     """
 
-    api_key: str = settings.api_key
-    base_path: HttpUrl = None
-    version: constr(regex=settings.version_re) = settings.version
+    api_key: Optional[str] = Field(default=settings.api_key, validate_default=True)
+    base_path: Optional[Annotated[str, Field(pattern=r"^https?://")]] = None
+    version: Annotated[str, Field(pattern=settings.version_re)] = settings.version
     log_level: str = None
     sandbox: bool = False
 
-    @validator("api_key", pre=True, always=True)
+    @field_validator("api_key", mode="before")
+    @classmethod
     def api_key_not_none(cls, v):
         """
         Checks an API key is passed to the Client object.

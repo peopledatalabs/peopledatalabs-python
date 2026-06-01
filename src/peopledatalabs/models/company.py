@@ -4,10 +4,10 @@ Models for input parameters of the Company APIs.
 
 from typing import List, Optional, Union
 
-from pydantic.v1 import (
+from pydantic import (
     BaseModel,
-    root_validator,
-    validator,
+    field_validator,
+    model_validator,
 )
 
 from . import (
@@ -22,19 +22,20 @@ class CompanyBaseModel(BaseModel):
     Base parameters model for the enrichment API.
     """
 
-    country: Optional[Union[str, List[str]]]
-    locality: Optional[Union[str, List[str]]]
-    location: Optional[Union[List[str], str]]
-    name: Optional[Union[str, List[str]]]
-    pdl_id: Optional[str]
-    postal_code: Optional[Union[str, List[str]]]
-    profile: Optional[Union[str, List[str]]]
-    region: Optional[Union[str, List[str]]]
-    street_address: Optional[Union[str, List[str]]]
-    ticker: Optional[Union[str, List[str]]]
-    website: Optional[Union[str, List[str]]]
+    country: Optional[Union[str, List[str]]] = None
+    locality: Optional[Union[str, List[str]]] = None
+    location: Optional[Union[List[str], str]] = None
+    name: Optional[Union[str, List[str]]] = None
+    pdl_id: Optional[str] = None
+    postal_code: Optional[Union[str, List[str]]] = None
+    profile: Optional[Union[str, List[str]]] = None
+    region: Optional[Union[str, List[str]]] = None
+    street_address: Optional[Union[str, List[str]]] = None
+    ticker: Optional[Union[str, List[str]]] = None
+    website: Optional[Union[str, List[str]]] = None
 
-    @root_validator(pre=True)
+    @model_validator(mode="before")
+    @classmethod
     def non_ambiguous(cls, v):
         """
         Checks that at leat one between 'name', 'ticker', 'website' and
@@ -71,7 +72,7 @@ class CompanyBulkParamsModel(BaseModel):
     Model for the validation of the 'params' field in the company bulk API.
     """
 
-    metadata: Optional[dict]
+    metadata: Optional[dict] = None
     params: CompanyBaseModel = ...
 
 
@@ -82,7 +83,8 @@ class CompanyBulkModel(BaseRequestModel, AdditionalParametersModel):
 
     requests: List[CompanyBulkParamsModel]
 
-    @validator("requests", pre=True)
+    @field_validator("requests", mode="before")
+    @classmethod
     def must_contain_params(cls, value):
         """
         Checks that 'requests' is not empty.
@@ -111,11 +113,12 @@ class CleanerModel(BaseRequestModel):
     Validation model for Company 'cleaner' API.
     """
 
-    name: Optional[str]
-    website: Optional[str]
-    profile: Optional[str]
+    name: Optional[str] = None
+    website: Optional[str] = None
+    profile: Optional[str] = None
 
-    @root_validator(pre=True)
+    @model_validator(mode="before")
+    @classmethod
     def at_least_one(cls, value):
         """
         Checks that at least one parameter is valued.

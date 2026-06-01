@@ -5,7 +5,7 @@ Tests calls to the person/search API.
 import logging
 import pytest
 
-from pydantic.v1 import ValidationError
+from pydantic import ValidationError
 import requests
 
 from peopledatalabs.errors import EmptyParametersException

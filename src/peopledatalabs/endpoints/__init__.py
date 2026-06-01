@@ -4,12 +4,8 @@ Package to resolve endpoints from the People Data Labs' API.
 
 from typing import Type
 
-from pydantic.v1 import (
-    BaseModel,
-    HttpUrl,
-    StrictStr,
-)
-from pydantic.v1.dataclasses import dataclass
+from pydantic import BaseModel, StrictStr
+from pydantic.dataclasses import dataclass
 
 from ..errors import InvalidEndpointError
 from ..requests import Request
@@ -37,7 +33,7 @@ class Endpoint:
     """
 
     api_key: str
-    base_path: HttpUrl
+    base_path: str
     section: str = None
 
     def get_url(self, endpoint: str):

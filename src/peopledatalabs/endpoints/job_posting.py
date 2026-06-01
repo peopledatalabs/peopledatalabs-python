@@ -2,7 +2,7 @@
 Defines all API endpoints for the 'Job Posting' section.
 """
 
-from pydantic.v1.dataclasses import dataclass
+from pydantic.dataclasses import dataclass
 
 from . import Endpoint
 from ..models import job_posting as job_posting_models

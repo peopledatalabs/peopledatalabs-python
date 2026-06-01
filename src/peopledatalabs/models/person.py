@@ -3,14 +3,14 @@ Models for input parameters of the Person APIs.
 """
 
 from enum import Enum
-from typing import List, Optional, Union
+from typing import Annotated, List, Optional, Union
 
-from pydantic.v1 import (
+from pydantic import (
     BaseModel,
     EmailStr,
-    root_validator,
-    conint,
-    validator,
+    Field,
+    field_validator,
+    model_validator,
 )
 
 from . import (
@@ -25,32 +25,33 @@ class PersonBaseModel(BaseModel):
     Base parameters model for the enrichment and identify API.
     """
 
-    birth_date: Optional[Union[List[str], str]]
-    company: Optional[Union[List[str], str]]
-    country: Optional[str]
-    email: Optional[Union[List[EmailStr], EmailStr]]
-    email_hash: Optional[Union[List[str], str]]
-    first_name: Optional[Union[List[str], str]]
-    last_name: Optional[Union[List[str], str]]
-    lid: Optional[Union[List[str], str]]
-    locality: Optional[str]
-    location: Optional[Union[List[str], str]]
-    middle_name: Optional[Union[List[str], str]]
-    name: Optional[Union[List[str], str]]
-    phone: Optional[Union[List[str], str]]
-    pdl_id: Optional[Union[List[str], str]]
-    postal_code: Optional[Union[List[str], str]]
-    profile: Optional[Union[List[str], str]]
-    region: Optional[str]
-    school: Optional[Union[List[str], str]]
-    street_address: Optional[str]
-    pdl_id: Optional[str]
-    min_likelihood: Optional[conint(ge=1, le=10)]
-    required: Optional[str]
-    data_include: Optional[str]
-    include_if_matched: Optional[bool]
+    birth_date: Optional[Union[List[str], str]] = None
+    company: Optional[Union[List[str], str]] = None
+    country: Optional[str] = None
+    email: Optional[Union[List[EmailStr], EmailStr]] = None
+    email_hash: Optional[Union[List[str], str]] = None
+    first_name: Optional[Union[List[str], str]] = None
+    last_name: Optional[Union[List[str], str]] = None
+    lid: Optional[Union[List[str], str]] = None
+    locality: Optional[str] = None
+    location: Optional[Union[List[str], str]] = None
+    middle_name: Optional[Union[List[str], str]] = None
+    name: Optional[Union[List[str], str]] = None
+    phone: Optional[Union[List[str], str]] = None
+    pdl_id: Optional[Union[List[str], str]] = None
+    postal_code: Optional[Union[List[str], str]] = None
+    profile: Optional[Union[List[str], str]] = None
+    region: Optional[str] = None
+    school: Optional[Union[List[str], str]] = None
+    street_address: Optional[str] = None
+    pdl_id: Optional[str] = None
+    min_likelihood: Optional[Annotated[int, Field(ge=1, le=10)]] = None
+    required: Optional[str] = None
+    data_include: Optional[str] = None
+    include_if_matched: Optional[bool] = None
 
-    @root_validator(pre=True)
+    @model_validator(mode="before")
+    @classmethod
     def at_least_one(cls, value):
         """
         Checks that at least one parameter is valued.
@@ -84,7 +85,8 @@ class IdentifyModel(
     multiple values.
     """
 
-    @root_validator(pre=True)
+    @model_validator(mode="before")
+    @classmethod
     def no_lists(cls, v):
         """
         Checks none of the values are lists.
@@ -106,7 +108,7 @@ class PersonBulkParamsModel(BaseModel):
     Model for the validation of the 'params' field in the person/bulk API.
     """
 
-    metadata: Optional[dict]
+    metadata: Optional[dict] = None
     params: PersonBaseModel = ...
 
 
@@ -117,7 +119,8 @@ class BulkModel(BaseRequestModel, AdditionalParametersModel):
 
     requests: List[PersonBulkParamsModel]
 
-    @validator("requests", pre=True)
+    @field_validator("requests", mode="before")
+    @classmethod
     def must_contain_params(cls, value):
         """
         Checks that 'requests' is not empty.
@@ -152,9 +155,10 @@ class SearchModel(BaseSearchModel):
     Model for validation of person search API.
     """
 
-    dataset: Optional[str]
+    dataset: Optional[str] = None
 
-    @validator("dataset", pre=True)
+    @field_validator("dataset", mode="before")
+    @classmethod
     def validate_datasets(cls, v):
         """
         Checks each passed dataset to be of the allowed ones.
@@ -181,7 +185,8 @@ class ChangelogModel(BaseModel):
     fields_updated: Optional[List[str]] = None
     scroll_token: Optional[str] = None
 
-    @root_validator(pre=True)
+    @model_validator(mode="before")
+    @classmethod
     def check_required_fields(cls, values):
         """
         Validate that:
