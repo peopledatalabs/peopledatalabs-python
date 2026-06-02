@@ -3,7 +3,8 @@ Client's models for validation.
 """
 
 from enum import Enum
-from typing import Annotated, Optional, Literal
+
+from typing import Annotated, Literal
 
 from pydantic import (
     BaseModel,
@@ -22,8 +23,8 @@ class BaseRequestModel(BaseModel):
     Base model for parameters common in all requests.
     """
 
-    pretty: Optional[bool] = None
-    size: Optional[Annotated[int, Field(ge=1, le=100)]] = None
+    pretty: bool | None = None
+    size: Annotated[int, Field(ge=1, le=100)] | None = None
 
 
 class AdditionalParametersModel(BaseModel):
@@ -31,11 +32,11 @@ class AdditionalParametersModel(BaseModel):
     Model for additional parameters which are shared across different APIs.
     """
 
-    min_likelihood: Optional[Annotated[int, Field(ge=1, le=10)]] = None
-    required: Optional[str] = None
-    titlecase: Optional[bool] = None
-    data_include: Optional[str] = None
-    include_if_matched: Optional[bool] = None
+    min_likelihood: Annotated[int, Field(ge=1, le=10)] | None = None
+    required: str | None = None
+    titlecase: bool | None = None
+    data_include: str | None = None
+    include_if_matched: bool | None = None
 
 
 class BaseSearchModel(BaseRequestModel):
@@ -43,13 +44,13 @@ class BaseSearchModel(BaseRequestModel):
     Common fields validation model for search APIs (company, person).
     """
 
-    query: Optional[dict] = None
-    sql: Optional[str] = None
-    from_: Optional[Annotated[int, Field(ge=0, le=9999)]] = Field(
+    query: dict | None = None
+    sql: str | None = None
+    from_: Annotated[int, Field(ge=0, le=9999)] | None = Field(
         default=None, serialization_alias="from"
     )
-    scroll_token: Optional[str] = None
-    titlecase: Optional[bool] = None
+    scroll_token: str | None = None
+    titlecase: bool | None = None
 
     @model_validator(mode="before")
     @classmethod
@@ -100,9 +101,9 @@ class AutocompleteModel(BaseRequestModel):
     """
 
     field: FieldEnum
-    text: Optional[str] = None
-    pretty: Optional[bool] = None
-    titlecase: Optional[bool] = None
+    text: str | None = None
+    pretty: bool | None = None
+    titlecase: bool | None = None
 
 
 class JobTitleModel(BaseRequestModel):
@@ -111,8 +112,8 @@ class JobTitleModel(BaseRequestModel):
     """
 
     job_title: str
-    pretty: Optional[bool] = None
-    titlecase: Optional[bool] = None
+    pretty: bool | None = None
+    titlecase: bool | None = None
 
 
 class IPModel(BaseModel):
@@ -121,12 +122,12 @@ class IPModel(BaseModel):
     """
 
     ip: str
-    return_ip_metadata: Optional[bool] = None
-    return_ip_location: Optional[bool] = None
-    return_person: Optional[bool] = None
-    return_if_unmatched: Optional[bool] = None
-    pretty: Optional[bool] = None
-    titlecase: Optional[bool] = None
-    min_confidence: Optional[
+    return_ip_metadata: bool | None = None
+    return_ip_location: bool | None = None
+    return_person: bool | None = None
+    return_if_unmatched: bool | None = None
+    pretty: bool | None = None
+    titlecase: bool | None = None
+    min_confidence: None | (
         Literal["very high", "high", "moderate", "low", "very low"]
-    ] = None
+    ) = None

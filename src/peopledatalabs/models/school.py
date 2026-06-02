@@ -2,8 +2,6 @@
 Models for input parameters of the School APIs.
 """
 
-from typing import Optional
-
 from pydantic import model_validator
 
 from . import BaseRequestModel
@@ -14,9 +12,9 @@ class CleanerModel(BaseRequestModel):
     Validation model for School 'cleaner' API.
     """
 
-    name: Optional[str] = None
-    website: Optional[str] = None
-    profile: Optional[str] = None
+    name: str | None = None
+    website: str | None = None
+    profile: str | None = None
 
     @model_validator(mode="before")
     @classmethod

@@ -3,7 +3,8 @@ Models for input parameters of the Person APIs.
 """
 
 from enum import Enum
-from typing import Annotated, List, Optional, Union
+
+from typing import Annotated
 
 from pydantic import (
     BaseModel,
@@ -25,30 +26,30 @@ class PersonBaseModel(BaseModel):
     Base parameters model for the enrichment and identify API.
     """
 
-    birth_date: Optional[Union[List[str], str]] = None
-    company: Optional[Union[List[str], str]] = None
-    country: Optional[str] = None
-    email: Optional[Union[List[EmailStr], EmailStr]] = None
-    email_hash: Optional[Union[List[str], str]] = None
-    first_name: Optional[Union[List[str], str]] = None
-    last_name: Optional[Union[List[str], str]] = None
-    lid: Optional[Union[List[str], str]] = None
-    locality: Optional[str] = None
-    location: Optional[Union[List[str], str]] = None
-    middle_name: Optional[Union[List[str], str]] = None
-    name: Optional[Union[List[str], str]] = None
-    phone: Optional[Union[List[str], str]] = None
-    pdl_id: Optional[Union[List[str], str]] = None
-    postal_code: Optional[Union[List[str], str]] = None
-    profile: Optional[Union[List[str], str]] = None
-    region: Optional[str] = None
-    school: Optional[Union[List[str], str]] = None
-    street_address: Optional[str] = None
-    pdl_id: Optional[str] = None
-    min_likelihood: Optional[Annotated[int, Field(ge=1, le=10)]] = None
-    required: Optional[str] = None
-    data_include: Optional[str] = None
-    include_if_matched: Optional[bool] = None
+    birth_date: list[str] | str | None = None
+    company: list[str] | str | None = None
+    country: str | None = None
+    email: list[EmailStr] | EmailStr | None = None
+    email_hash: list[str] | str | None = None
+    first_name: list[str] | str | None = None
+    last_name: list[str] | str | None = None
+    lid: list[str] | str | None = None
+    locality: str | None = None
+    location: list[str] | str | None = None
+    middle_name: list[str] | str | None = None
+    name: list[str] | str | None = None
+    phone: list[str] | str | None = None
+    pdl_id: list[str] | str | None = None
+    postal_code: list[str] | str | None = None
+    profile: list[str] | str | None = None
+    region: str | None = None
+    school: list[str] | str | None = None
+    street_address: str | None = None
+    pdl_id: str | None = None
+    min_likelihood: Annotated[int, Field(ge=1, le=10)] | None = None
+    required: str | None = None
+    data_include: str | None = None
+    include_if_matched: bool | None = None
 
     @model_validator(mode="before")
     @classmethod
@@ -108,7 +109,7 @@ class PersonBulkParamsModel(BaseModel):
     Model for the validation of the 'params' field in the person/bulk API.
     """
 
-    metadata: Optional[dict] = None
+    metadata: dict | None = None
     params: PersonBaseModel = ...
 
 
@@ -117,7 +118,7 @@ class BulkModel(BaseRequestModel, AdditionalParametersModel):
     Model for the person/bulk API.
     """
 
-    requests: List[PersonBulkParamsModel]
+    requests: list[PersonBulkParamsModel]
 
     @field_validator("requests", mode="before")
     @classmethod
@@ -155,7 +156,7 @@ class SearchModel(BaseSearchModel):
     Model for validation of person search API.
     """
 
-    dataset: Optional[str] = None
+    dataset: str | None = None
 
     @field_validator("dataset", mode="before")
     @classmethod
@@ -178,12 +179,12 @@ class ChangelogModel(BaseModel):
     Model for validation of person changelog API.
     """
 
-    origin_version: Optional[str] = None
-    current_version: Optional[str] = None
-    type: Optional[str] = None
-    ids: Optional[List[str]] = None
-    fields_updated: Optional[List[str]] = None
-    scroll_token: Optional[str] = None
+    origin_version: str | None = None
+    current_version: str | None = None
+    type: str | None = None
+    ids: list[str] | None = None
+    fields_updated: list[str] | None = None
+    scroll_token: str | None = None
 
     @model_validator(mode="before")
     @classmethod

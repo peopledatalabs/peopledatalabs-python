@@ -4,7 +4,8 @@ Models for input parameters of the Job Posting APIs.
 
 from datetime import date
 from enum import Enum
-from typing import Annotated, Optional
+
+from typing import Annotated
 
 from pydantic import BaseModel, Field
 
@@ -37,9 +38,9 @@ class JobPostingQuerySearchModel(BaseModel):
     """
 
     query: dict
-    size: Optional[Annotated[int, Field(ge=1, le=100)]] = 10
-    pretty: Optional[bool] = False
-    scroll_token: Optional[str] = None
+    size: Annotated[int, Field(ge=1, le=100)] | None = 10
+    pretty: bool | None = False
+    scroll_token: str | None = None
 
 
 class JobPostingParamSearchModel(BaseModel):
@@ -48,39 +49,39 @@ class JobPostingParamSearchModel(BaseModel):
     parameter form (no 'query' body).
     """
 
-    id: Optional[str] = None
-    first_seen_min: Optional[date] = None
-    first_seen_max: Optional[date] = None
-    deactivated_date_min: Optional[date] = None
-    deactivated_date_max: Optional[date] = None
+    id: str | None = None
+    first_seen_min: date | None = None
+    first_seen_max: date | None = None
+    deactivated_date_min: date | None = None
+    deactivated_date_max: date | None = None
 
-    title: Optional[str] = None
-    title_class: Optional[str] = None
-    title_role: Optional[str] = None
-    title_sub_role: Optional[str] = None
-    title_levels: Optional[str] = None
+    title: str | None = None
+    title_class: str | None = None
+    title_role: str | None = None
+    title_sub_role: str | None = None
+    title_levels: str | None = None
 
-    company_id: Optional[str] = None
-    company_name: Optional[str] = None
-    company_industry: Optional[str] = None
-    company_industry_v2: Optional[str] = None
-    company_website: Optional[str] = None
-    company_profile: Optional[str] = None
+    company_id: str | None = None
+    company_name: str | None = None
+    company_industry: str | None = None
+    company_industry_v2: str | None = None
+    company_website: str | None = None
+    company_profile: str | None = None
 
-    location: Optional[str] = None
-    description: Optional[str] = None
+    location: str | None = None
+    description: str | None = None
 
-    salary_range_min: Optional[int] = None
-    salary_range_max: Optional[int] = None
-    salary_currency: Optional[str] = None
-    salary_period: Optional[SalaryPeriod] = None
+    salary_range_min: int | None = None
+    salary_range_max: int | None = None
+    salary_currency: str | None = None
+    salary_period: SalaryPeriod | None = None
 
-    remote_work_policy: Optional[RemoteWorkPolicy] = None
-    inferred_skills: Optional[str] = None
-    last_verified_min: Optional[date] = None
-    last_verified_max: Optional[date] = None
+    remote_work_policy: RemoteWorkPolicy | None = None
+    inferred_skills: str | None = None
+    last_verified_min: date | None = None
+    last_verified_max: date | None = None
 
-    is_active: Optional[bool] = None
-    size: Optional[Annotated[int, Field(ge=1, le=100)]] = 10
-    pretty: Optional[bool] = False
-    scroll_token: Optional[str] = None
+    is_active: bool | None = None
+    size: Annotated[int, Field(ge=1, le=100)] | None = 10
+    pretty: bool | None = False
+    scroll_token: str | None = None

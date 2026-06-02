@@ -2,7 +2,7 @@
 Client's main module.
 """
 
-from typing import Annotated, Optional
+from typing import Annotated
 
 from pydantic import Field, field_validator
 from pydantic.dataclasses import dataclass
@@ -38,13 +38,13 @@ class PDLPY:
         log_level (:obj:`str`, optional): The logger level.
     """
 
-    api_key: Optional[str] = Field(
+    api_key: str | None = Field(
         default=settings.api_key, validate_default=True
     )
-    base_path: Optional[Annotated[str, Field(pattern=r"^https?://")]] = None
-    version: Annotated[
-        str, Field(pattern=settings.version_re)
-    ] = settings.version
+    base_path: Annotated[str, Field(pattern=r"^https?://")] | None = None
+    version: Annotated[str, Field(pattern=settings.version_re)] = (
+        settings.version
+    )
     log_level: str = None
     sandbox: bool = False
 

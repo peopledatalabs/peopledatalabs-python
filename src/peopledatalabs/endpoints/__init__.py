@@ -2,8 +2,6 @@
 Package to resolve endpoints from the People Data Labs' API.
 """
 
-from typing import Type
-
 from pydantic import BaseModel, StrictStr
 from pydantic.dataclasses import dataclass
 
@@ -69,7 +67,7 @@ class Endpoint:
         return method
 
     @check_empty_parameters
-    def _bulk(self, model: Type[BaseModel], **kwargs):
+    def _bulk(self, model: type[BaseModel], **kwargs):
         """
         Calls PeopleDataLabs' bulk enrichment API.
 
@@ -91,7 +89,7 @@ class Endpoint:
         ).post()
 
     @check_empty_parameters
-    def _cleaner(self, model: Type[BaseModel], **kwargs):
+    def _cleaner(self, model: type[BaseModel], **kwargs):
         """
         Calls PeopleDataLabs' cleaner API.
 
@@ -113,7 +111,7 @@ class Endpoint:
         ).get()
 
     @check_empty_parameters
-    def _enrichment(self, model: Type[BaseModel], **kwargs):
+    def _enrichment(self, model: type[BaseModel], **kwargs):
         """
         Calls PeopleDataLabs' enrichment API.
 
@@ -135,7 +133,7 @@ class Endpoint:
         ).get()
 
     @check_empty_parameters
-    def _identify(self, model: Type[BaseModel], **kwargs):
+    def _identify(self, model: type[BaseModel], **kwargs):
         """
         Calls PeopleDataLabs' identify API.
 
@@ -158,7 +156,7 @@ class Endpoint:
 
     def _retrieve(
         self,
-        model: Type[BaseModel],
+        model: type[BaseModel],
         person_id: StrictStr,
         **kwargs,
     ):
@@ -186,7 +184,7 @@ class Endpoint:
         ).get()
 
     @check_empty_parameters
-    def _search(self, model: Type[BaseModel], **kwargs):
+    def _search(self, model: type[BaseModel], **kwargs):
         """
         Calls PeopleDataLabs' search API.
 
@@ -208,7 +206,7 @@ class Endpoint:
         ).post()
 
     @check_empty_parameters
-    def _changelog(self, model: Type[BaseModel], **kwargs):
+    def _changelog(self, model: type[BaseModel], **kwargs):
         """
         Calls PeopleDataLabs' changelog API.
 
@@ -230,7 +228,7 @@ class Endpoint:
         ).post()
 
     @check_empty_parameters
-    def _company_bulk(self, model: Type[BaseModel], **kwargs):
+    def _company_bulk(self, model: type[BaseModel], **kwargs):
         """
         Calls PeopleDataLabs' company bulk enrichment API.
 

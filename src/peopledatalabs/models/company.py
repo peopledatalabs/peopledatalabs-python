@@ -2,8 +2,6 @@
 Models for input parameters of the Company APIs.
 """
 
-from typing import List, Optional, Union
-
 from pydantic import (
     BaseModel,
     field_validator,
@@ -22,17 +20,17 @@ class CompanyBaseModel(BaseModel):
     Base parameters model for the enrichment API.
     """
 
-    country: Optional[Union[str, List[str]]] = None
-    locality: Optional[Union[str, List[str]]] = None
-    location: Optional[Union[List[str], str]] = None
-    name: Optional[Union[str, List[str]]] = None
-    pdl_id: Optional[str] = None
-    postal_code: Optional[Union[str, List[str]]] = None
-    profile: Optional[Union[str, List[str]]] = None
-    region: Optional[Union[str, List[str]]] = None
-    street_address: Optional[Union[str, List[str]]] = None
-    ticker: Optional[Union[str, List[str]]] = None
-    website: Optional[Union[str, List[str]]] = None
+    country: str | list[str] | None = None
+    locality: str | list[str] | None = None
+    location: list[str] | str | None = None
+    name: str | list[str] | None = None
+    pdl_id: str | None = None
+    postal_code: str | list[str] | None = None
+    profile: str | list[str] | None = None
+    region: str | list[str] | None = None
+    street_address: str | list[str] | None = None
+    ticker: str | list[str] | None = None
+    website: str | list[str] | None = None
 
     @model_validator(mode="before")
     @classmethod
@@ -72,7 +70,7 @@ class CompanyBulkParamsModel(BaseModel):
     Model for the validation of the 'params' field in the company bulk API.
     """
 
-    metadata: Optional[dict] = None
+    metadata: dict | None = None
     params: CompanyBaseModel = ...
 
 
@@ -81,7 +79,7 @@ class CompanyBulkModel(BaseRequestModel, AdditionalParametersModel):
     Model for the company bulk API.
     """
 
-    requests: List[CompanyBulkParamsModel]
+    requests: list[CompanyBulkParamsModel]
 
     @field_validator("requests", mode="before")
     @classmethod
@@ -113,9 +111,9 @@ class CleanerModel(BaseRequestModel):
     Validation model for Company 'cleaner' API.
     """
 
-    name: Optional[str] = None
-    website: Optional[str] = None
-    profile: Optional[str] = None
+    name: str | None = None
+    website: str | None = None
+    profile: str | None = None
 
     @model_validator(mode="before")
     @classmethod

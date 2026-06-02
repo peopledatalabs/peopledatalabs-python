@@ -5,7 +5,6 @@ All requests are handled here.
 """
 
 import json
-from typing import Dict, Type
 
 from pydantic import BaseModel
 from pydantic.dataclasses import dataclass
@@ -32,9 +31,9 @@ class Request:
 
     api_key: str
     url: str
-    headers: Dict[str, str]
+    headers: dict[str, str]
     params: dict
-    validator: Type[BaseModel]
+    validator: type[BaseModel]
 
     def __post_init__(self):
         """
