@@ -38,9 +38,13 @@ class PDLPY:
         log_level (:obj:`str`, optional): The logger level.
     """
 
-    api_key: Optional[str] = Field(default=settings.api_key, validate_default=True)
+    api_key: Optional[str] = Field(
+        default=settings.api_key, validate_default=True
+    )
     base_path: Optional[Annotated[str, Field(pattern=r"^https?://")]] = None
-    version: Annotated[str, Field(pattern=settings.version_re)] = settings.version
+    version: Annotated[
+        str, Field(pattern=settings.version_re)
+    ] = settings.version
     log_level: str = None
     sandbox: bool = False
 
