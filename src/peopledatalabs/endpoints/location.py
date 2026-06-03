@@ -4,10 +4,9 @@ Defines all API endpoints for the 'Location' section.
 
 from pydantic.dataclasses import dataclass
 
-from . import Endpoint
 from ..logger import get_logger
 from ..models import location as location_models
-
+from . import Endpoint
 
 logger = get_logger("endpoints.location")
 

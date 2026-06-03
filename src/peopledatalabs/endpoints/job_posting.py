@@ -4,10 +4,9 @@ Defines all API endpoints for the 'Job Posting' section.
 
 from pydantic.dataclasses import dataclass
 
-from . import Endpoint
-from ..models import job_posting as job_posting_models
 from ..logger import get_logger
-
+from ..models import job_posting as job_posting_models
+from . import Endpoint
 
 logger = get_logger("endpoints.job_posting")
 

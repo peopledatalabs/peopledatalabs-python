@@ -3,10 +3,10 @@ All tests related to the Person object of the client instance.
 """
 
 import logging
+
 import pytest
 
 from peopledatalabs.main import Person
-
 
 logging.basicConfig()
 logger = logging.getLogger("PeopleDataLabs.tests.person")

@@ -3,7 +3,6 @@ Client's models for validation.
 """
 
 from enum import Enum
-
 from typing import Annotated, Literal
 
 from pydantic import (
@@ -13,7 +12,6 @@ from pydantic import (
 )
 
 from ..logger import get_logger
-
 
 logger = get_logger("models")
 
@@ -128,6 +126,6 @@ class IPModel(BaseModel):
     return_if_unmatched: bool | None = None
     pretty: bool | None = None
     titlecase: bool | None = None
-    min_confidence: None | (
-        Literal["very high", "high", "moderate", "low", "very low"]
+    min_confidence: (
+        None | (Literal["very high", "high", "moderate", "low", "very low"])
     ) = None

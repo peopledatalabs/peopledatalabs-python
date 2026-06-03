@@ -5,11 +5,10 @@ Defines all API endpoints for the 'Person' section.
 from pydantic import StrictStr, validate_call
 from pydantic.dataclasses import dataclass
 
-from . import Endpoint
 from .. import models
-from ..models import person as person_models
 from ..logger import get_logger
-
+from ..models import person as person_models
+from . import Endpoint
 
 logger = get_logger("endpoints.person")
 

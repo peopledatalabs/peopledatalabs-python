@@ -21,37 +21,23 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.10", "3.11", "3.12"]
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14", "3.15-dev"]
 
     steps:
     - uses: actions/checkout@v6
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v6
+      continue-on-error: ${{ matrix.python-version == '3.15-dev' }}
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install Poetry
       uses: abatilo/actions-poetry@v4
     - name: Install dependencies
       run: poetry install
-    - name: Lint with pylint
-      run: poetry run pylint $(git ls-files '*.py')
-    - name: Lint with flake8
-      run: poetry run flake8 $(git ls-files '*.py')
-    - name: Run docformatter
+    - name: Lint and format with Ruff
       run: |
-        poetry run docformatter -c $(git ls-files "*.py") \
-                --pre-summary-newline \
-                --make-summary-multi-line
-    - name: Check formatting with black
-      run: poetry run black . --check
-    - name: Check unused imports and variables with autoflake
-      run: |
-        poetry run autoflake -c $(git ls-files "*.py") \
-                --remove-duplicate-keys \
-                --remove-unused-variables \
-                --remove-all-unused-imports
-    - name: Run pyupgrade
-      run: poetry run pyupgrade $(git ls-files "*.py")
+        poetry run ruff check .
+        poetry run ruff format . --check
     - name: Test no PDL_API_KEY
       run: poetry run pytest -k "not test_api_endpoint_"
     - name: Test with PDL_API_KEY

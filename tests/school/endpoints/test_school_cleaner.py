@@ -3,12 +3,11 @@ Tests calls to the school/clean API.
 """
 
 import logging
-import pytest
 
+import pytest
 import requests
 
 from peopledatalabs.errors import EmptyParametersException
-
 
 logging.basicConfig()
 logger = logging.getLogger("PeopleDataLabs.tests.school.cleaner")

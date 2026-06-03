@@ -5,15 +5,14 @@ Tests calls to the job_posting/search API.
 import logging
 
 import pytest
-from pydantic import ValidationError
 import requests
+from pydantic import ValidationError
 
 from peopledatalabs.errors import EmptyParametersException
 from peopledatalabs.models.job_posting import (
     JobPostingParamSearchModel,
     JobPostingQuerySearchModel,
 )
-
 
 logging.basicConfig()
 logger = logging.getLogger("PeopleDataLabs.tests.job_posting.search")

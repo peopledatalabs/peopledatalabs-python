@@ -4,7 +4,6 @@ Models for input parameters of the Job Posting APIs.
 
 from datetime import date
 from enum import Enum
-
 from typing import Annotated
 
 from pydantic import BaseModel, Field

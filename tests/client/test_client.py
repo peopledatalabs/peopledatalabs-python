@@ -10,7 +10,6 @@ from pydantic import ValidationError
 from peopledatalabs import __version__
 from peopledatalabs.main import PDLPY
 
-
 logging.basicConfig()
 logger = logging.getLogger("PeopleDataLabs.tests")
 

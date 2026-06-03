@@ -3,13 +3,12 @@ Tests calls to the sandbox person/identify API.
 """
 
 import logging
-import pytest
 
-from pydantic import ValidationError
+import pytest
 import requests
+from pydantic import ValidationError
 
 from peopledatalabs.errors import EmptyParametersException
-
 
 logging.basicConfig()
 logger = logging.getLogger("PeopleDataLabs.tests.sandbox.person.identify")

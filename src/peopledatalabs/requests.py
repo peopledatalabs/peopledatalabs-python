@@ -6,12 +6,11 @@ All requests are handled here.
 
 import json
 
+import requests
 from pydantic import BaseModel
 from pydantic.dataclasses import dataclass
-import requests
 
 from .logger import get_logger
-
 
 logger = get_logger("requests")
 

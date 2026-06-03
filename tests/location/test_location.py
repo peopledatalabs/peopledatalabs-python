@@ -3,11 +3,11 @@ All tests related to the Location object of the client instance.
 """
 
 import logging
+
 import pytest
 
-from peopledatalabs.main import Location
 from peopledatalabs.errors import InvalidEndpointError
-
+from peopledatalabs.main import Location
 
 logging.basicConfig()
 logger = logging.getLogger("PeopleDataLabs.tests.location")

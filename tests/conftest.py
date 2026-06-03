@@ -2,15 +2,13 @@
 Pytest testing configuration file.
 """
 
-import uuid
-
 import os
+import uuid
 
 import pytest
 
-from peopledatalabs.main import PDLPY
 from peopledatalabs.logger import get_logger
-
+from peopledatalabs.main import PDLPY
 
 logger = get_logger("tests")
 

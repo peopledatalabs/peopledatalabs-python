@@ -8,17 +8,16 @@ from pydantic import Field, field_validator
 from pydantic.dataclasses import dataclass
 
 from .endpoints import Endpoint
-from .endpoints.person import Person
 from .endpoints.company import Company
 from .endpoints.job_posting import JobPosting
 from .endpoints.location import Location
+from .endpoints.person import Person
 from .endpoints.school import School
 from .logger import get_logger
-from .models import AutocompleteModel, JobTitleModel, IPModel
+from .models import AutocompleteModel, IPModel, JobTitleModel
 from .requests import Request
 from .settings import settings
 from .utils import check_empty_parameters
-
 
 logger = get_logger()
 
