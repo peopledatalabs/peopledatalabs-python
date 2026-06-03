@@ -18,7 +18,7 @@ class Settings:
     version: str = "v5"
     version_re: str = r"^v[0-9]$"
     sandbox_base_path: str = "https://sandbox.api.peopledatalabs.com/"
-    sdk_version: str = "6.4.13"
+    sdk_version: str = "7.0.0"
 
 
 settings = Settings()

@@ -551,7 +551,7 @@ PDLPY().person.identify({"fake_parameter": "anything"})
 
 ### Upgrading to v2.X.X <a name="upgrading-to-v2"></a>
 
-NOTE: When upgrading to v2.X.X from vX.X.X and below, the minimum required python version is now 3.10.
+NOTE: When upgrading to v2.X.X from vX.X.X and below, the minimum required python version is now 3.8.
 
 ### Upgrading to v3.X.X <a name="upgrading-to-v3"></a>
 
