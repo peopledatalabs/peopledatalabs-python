@@ -3,11 +3,11 @@ All tests related to the School object of the client instance.
 """
 
 import logging
+
 import pytest
 
-from peopledatalabs.main import School
 from peopledatalabs.errors import InvalidEndpointError
-
+from peopledatalabs.main import School
 
 logging.basicConfig()
 logger = logging.getLogger("PeopleDataLabs.tests.school")

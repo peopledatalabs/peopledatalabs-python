@@ -29,6 +29,7 @@
   - [Upgrading to v2.X.X](#upgrading-to-v2)
   - [Upgrading to v3.X.X](#upgrading-to-v3)
   - [Upgrading to v4.X.X](#upgrading-to-v4)
+  - [Upgrading to v7.X.X](#upgrading-to-v7)
 
 
 ## 🔧 Installation <a name="installation"></a>
@@ -559,3 +560,7 @@ NOTE: When upgrading to v3.X.X from vX.X.X and below, the minimum required pydan
 ### Upgrading to v4.X.X <a name="upgrading-to-v4"></a>
 
 NOTE: When upgrading to v4.X.X from vX.X.X and below, we no longer auto load the API key from the environment variable `PDL_API_KEY`. You must now pass the API key as a parameter to the `PDLPY` class.
+
+### Upgrading to v7.X.X <a name="upgrading-to-v7"></a>
+
+NOTE: When upgrading to v7.X.X from vX.X.X and below, the minimum required python version is now 3.10. Support for Python 3.8 and 3.9 has been dropped. Additionally, internal GitHub Actions have been updated to support Node.js 24.

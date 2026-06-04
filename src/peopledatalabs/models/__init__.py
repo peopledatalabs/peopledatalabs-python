@@ -3,16 +3,15 @@ Client's models for validation.
 """
 
 from enum import Enum
-from typing import Optional, Literal
+from typing import Annotated, Literal
 
-from pydantic.v1 import (
+from pydantic import (
     BaseModel,
-    conint,
-    root_validator,
+    Field,
+    model_validator,
 )
 
 from ..logger import get_logger
-
 
 logger = get_logger("models")
 
@@ -22,8 +21,8 @@ class BaseRequestModel(BaseModel):
     Base model for parameters common in all requests.
     """
 
-    pretty: Optional[bool]
-    size: Optional[conint(ge=1, le=100)]
+    pretty: bool | None = None
+    size: Annotated[int, Field(ge=1, le=100)] | None = None
 
 
 class AdditionalParametersModel(BaseModel):
@@ -31,11 +30,11 @@ class AdditionalParametersModel(BaseModel):
     Model for additional parameters which are shared across different APIs.
     """
 
-    min_likelihood: Optional[conint(ge=1, le=10)]
-    required: Optional[str]
-    titlecase: Optional[bool]
-    data_include: Optional[str]
-    include_if_matched: Optional[bool]
+    min_likelihood: Annotated[int, Field(ge=1, le=10)] | None = None
+    required: str | None = None
+    titlecase: bool | None = None
+    data_include: str | None = None
+    include_if_matched: bool | None = None
 
 
 class BaseSearchModel(BaseRequestModel):
@@ -43,13 +42,16 @@ class BaseSearchModel(BaseRequestModel):
     Common fields validation model for search APIs (company, person).
     """
 
-    query: Optional[dict]
-    sql: Optional[str]
-    from_: Optional[conint(ge=0, le=9999)]
-    scroll_token: Optional[str]
-    titlecase: Optional[bool]
+    query: dict | None = None
+    sql: str | None = None
+    from_: Annotated[int, Field(ge=0, le=9999)] | None = Field(
+        default=None, serialization_alias="from"
+    )
+    scroll_token: str | None = None
+    titlecase: bool | None = None
 
-    @root_validator(pre=True)
+    @model_validator(mode="before")
+    @classmethod
     def query_or_sql(cls, v):
         """
         Checks only one between 'query' and 'sql' is provided.
@@ -97,9 +99,9 @@ class AutocompleteModel(BaseRequestModel):
     """
 
     field: FieldEnum
-    text: Optional[str]
-    pretty: Optional[bool]
-    titlecase: Optional[bool]
+    text: str | None = None
+    pretty: bool | None = None
+    titlecase: bool | None = None
 
 
 class JobTitleModel(BaseRequestModel):
@@ -108,8 +110,8 @@ class JobTitleModel(BaseRequestModel):
     """
 
     job_title: str
-    pretty: Optional[bool]
-    titlecase: Optional[bool]
+    pretty: bool | None = None
+    titlecase: bool | None = None
 
 
 class IPModel(BaseModel):
@@ -118,12 +120,12 @@ class IPModel(BaseModel):
     """
 
     ip: str
-    return_ip_metadata: Optional[bool]
-    return_ip_location: Optional[bool]
-    return_person: Optional[bool]
-    return_if_unmatched: Optional[bool]
-    pretty: Optional[bool]
-    titlecase: Optional[bool]
-    min_confidence: Optional[
-        Literal["very high", "high", "moderate", "low", "very low"]
-    ]
+    return_ip_metadata: bool | None = None
+    return_ip_location: bool | None = None
+    return_person: bool | None = None
+    return_if_unmatched: bool | None = None
+    pretty: bool | None = None
+    titlecase: bool | None = None
+    min_confidence: (
+        None | (Literal["very high", "high", "moderate", "low", "very low"])
+    ) = None

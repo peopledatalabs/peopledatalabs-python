@@ -3,11 +3,11 @@ All tests related to the Company object of the client instance.
 """
 
 import logging
+
 import pytest
 
-from peopledatalabs.main import Company
 from peopledatalabs.errors import InvalidEndpointError
-
+from peopledatalabs.main import Company
 
 logging.basicConfig()
 logger = logging.getLogger("PeopleDataLabs.tests.company")

@@ -2,12 +2,11 @@
 Defines all API endpoints for the 'School' section.
 """
 
-from pydantic.v1.dataclasses import dataclass
+from pydantic.dataclasses import dataclass
 
-from . import Endpoint
 from ..logger import get_logger
 from ..models import school as school_models
-
+from . import Endpoint
 
 logger = get_logger("endpoints.school")
 

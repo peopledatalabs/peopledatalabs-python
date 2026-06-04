@@ -2,17 +2,13 @@
 Defines all API endpoints for the 'Person' section.
 """
 
-from pydantic.v1 import (
-    StrictStr,
-    validate_arguments,
-)
-from pydantic.v1.dataclasses import dataclass
+from pydantic import StrictStr, validate_call
+from pydantic.dataclasses import dataclass
 
-from . import Endpoint
 from .. import models
-from ..models import person as person_models
 from ..logger import get_logger
-
+from ..models import person as person_models
+from . import Endpoint
 
 logger = get_logger("endpoints.person")
 
@@ -67,7 +63,7 @@ class Person(Endpoint):
         """
         return self._identify(person_models.IdentifyModel, **kwargs)
 
-    @validate_arguments
+    @validate_call
     def retrieve(self, person_id: StrictStr, **kwargs):
         """
         Calls PeopleDataLabs' person/retrieve API.

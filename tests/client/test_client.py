@@ -5,11 +5,10 @@ All tests related to the client instance.
 import logging
 
 import pytest
-from pydantic.v1 import ValidationError
+from pydantic import ValidationError
 
 from peopledatalabs import __version__
 from peopledatalabs.main import PDLPY
-
 
 logging.basicConfig()
 logger = logging.getLogger("PeopleDataLabs.tests")
@@ -19,7 +18,7 @@ def test_version():
     """
     Version check.
     """
-    assert __version__ == "6.4.13"
+    assert __version__ == "7.0.0"
 
 
 @pytest.mark.usefixtures("fake_api_key")

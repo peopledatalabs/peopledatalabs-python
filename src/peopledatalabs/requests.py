@@ -5,17 +5,12 @@ All requests are handled here.
 """
 
 import json
-from typing import Dict, Type
 
-from pydantic.v1 import (
-    BaseModel,
-    HttpUrl,
-)
-from pydantic.v1.dataclasses import dataclass
 import requests
+from pydantic import BaseModel
+from pydantic.dataclasses import dataclass
 
 from .logger import get_logger
-
 
 logger = get_logger("requests")
 
@@ -34,17 +29,19 @@ class Request:
     """
 
     api_key: str
-    url: HttpUrl
-    headers: Dict[str, str]
+    url: str
+    headers: dict[str, str]
     params: dict
-    validator: Type[BaseModel]
+    validator: type[BaseModel]
 
     def __post_init__(self):
         """
         Validates self.params using the validator received in self.validator.
         """
         logger.debug("Request object received params: %s", self.params)
-        self.params = self.validator(**self.params).dict(exclude_none=True)
+        self.params = self.validator(**self.params).model_dump(
+            by_alias=True, exclude_none=True
+        )
         logger.debug("Request object params after validation: %s", self.params)
 
     def _sanitize_params(self) -> dict:

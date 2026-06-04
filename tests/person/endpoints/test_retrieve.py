@@ -3,11 +3,10 @@ Tests calls to the person/retrieve API.
 """
 
 import logging
+
 import pytest
-
-from pydantic.v1 import ValidationError
 import requests
-
+from pydantic import ValidationError
 
 logging.basicConfig()
 logger = logging.getLogger("PeopleDataLabs.tests.person.retrieve")

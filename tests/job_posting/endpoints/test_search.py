@@ -5,15 +5,14 @@ Tests calls to the job_posting/search API.
 import logging
 
 import pytest
-from pydantic.v1 import ValidationError
 import requests
+from pydantic import ValidationError
 
 from peopledatalabs.errors import EmptyParametersException
 from peopledatalabs.models.job_posting import (
     JobPostingParamSearchModel,
     JobPostingQuerySearchModel,
 )
-
 
 logging.basicConfig()
 logger = logging.getLogger("PeopleDataLabs.tests.job_posting.search")
@@ -72,7 +71,7 @@ def test_param_model_is_active_omitted_by_default():
     it explicitly.
     """
     model = JobPostingParamSearchModel(title="engineer")
-    assert "is_active" not in model.dict(exclude_none=True)
+    assert "is_active" not in model.model_dump(exclude_none=True)
 
 
 def test_scroll_token_round_trips_as_opaque_string():

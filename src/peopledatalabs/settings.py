@@ -2,8 +2,7 @@
 A settings singleton to share settings across different modules of the package.
 """
 
-from pydantic.v1 import HttpUrl
-from pydantic.v1.dataclasses import dataclass
+from pydantic.dataclasses import dataclass
 
 
 @dataclass
@@ -13,13 +12,13 @@ class Settings:
     """
 
     api_key: str = None
-    base_path: HttpUrl = "https://api.peopledatalabs.com/"
+    base_path: str = "https://api.peopledatalabs.com/"
     log_level: str = None
     log_format: str = "{asctime} [{levelname}] - {name}.{funcName}: {message}"
     version: str = "v5"
     version_re: str = r"^v[0-9]$"
-    sandbox_base_path: HttpUrl = "https://sandbox.api.peopledatalabs.com/"
-    sdk_version: str = "6.4.13"
+    sandbox_base_path: str = "https://sandbox.api.peopledatalabs.com/"
+    sdk_version: str = "7.0.0"
 
 
 settings = Settings()

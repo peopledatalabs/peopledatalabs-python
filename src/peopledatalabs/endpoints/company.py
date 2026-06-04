@@ -2,12 +2,11 @@
 Defines all API endpoints for the 'Company' section.
 """
 
-from pydantic.v1.dataclasses import dataclass
+from pydantic.dataclasses import dataclass
 
-from . import Endpoint
-from ..models import company as company_models
 from ..logger import get_logger
-
+from ..models import company as company_models
+from . import Endpoint
 
 logger = get_logger("company")
 

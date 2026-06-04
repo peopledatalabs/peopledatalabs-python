@@ -3,14 +3,14 @@ Models for input parameters of the Person APIs.
 """
 
 from enum import Enum
-from typing import List, Optional, Union
+from typing import Annotated
 
-from pydantic.v1 import (
+from pydantic import (
     BaseModel,
     EmailStr,
-    root_validator,
-    conint,
-    validator,
+    Field,
+    field_validator,
+    model_validator,
 )
 
 from . import (
@@ -25,32 +25,33 @@ class PersonBaseModel(BaseModel):
     Base parameters model for the enrichment and identify API.
     """
 
-    birth_date: Optional[Union[List[str], str]]
-    company: Optional[Union[List[str], str]]
-    country: Optional[str]
-    email: Optional[Union[List[EmailStr], EmailStr]]
-    email_hash: Optional[Union[List[str], str]]
-    first_name: Optional[Union[List[str], str]]
-    last_name: Optional[Union[List[str], str]]
-    lid: Optional[Union[List[str], str]]
-    locality: Optional[str]
-    location: Optional[Union[List[str], str]]
-    middle_name: Optional[Union[List[str], str]]
-    name: Optional[Union[List[str], str]]
-    phone: Optional[Union[List[str], str]]
-    pdl_id: Optional[Union[List[str], str]]
-    postal_code: Optional[Union[List[str], str]]
-    profile: Optional[Union[List[str], str]]
-    region: Optional[str]
-    school: Optional[Union[List[str], str]]
-    street_address: Optional[str]
-    pdl_id: Optional[str]
-    min_likelihood: Optional[conint(ge=1, le=10)]
-    required: Optional[str]
-    data_include: Optional[str]
-    include_if_matched: Optional[bool]
+    birth_date: list[str] | str | None = None
+    company: list[str] | str | None = None
+    country: str | None = None
+    email: list[EmailStr] | EmailStr | None = None
+    email_hash: list[str] | str | None = None
+    first_name: list[str] | str | None = None
+    last_name: list[str] | str | None = None
+    lid: list[str] | str | None = None
+    locality: str | None = None
+    location: list[str] | str | None = None
+    middle_name: list[str] | str | None = None
+    name: list[str] | str | None = None
+    phone: list[str] | str | None = None
+    pdl_id: list[str] | str | None = None
+    postal_code: list[str] | str | None = None
+    profile: list[str] | str | None = None
+    region: str | None = None
+    school: list[str] | str | None = None
+    street_address: str | None = None
+    pdl_id: str | None = None
+    min_likelihood: Annotated[int, Field(ge=1, le=10)] | None = None
+    required: str | None = None
+    data_include: str | None = None
+    include_if_matched: bool | None = None
 
-    @root_validator(pre=True)
+    @model_validator(mode="before")
+    @classmethod
     def at_least_one(cls, value):
         """
         Checks that at least one parameter is valued.
@@ -84,7 +85,8 @@ class IdentifyModel(
     multiple values.
     """
 
-    @root_validator(pre=True)
+    @model_validator(mode="before")
+    @classmethod
     def no_lists(cls, v):
         """
         Checks none of the values are lists.
@@ -106,7 +108,7 @@ class PersonBulkParamsModel(BaseModel):
     Model for the validation of the 'params' field in the person/bulk API.
     """
 
-    metadata: Optional[dict]
+    metadata: dict | None = None
     params: PersonBaseModel = ...
 
 
@@ -115,9 +117,10 @@ class BulkModel(BaseRequestModel, AdditionalParametersModel):
     Model for the person/bulk API.
     """
 
-    requests: List[PersonBulkParamsModel]
+    requests: list[PersonBulkParamsModel]
 
-    @validator("requests", pre=True)
+    @field_validator("requests", mode="before")
+    @classmethod
     def must_contain_params(cls, value):
         """
         Checks that 'requests' is not empty.
@@ -152,9 +155,10 @@ class SearchModel(BaseSearchModel):
     Model for validation of person search API.
     """
 
-    dataset: Optional[str]
+    dataset: str | None = None
 
-    @validator("dataset", pre=True)
+    @field_validator("dataset", mode="before")
+    @classmethod
     def validate_datasets(cls, v):
         """
         Checks each passed dataset to be of the allowed ones.
@@ -174,14 +178,15 @@ class ChangelogModel(BaseModel):
     Model for validation of person changelog API.
     """
 
-    origin_version: Optional[str] = None
-    current_version: Optional[str] = None
-    type: Optional[str] = None
-    ids: Optional[List[str]] = None
-    fields_updated: Optional[List[str]] = None
-    scroll_token: Optional[str] = None
+    origin_version: str | None = None
+    current_version: str | None = None
+    type: str | None = None
+    ids: list[str] | None = None
+    fields_updated: list[str] | None = None
+    scroll_token: str | None = None
 
-    @root_validator(pre=True)
+    @model_validator(mode="before")
+    @classmethod
     def check_required_fields(cls, values):
         """
         Validate that:

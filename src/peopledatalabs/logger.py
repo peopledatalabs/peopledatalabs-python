@@ -7,7 +7,6 @@ import logging
 
 from .settings import settings
 
-
 logging.basicConfig(format=settings.log_format, style="{")
 
 
